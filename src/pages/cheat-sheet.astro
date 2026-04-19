@@ -1,0 +1,2548 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bass Guitar Jazz Cheat Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style is:global>
+:root {
+  --bg: #07080c;
+  --surface: #0f1018;
+  --surface2: #161822;
+  --surface3: #1e2030;
+  --gold: #d4a853;
+  --gold-dim: #9a7a3a;
+  --gold-bright: #f0c95a;
+  --blue: #5b8fd4;
+  --teal: #4ec9b0;
+  --rose: #d4637a;
+  --purple: #9b7bd4;
+  --orange: #e09050;
+  --text: #d8d4cc;
+  --text-dim: #706c68;
+  --text-mid: #9a968e;
+  --text-bright: #f0ece4;
+  --border: #252838;
+  --hadrien: #e06050;
+  --hadrien-bg: rgba(224,96,80,0.06);
+  --patitucci: #50a0e0;
+  --patitucci-bg: rgba(80,160,224,0.06);
+  --root-color: #d4a853;
+  --chord-color: #4ec9b0;
+  --scale-color: #5b8fd4;
+  --tension-color: #9b7bd4;
+  --chromatic-color: #d4637a;
+  --fret-bg: #0a0b12;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+}
+
+.container { max-width: 1440px; margin: 0 auto; padding: 40px 28px; }
+
+/* ── HEADER ── */
+header {
+  text-align: center;
+  padding: 50px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 1px;
+  line-height: 1.15;
+}
+
+h1 .sub {
+  display: block;
+  font-size: 0.35em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--text-dim);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.header-note {
+  margin-top: 16px;
+  color: var(--text-dim);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* ── SECTION TITLES ── */
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 55px 0 24px;
+}
+
+.sec-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.sec-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dim), transparent);
+}
+
+/* ── LEGEND ── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 14px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--text-mid);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.legend-dot { width: 11px; height: 11px; border-radius: 50%; }
+
+/* ── SCALE CARDS ── */
+.scale-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 26px;
+  transition: border-color 0.3s;
+}
+
+.card:hover { border-color: var(--gold-dim); }
+
+.card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  color: var(--text-bright);
+  margin-bottom: 2px;
+}
+
+.card h3 .alt-name {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+}
+
+.formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gold);
+  margin: 4px 0 8px;
+  letter-spacing: 0.5px;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--text-mid);
+  margin-bottom: 10px;
+  line-height: 1.55;
+}
+
+.chord-tags { margin-bottom: 12px; }
+
+.tag {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 2px 2px;
+  border: 1px solid;
+}
+
+.tag-maj { color: var(--teal); border-color: rgba(78,201,176,0.35); background: rgba(78,201,176,0.07); }
+.tag-min { color: var(--blue); border-color: rgba(91,143,212,0.35); background: rgba(91,143,212,0.07); }
+.tag-dom { color: var(--orange); border-color: rgba(224,144,80,0.35); background: rgba(224,144,80,0.07); }
+.tag-dim { color: var(--rose); border-color: rgba(212,99,122,0.35); background: rgba(212,99,122,0.07); }
+.tag-alt { color: var(--purple); border-color: rgba(155,123,212,0.35); background: rgba(155,123,212,0.07); }
+
+/* ── WHEN-TO-USE BOXES ── */
+.when-box {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(212,168,83,0.04);
+  border-left: 3px solid var(--gold-dim);
+  border-radius: 0 6px 6px 0;
+  font-size: 12.5px;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+.when-box strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.when-box .scenario {
+  display: block;
+  margin-top: 5px;
+  padding-left: 12px;
+  position: relative;
+}
+
+.when-box .scenario::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dim);
+}
+
+/* ── CHORD VOICING CARDS ── */
+.chord-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 22px;
+}
+
+.chord-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 26px;
+  transition: border-color 0.3s;
+}
+
+.chord-card:hover { border-color: var(--gold-dim); }
+
+.chord-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  color: var(--text-bright);
+  margin-bottom: 2px;
+}
+
+.chord-card h3 .chord-sym {
+  font-size: 14px;
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.chord-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gold);
+  margin: 4px 0 4px;
+  letter-spacing: 0.5px;
+}
+
+.chord-shell {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.chord-desc {
+  font-size: 13px;
+  color: var(--text-mid);
+  margin-bottom: 12px;
+  line-height: 1.55;
+}
+
+.voicing-pair {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.voicing-box {
+  flex: 1;
+  min-width: 0;
+}
+
+.voicing-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.voicing-box canvas {
+  display: block;
+  border-radius: 5px;
+}
+
+.chord-theory {
+  margin-top: 12px;
+  padding: 9px 13px;
+  background: rgba(212,168,83,0.04);
+  border-left: 3px solid var(--gold-dim);
+  border-radius: 0 6px 6px 0;
+  font-size: 12px;
+  color: var(--text-mid);
+  line-height: 1.55;
+}
+
+.chord-theory strong { color: var(--gold); }
+
+@media (max-width: 520px) {
+  .voicing-pair { flex-direction: column; }
+}
+
+/* ── FRETBOARD ── */
+.fb-container {
+  margin-top: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.fb-container canvas {
+  display: block;
+  border-radius: 6px;
+}
+
+/* ── QUICK REF TABLE ── */
+.ref-wrap { overflow-x: auto; margin: 24px 0; }
+
+.ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.ref-table th {
+  text-align: left;
+  padding: 11px 14px;
+  background: var(--surface2);
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--gold-dim);
+  white-space: nowrap;
+}
+
+.ref-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.ref-table tr:hover td { background: rgba(212,168,83,0.025); }
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+}
+
+/* ── ARTIST SECTIONS ── */
+.artist-section {
+  margin: 50px 0;
+  padding: 36px;
+  border-radius: 14px;
+  position: relative;
+}
+
+.artist-section.hadrien {
+  background: var(--hadrien-bg);
+  border: 1px solid rgba(224,96,80,0.15);
+}
+
+.artist-section.patitucci {
+  background: var(--patitucci-bg);
+  border: 1px solid rgba(80,160,224,0.15);
+}
+
+.artist-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.artist-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.hadrien .artist-avatar { background: linear-gradient(135deg, var(--hadrien), #a04035); }
+.patitucci .artist-avatar { background: linear-gradient(135deg, var(--patitucci), #3570a0); }
+
+.artist-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: var(--text-bright);
+}
+
+.artist-style {
+  font-size: 13px;
+  color: var(--text-mid);
+  margin-top: 4px;
+  line-height: 1.6;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 18px;
+}
+
+.tech-card {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+}
+
+.tech-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.hadrien .tech-card h4 { color: var(--hadrien); }
+.patitucci .tech-card h4 { color: var(--patitucci); }
+
+.tech-card .td { font-size: 13px; color: var(--text-mid); line-height: 1.55; margin-bottom: 8px; }
+
+.tech-card .tags-row { margin-bottom: 10px; }
+.tech-card .tags-row .lbl {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.tech-card .detail {
+  font-size: 12.5px;
+  color: var(--text-mid);
+  line-height: 1.55;
+  margin-top: 8px;
+}
+
+.hadrien .tech-card .detail strong { color: var(--hadrien); }
+.patitucci .tech-card .detail strong { color: var(--patitucci); }
+
+.context-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+}
+
+.ctx-fast { background: rgba(224,96,80,0.15); color: #e08070; border: 1px solid rgba(224,96,80,0.25); }
+.ctx-slow { background: rgba(78,201,176,0.12); color: #6ed8c0; border: 1px solid rgba(78,201,176,0.2); }
+.ctx-both { background: rgba(212,168,83,0.12); color: var(--gold); border: 1px solid rgba(212,168,83,0.2); }
+.ctx-modal { background: rgba(155,123,212,0.12); color: #b098e0; border: 1px solid rgba(155,123,212,0.2); }
+
+/* ── COMPARISON ── */
+.cmp-grid {
+  display: grid;
+  grid-template-columns: 1fr 180px 1fr;
+  gap: 0;
+  margin: 24px 0;
+}
+
+.cmp-col {
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.cmp-col:first-child { border-radius: 10px 0 0 10px; border-right: none; }
+.cmp-col:last-child { border-radius: 0 10px 10px 0; border-left: none; }
+
+.cmp-center {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  text-align: center;
+  padding: 12px;
+  line-height: 1.7;
+}
+
+.cmp-col h5 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.cmp-col.hf h5 { color: var(--hadrien); }
+.cmp-col.jp h5 { color: var(--patitucci); }
+
+.cmp-col ul {
+  list-style: none;
+  font-size: 12.5px;
+  color: var(--text-mid);
+}
+
+.cmp-col li {
+  padding: 4px 0 4px 14px;
+  position: relative;
+}
+
+.cmp-col li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dim);
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 50px 0 30px;
+  color: var(--text-dim);
+  font-size: 11px;
+  letter-spacing: 1px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+/* ── MOUSE TOOLTIP PREVIEW ── */
+#hover-tip {
+  position: fixed;
+  z-index: 9999;
+  background: var(--surface2);
+  border: 1px solid var(--gold-dim);
+  border-radius: 10px;
+  padding: 12px 14px 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+  max-width: 560px;
+  overflow: hidden;
+}
+
+#hover-tip.visible { opacity: 1; }
+
+#hover-tip .ht-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: var(--text-bright);
+  margin-bottom: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#hover-tip .ht-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+#hover-tip .ht-sub {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 6px;
+}
+
+#hover-tip .ht-canvases {
+  display: flex;
+  gap: 8px;
+}
+
+#hover-tip .ht-vlabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+/* hoverable inline elements */
+.hz { cursor: help; border-bottom: 1px dotted var(--gold-dim); transition: border-color 0.2s; }
+.hz:hover { border-bottom-color: var(--gold); }
+
+@media (max-width: 900px) {
+  .scale-grid, .tech-grid { grid-template-columns: 1fr; }
+  .cmp-grid { grid-template-columns: 1fr; }
+  .cmp-col:first-child { border-radius: 10px 10px 0 0; border-right: 1px solid var(--border); border-bottom: none; }
+  .cmp-col:last-child { border-radius: 0 0 10px 10px; border-left: 1px solid var(--border); border-top: none; }
+  .cmp-center { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+  .artist-section { padding: 22px; }
+  .container { padding: 20px 14px; }
+  #hover-tip { max-width: 95vw; }
+}
+</style>
+  <link rel="manifest" href="/bass/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/bass/icon.svg">
+  <meta name="theme-color" content="#d4a853">
+  <script is:inline>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/bass/sw.js', { scope: '/bass/' }).catch(function () {});
+      });
+    }
+  </script>
+</head>
+<body>
+
+<div id="hover-tip">
+  <div class="ht-name" id="ht-name"></div>
+  <div class="ht-formula" id="ht-formula"></div>
+  <div class="ht-sub" id="ht-sub"></div>
+  <div class="ht-canvases" id="ht-canvases"></div>
+</div>
+
+<div class="container">
+
+<header>
+  <h1>Bass Guitar Jazz<span class="sub">Chords · Modes · Scales · Practical Cheat Sheet</span></h1>
+  <p class="header-note">Fretboard diagrams verified for standard 4-string tuning (E-A-D-G). All patterns are moveable — root shown as R.</p>
+</header>
+
+<!-- ═══ I. SCALES & MODES ═══ -->
+<div class="sec-title"><h2>I. Essential Jazz Scales & Modes</h2></div>
+
+<p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.6">
+  All diagrams show a one-position box pattern starting from R on the E string. Fret numbers are relative 
+  (e.g., fret 3 means "3rd fret from wherever you place the root"). Standard tuning: E–A–D–G, each string is a perfect 4th (5 semitones) apart.
+</p>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--root-color)"></div>Root (R)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chord-color)"></div>Chord Tone (3,5,7)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--scale-color)"></div>Scale Degree</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--tension-color)"></div>Tension / Color</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chromatic-color)"></div>Chromatic Pass</div>
+</div>
+
+<div id="scale-cards" class="scale-grid"></div>
+
+<!-- ═══ II. CHORD VOICINGS ═══ -->
+<div class="sec-title"><h2>II. Jazz Chord Voicings</h2></div>
+
+<p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.6">
+  Shell voicings use just R-3-7 (or R-♭3-♭7) — the minimum notes to define a chord's quality. 
+  Two positions shown: E-string root and A-string root. All shapes are moveable — shift the root to any fret for any key.
+</p>
+
+<div class="legend" style="margin-bottom:20px">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--root-color)"></div>Root (R)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--chord-color)"></div>Chord Tone (3,5,7)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--tension-color)"></div>Tension (♯5,♭5)</div>
+</div>
+
+<div id="chord-cards" class="chord-grid"></div>
+
+<!-- ═══ III. CHORD → SCALE REF ═══ -->
+<div class="sec-title"><h2>III. Chord → Scale + When to Use</h2></div>
+
+<div class="ref-wrap">
+  <table class="ref-table">
+    <thead>
+      <tr>
+        <th>Chord</th>
+        <th>Symbol</th>
+        <th>Scale Choices</th>
+        <th>Tempo / Context</th>
+        <th>Feraud Pick</th>
+        <th>Patitucci Pick</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Major 7</td>
+        <td class="mono">Δ7</td>
+        <td>Ionian, Lydian</td>
+        <td style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--teal)">Slow/modal:</strong> Lydian (♯4 avoids the avoid note). <strong style="color:var(--orange)">Fast changes:</strong> Ionian arpeggios, target 3→7 voice-leading.</td>
+        <td style="color:var(--hadrien);font-size:12px">Lydian</td>
+        <td style="color:var(--patitucci);font-size:12px">Ionian / Lydian</td>
+      </tr>
+      <tr>
+        <td>Minor 7</td>
+        <td class="mono">-7</td>
+        <td>Dorian, Aeolian, Phrygian</td>
+        <td style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--teal)">Modal vamp:</strong> Dorian (bright ♮6). <strong style="color:var(--orange)">ii-V-I fast:</strong> Dorian arpeggio R-♭3-5-♭7 only. <strong style="color:var(--purple)">Dark/ballad:</strong> Aeolian.</td>
+        <td style="color:var(--hadrien);font-size:12px">Dorian</td>
+        <td style="color:var(--patitucci);font-size:12px">Dorian</td>
+      </tr>
+      <tr>
+        <td>Dominant 7</td>
+        <td class="mono">7</td>
+        <td>Mixolydian, Bebop Dom, Lydian Dom</td>
+        <td style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--orange)">Fast bebop:</strong> Bebop dom (8 notes = chord tones on downbeats). <strong style="color:var(--teal)">Slow/funk:</strong> Mixolydian. <strong style="color:var(--purple)">Tritone sub:</strong> Lydian Dom.</td>
+        <td style="color:var(--hadrien);font-size:12px">Lydian Dom / Whole Tone</td>
+        <td style="color:var(--patitucci);font-size:12px">Bebop Dom</td>
+      </tr>
+      <tr>
+        <td>Dominant alt</td>
+        <td class="mono">7alt</td>
+        <td>Altered, Dim HW, Whole Tone</td>
+        <td style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--orange)">Fast V→I:</strong> Altered scale (automatic ♭9♯9♭5♯5). <strong style="color:var(--teal)">Slow/expressive:</strong> Dim HW patterns for angular tension. <strong style="color:var(--purple)">Floating:</strong> Whole Tone.</td>
+        <td style="color:var(--hadrien);font-size:12px">Altered + Dim</td>
+        <td style="color:var(--patitucci);font-size:12px">Altered + Phryg Dom</td>
+      </tr>
+      <tr>
+        <td>Min-Major 7</td>
+        <td class="mono">-Δ7</td>
+        <td>Melodic Minor, Harmonic Minor</td>
+        <td style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--teal)">Modal/slow:</strong> Melodic minor ascending (ambiguous major/minor quality). <strong style="color:var(--purple)">Exotic/dark:</strong> Harmonic minor (1.5-step gap = drama).</td>
+        <td style="color:var(--hadrien);font-size:12px">Melodic Minor</td>
+        <td style="color:var(--patitucci);font-size:12px">Melodic Minor</td>
+      </tr>
+      <tr>
+        <td>Half-Dim</td>
+        <td class="mono">ø7</td>
+        <td>Locrian, Locrian ♮2</td>
+        <td style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--orange)">Fast ii-V in minor:</strong> Locrian ♮2 arpeggio (♮2 avoids the ugly ♭2). <strong style="color:var(--teal)">Ballad:</strong> Full Locrian ♮2 scale for color.</td>
+        <td style="color:var(--hadrien);font-size:12px">Locrian ♮2</td>
+        <td style="color:var(--patitucci);font-size:12px">Locrian ♮2</td>
+      </tr>
+      <tr>
+        <td>Diminished</td>
+        <td class="mono">°7</td>
+        <td>Diminished WH</td>
+        <td style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--orange)">Any tempo:</strong> Symmetric — transpose any pattern up 3 frets = same scale. Perfect for fast repeating cells. Often used as passing chord.</td>
+        <td style="color:var(--hadrien);font-size:12px">Dim WH cells</td>
+        <td style="color:var(--patitucci);font-size:12px">Dim WH</td>
+      </tr>
+      <tr>
+        <td>Sus4</td>
+        <td class="mono">7sus4</td>
+        <td>Mixolydian, Dorian</td>
+        <td style="font-size:12px;color:var(--text-mid)"><strong style="color:var(--teal)">Modal/groove:</strong> Mixolydian or pentatonic. <strong style="color:var(--orange)">Fast:</strong> Pentatonic fragments — simple shapes at speed.</td>
+        <td style="color:var(--hadrien);font-size:12px">Pent. superimposition</td>
+        <td style="color:var(--patitucci);font-size:12px">Mixolydian</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ III. PRACTICAL USAGE GUIDE ═══ -->
+<div class="sec-title"><h2>IV. When to Use What — Practical Situations</h2></div>
+
+<div class="scale-grid">
+  <div class="card" style="border-left:3px solid var(--orange)">
+    <h3>🔥 Fast-Moving Changes <span class="alt-name">(♩ > 200, 2 beats per chord)</span></h3>
+    <div class="card-desc">When chords fly by (Giant Steps, Cherokee, Rhythm Changes at tempo), you don't have time for full scales. Think in <strong style="color:var(--text-bright)">chord tones + chromatic approach notes</strong>.</div>
+    <div class="when-box">
+      <strong>Strategy:</strong>
+      <span class="scenario"><strong>Arpeggios only</strong> — R, 3, 5, 7 of each chord. Connect by half-step to next chord's nearest tone.</span>
+      <span class="scenario"><strong>Guide tones</strong> — Just play the 3rd and 7th of each chord. They voice-lead by half/whole step naturally.</span>
+      <span class="scenario"><strong>Bebop scale fragments</strong> — 4-note cells from bebop scales that start on chord tones. (Patitucci's method)</span>
+      <span class="scenario"><strong>Diminished cells</strong> — On fast dom7♭9 chords, a 4-note dim pattern shifted in minor 3rds covers it. (Feraud's method)</span>
+      <span class="scenario"><strong>Pentatonic fragments</strong> — Simple 5-note shapes played fast sound cleaner than 7-note scales at tempo.</span>
+    </div>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--teal)">
+    <h3>🎵 Slow / Modal Vamps <span class="alt-name">(1-2 chords, 4+ bars each)</span></h3>
+    <div class="card-desc">When you sit on one chord for multiple bars (So What, Maiden Voyage, fusion vamps), you have time to explore the <strong style="color:var(--text-bright)">full scale and all its tensions</strong>.</div>
+    <div class="when-box">
+      <strong>Strategy:</strong>
+      <span class="scenario"><strong>Full scale runs</strong> — Dorian, Lydian, Melodic Minor in all positions. Use the whole neck.</span>
+      <span class="scenario"><strong>Intervallic playing</strong> — Skip intervals (3rds, 4ths, 5ths within the scale) for angular melodies. (Feraud's wide intervals)</span>
+      <span class="scenario"><strong>Pentatonic superimposition</strong> — Stack pentatonics from different scale degrees for shifting color.</span>
+      <span class="scenario"><strong>Tension/release</strong> — Go "outside" (play a half-step away) then resolve back. Time to build arcs.</span>
+      <span class="scenario"><strong>Upper-structure triads</strong> — Simple triads from upper chord tones for rich color. (Patitucci's approach)</span>
+    </div>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--purple)">
+    <h3>⚡ Medium Tempo ii-V-I <span class="alt-name">(♩ 120-180, most common)</span></h3>
+    <div class="card-desc">The sweet spot where you blend scale runs with arpeggio voice-leading. This is where most jazz playing happens.</div>
+    <div class="when-box">
+      <strong>Strategy:</strong>
+      <span class="scenario"><strong>ii (Dorian)</strong> → Scale run targeting the ♭7, which resolves down by half-step to the 3rd of V chord (strongest voice-leading in jazz).</span>
+      <span class="scenario"><strong>V (Altered or Bebop Dom)</strong> → Altered for tension, Bebop Dom for straight-ahead. Enclosures around 3rd and 7th.</span>
+      <span class="scenario"><strong>I (Lydian or Ionian)</strong> → Resolve to the 3rd or 5th. Lydian ♯4 adds brightness on arrival.</span>
+      <span class="scenario"><strong>Chromatic enclosures</strong> — Approach each chord's 3rd from a half-step above AND below. Both artists rely on this heavily.</span>
+    </div>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--rose)">
+    <h3>🌊 Ballads & Rubato <span class="alt-name">(♩ < 80, expressive)</span></h3>
+    <div class="card-desc">Every note matters. This is where <strong style="color:var(--text-bright)">harmonic minor, melodic minor, and whole tone</strong> scales shine for their emotional color.</div>
+    <div class="when-box">
+      <strong>Strategy:</strong>
+      <span class="scenario"><strong>Melodic minor modes</strong> — Rich, ambiguous sound. Let notes ring. Explore Lydian Dominant slowly.</span>
+      <span class="scenario"><strong>Harmonic minor</strong> — The ♭6→7 gap is dramatic. Use for V→i resolutions with maximum emotion.</span>
+      <span class="scenario"><strong>Whole tone fragments</strong> — Floating, dreamy quality over augmented/dominant chords. Great for transitions.</span>
+      <span class="scenario"><strong>Space</strong> — Leave gaps. One perfectly placed altered note > a fast run. Target chord tones with intention.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ IV. ARTIST BREAKDOWN ═══ -->
+<div class="sec-title"><h2>V. Artist Breakdown</h2></div>
+
+<!-- HADRIEN FERAUD -->
+<div class="artist-section hadrien">
+  <div class="artist-header">
+    <div class="artist-avatar">HF</div>
+    <div>
+      <div class="artist-name">Hadrien Feraud</div>
+      <div class="artist-style">
+        French fusion virtuoso. Blistering speed, wide intervallic leaps, aggressive altered harmony.
+        Influenced by McLaughlin, Holdsworth, Jaco. Plays 5/6-string basses. Guitar-influenced technique (sweeps, tapping, legato).
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <h4>Altered Dominant Sweeps</h4>
+      <div class="td">Sweeps through 7♯9 and 7♭13 arpeggio shapes across 3+ octaves, connected by chromatic approach notes. The altered scale gives him every possible tension simultaneously.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-alt">7alt</span><span class="tag tag-alt">7♯9</span><span class="tag tag-alt">7♭9♯9</span>
+      </div>
+      <div class="detail"><strong>Scales:</strong> Altered (7th mode melodic minor) + Diminished HW — he switches between them mid-phrase over the same dom chord.</div>
+      <span class="context-badge ctx-fast">Fast changes · V→i resolution</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Diminished Symmetry Cells</h4>
+      <div class="td">Builds 4-note groupings from the diminished scale and transposes them up in minor 3rds (3 frets). Because the dim scale is symmetric, the pattern repeats perfectly every 3 frets — at speed, it sounds "outside" but is harmonically locked in.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-dom">7♭9</span><span class="tag tag-dom">7♯9</span><span class="tag tag-dim">dim7</span><span class="tag tag-dom">13♭9</span>
+      </div>
+      <div class="detail"><strong>Cell pattern:</strong> e.g., R-♭9-♯9-3 → shift +3 frets → repeat. 4 cells cover the full neck.</div>
+      <span class="context-badge ctx-fast">Fast · Dom7 with ♭9/♯9</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Whole Tone Cascades</h4>
+      <div class="td">Rapid descending runs through the whole tone scale over augmented chords. Combined with RH tapping for extra range. Only 2 possible whole-tone scales exist, so he toggles chromatically between them for color shifts.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-alt">7♯5</span><span class="tag tag-alt">aug7</span><span class="tag tag-alt">9♯5</span>
+      </div>
+      <div class="detail"><strong>Technique:</strong> LH hammer-on cascades + RH tap extensions. Creates floating, unresolved tension.</div>
+      <span class="context-badge ctx-slow">Slow/modal · Aug chords · Transitions</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Pentatonic Superimposition</h4>
+      <div class="td">Layers "wrong" pentatonic scales over chords for controlled tension. The pentatonic's simplicity makes fast passages clean even when the harmony is complex. Then resolves to "inside" pentatonic for release.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-dom">7</span><span class="tag tag-alt">7alt</span><span class="tag tag-min">min7</span><span class="tag tag-maj">Maj7</span>
+      </div>
+      <div class="detail"><strong>Key formulas:</strong> Over G7alt → B♭ minor pentatonic (♯9-♭5-♯5-♭7-♭9). Over Cmin7 → E♭ major pent (= Dorian). Over FMaj7 → G major pent (= Lydian sound).</div>
+      <span class="context-badge ctx-both">Any tempo · Especially modal vamps</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Wide-Interval Melodic Minor Lines</h4>
+      <div class="td">Instead of stepwise runs, skips intervals of 4ths and 5ths within melodic minor modes. This creates angular, horn-like lines that cover the full range of the instrument — signature Feraud sound.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-min">minMaj7</span><span class="tag tag-alt">7alt</span><span class="tag tag-dom">7♯11</span>
+      </div>
+      <div class="detail"><strong>Parent scale:</strong> Melodic minor gives him mode 1 (minMaj7), mode 4 (Lydian Dom), mode 7 (Altered) — all same fingering shape transposed.</div>
+      <span class="context-badge ctx-slow">Slow-medium · Modal · Fusion vamps</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Chromatic Enclosure + Legato Bursts</h4>
+      <div class="td">Targets chord tones with chromatic approach from above AND below (enclosure), then explodes into fast legato hammer-on/pull-off runs through the scale. The enclosure "announces" the target note; the burst adds velocity.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-dom">ii-V-I</span><span class="tag tag-alt">7alt</span><span class="tag tag-min">min7</span>
+      </div>
+      <div class="detail"><strong>Method:</strong> Enclose the 3rd or 7th of each chord → burst into altered/dim fragment → land on target of next chord. Works as "connector" between changes.</div>
+      <span class="context-badge ctx-fast">Fast ii-V-I · Connecting changes</span>
+    </div>
+  </div>
+</div>
+
+<!-- JOHN PATITUCCI -->
+<div class="artist-section patitucci">
+  <div class="artist-header">
+    <div class="artist-avatar">JP</div>
+    <div>
+      <div class="artist-name">John Patitucci</div>
+      <div class="artist-style">
+        Master of electric and acoustic bass. Deep bebop tradition + modern harmonic sophistication.
+        Worked with Chick Corea, Wayne Shorter, Herbie Hancock. Melodic, singing lines with perfect voice-leading at any tempo.
+      </div>
+    </div>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <h4>Bebop Scale Streams</h4>
+      <div class="td">Long, flowing 8th-note lines using bebop dominant scale. The added ♮7 passing tone creates 8 notes, so chord tones (R, 3, 5, ♭7) always fall on strong beats. This gives a natural "swing" even at extreme tempos.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-dom">7</span><span class="tag tag-dom">9</span><span class="tag tag-dom">13</span>
+      </div>
+      <div class="detail"><strong>Key insight:</strong> Start on a chord tone on a downbeat, run 8th notes, and every downbeat automatically has a chord tone. This is why bebop scales exist — rhythmic/harmonic alignment.</div>
+      <span class="context-badge ctx-fast">Fast · Straight-ahead jazz · ii-V-I</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Arpeggio Voice-Leading Chains</h4>
+      <div class="td">Connects chord changes by arpeggiating each chord and targeting the closest tone of the NEXT chord. Minimum hand movement across changes = seamless melodic contour at speed.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-dom">ii-V-I</span><span class="tag tag-min">iii-VI-ii-V</span><span class="tag tag-maj">Rhythm chgs</span>
+      </div>
+      <div class="detail"><strong>Example:</strong> Dm7 arp (D-F-A-C) → closest G7 tone from C is B → G7 arp from B (B-D-F-G) → closest CMaj7 tone is E → resolve on E. Minimum motion, maximum harmony.</div>
+      <span class="context-badge ctx-fast">Fast changes · Rhythm changes · Bebop</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Harmonic Minor / Phrygian Dominant</h4>
+      <div class="td">Uses the 5th mode of harmonic minor (Phrygian Dominant: 1-♭2-3-4-5-♭6-♭7) extensively for V→i resolution in minor keys. The ♭9 and ♭13 give a dramatic, almost Spanish sound.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-dom">V7→i</span><span class="tag tag-dom">7♭9♭13</span><span class="tag tag-dim">dim7</span>
+      </div>
+      <div class="detail"><strong>When vs Altered:</strong> Phrygian Dom has a ♮5 (more grounded); Altered has ♭5/♯5 (more tension). Use Phryg Dom when you want resolution clarity, Altered when you want maximum tension.</div>
+      <span class="context-badge ctx-both">Any tempo · Minor key V→i</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Latin Rhythmic Displacement</h4>
+      <div class="td">Takes standard bebop phrases and displaces them rhythmically over Latin grooves (samba, baião). Same melodic content, shifted starting beat = completely different feel. Influenced by Brazilian music.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-min">min7</span><span class="tag tag-dom">7</span><span class="tag tag-maj">Maj7</span>
+      </div>
+      <div class="detail"><strong>Method:</strong> Standard bebop line from beat 1 → replay starting on "and" of 2 or beat 4. Same notes over same chords, entirely different rhythmic feel. Requires solid time feel.</div>
+      <span class="context-badge ctx-both">Medium-fast · Latin jazz · Samba</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Upper-Structure Triad Runs</h4>
+      <div class="td">Plays simple major/minor triads built on UPPER extensions of the chord. Sounds harmonically complex but uses the simplest possible fingerings — triads are muscle-memory shapes everyone knows.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-maj">Maj7</span><span class="tag tag-dom">7♯11</span><span class="tag tag-min">min9</span><span class="tag tag-alt">7alt</span>
+      </div>
+      <div class="detail"><strong>Formulas:</strong> Over CMaj7 → E minor triad (3-5-7). Over G7♯11 → A major (9-♯11-13). Over Dm9 → F major (♭3-5-♭7). Over G7alt → D♭ major (♭5-♭7-♭9). Simple shapes, rich color.</div>
+      <span class="context-badge ctx-both">Any tempo · Especially slow/medium</span>
+    </div>
+
+    <div class="tech-card">
+      <h4>Chromatic Bebop Enclosures</h4>
+      <div class="td">Surrounds each target note with chromatic neighbors (above-below or below-above) before landing. Chains these enclosures together at speed targeting each successive chord tone. Classic bebop technique executed with surgical precision.</div>
+      <div class="tags-row">
+        <span class="lbl">Over these chords</span>
+        <span class="tag tag-dom">ii-V-I</span><span class="tag tag-dom">7</span><span class="tag tag-min">min7</span><span class="tag tag-maj">Maj7</span>
+      </div>
+      <div class="detail"><strong>Pattern:</strong> Target C → play D-B-C. Target E → play F-D♯-E. Chain: enclose 3rd → enclose 7th → enclose root of next chord. 3-note groups over 8th notes create rhythmic displacement that adds momentum.</div>
+      <span class="context-badge ctx-fast">Fast ii-V-I · Bebop · Any changes</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ VI. COMPARISON ═══ -->
+<div class="sec-title"><h2>VI. Head-to-Head</h2></div>
+
+<div class="cmp-grid">
+  <div class="cmp-col hf">
+    <h5>Hadrien Feraud</h5>
+    <ul>
+      <li>Altered + Diminished scales dominate</li>
+      <li>Wide intervallic leaps (4ths, 5ths, 6ths)</li>
+      <li>Sweep picking + tapping for range</li>
+      <li>Pentatonic superimposition for "outside"</li>
+      <li>Symmetric dim cells transposed in m3</li>
+      <li>Whole tone scale for aug chords</li>
+      <li>Melodic minor modes everywhere</li>
+      <li>Guitar-influenced technique (legato, tap)</li>
+      <li><strong style="color:var(--hadrien)">Best at:</strong> Modal vamps, fusion, fast alt dom</li>
+    </ul>
+  </div>
+  <div class="cmp-center">
+    <div>
+      <div style="margin-bottom:10px;font-size:12px">SHARED</div>
+      <span style="font-size:10px;color:var(--text-mid);line-height:1.8">
+        Dorian for min7<br>
+        Melodic Minor system<br>
+        Diminished scales<br>
+        Chromatic enclosures<br>
+        Locrian ♮2 for ø7<br>
+        Arpeggio-based lines<br>
+        All 12 keys fluency<br>
+        Altered over V7alt
+      </span>
+    </div>
+  </div>
+  <div class="cmp-col jp">
+    <h5>John Patitucci</h5>
+    <ul>
+      <li>Bebop scales are the foundation</li>
+      <li>Stepwise, vocal/melodic motion</li>
+      <li>Fingerstyle + acoustic bass chops</li>
+      <li>Upper-structure triads for color</li>
+      <li>Voice-leading through fast changes</li>
+      <li>Harmonic minor / Phrygian Dominant</li>
+      <li>Rhythmic displacement (Latin influence)</li>
+      <li>Horn-influenced phrasing (Coltrane, Shorter)</li>
+      <li><strong style="color:var(--patitucci)">Best at:</strong> Bebop, standards, Latin, ballads</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══ VII. PRACTICE ROADMAP ═══ -->
+<div class="sec-title"><h2>VII. Practice Roadmap</h2></div>
+
+<div class="ref-wrap">
+  <table class="ref-table">
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Focus</th>
+        <th>Scales</th>
+        <th>Chords</th>
+        <th>Tempo Context</th>
+        <th>Goal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Foundation</strong></td>
+        <td>Major modes + arps</td>
+        <td class="mono">Ionian, Dorian, Mixo</td>
+        <td>Maj7, min7, dom7</td>
+        <td style="font-size:12px;color:var(--text-mid)">Start slow (♩=100). Build to ♩=160.</td>
+        <td>All modes in 12 keys, 2 octaves</td>
+      </tr>
+      <tr>
+        <td><strong>2. Bebop</strong></td>
+        <td>Chromatic passing tones</td>
+        <td class="mono">Bebop Dom, Bebop Maj</td>
+        <td>ii-V-I</td>
+        <td style="font-size:12px;color:var(--text-mid)">Target ♩=180+. Chord tones on downbeats.</td>
+        <td>Automatic chord-tone alignment</td>
+      </tr>
+      <tr>
+        <td><strong>3. Melodic Minor</strong></td>
+        <td>MM modes + voice-leading</td>
+        <td class="mono">MM, Altered, Lyd Dom</td>
+        <td>minMaj7, 7alt, 7♯11</td>
+        <td style="font-size:12px;color:var(--text-mid)">Medium tempo. Hear the colors slowly first.</td>
+        <td>All 7 MM modes from one parent</td>
+      </tr>
+      <tr>
+        <td><strong>4. Symmetric</strong></td>
+        <td>Dim + Whole Tone</td>
+        <td class="mono">Dim HW, Dim WH, WT</td>
+        <td>7♭9, dim7, 7♯5</td>
+        <td style="font-size:12px;color:var(--text-mid)">Practice dim cells and transpose in m3.</td>
+        <td>Fluent pattern transposition</td>
+      </tr>
+      <tr>
+        <td><strong>5. Integration</strong></td>
+        <td>Superimposition + encl.</td>
+        <td class="mono">All combined</td>
+        <td>Full standards</td>
+        <td style="font-size:12px;color:var(--text-mid)">Play tunes at all tempos. Slow=color, fast=arps.</td>
+        <td>Navigate changes freely, all tools</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ VIII. PRACTICE LICKS ═══ -->
+<div class="sec-title"><h2>VIII. Practice Licks — Fast Movement Vocabulary</h2></div>
+
+<p style="font-size:13px;color:var(--text-dim);margin-bottom:24px;line-height:1.6">
+  Tab reads bottom-to-top = E(low)–A–D–G(high). All licks verified against standard 4-string tuning.
+  Fret numbers are absolute for the given key — transpose by shifting all numbers equally.
+  Start slow (♩=80), build to target tempo. Use a metronome.
+</p>
+
+<!-- HADRIEN FERAUD LICKS -->
+<h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--hadrien);margin-bottom:16px;">Hadrien Feraud — Licks</h3>
+
+<div class="lick-card hf-lick">
+  <h4>Lick 1: Altered Dominant Sweep — G7alt → CMaj7</h4>
+  <div class="lick-meta">
+    <span>G Altered scale (A♭ melodic minor)</span>
+    <span class="ctx ctx-fast" style="background:rgba(224,96,80,0.15);color:#e08070;border:1px solid rgba(224,96,80,0.25)">Fast V→I</span>
+  </div>
+  <div class="lick-desc">Ascending sweep through altered chord tones, then descending back. Resolves to E (3rd of CMaj7). Every note comes from the G altered scale: G-A♭-B♭-B-D♭-E♭-F.</div>
+  <div class="tab-block"><pre><span class="str-label">G:</span> ─────────────────────<span class="tension-note">1</span>──<span class="tension-note">3</span>──<span class="chord-note">4</span>──<span class="tension-note">3</span>──<span class="tension-note">1</span>─────────────────────<span class="chord-note">4</span>─
+<span class="str-label">D:</span> ─────────────<span class="tension-note">1</span>──<span class="chord-note">3</span>──────────────────<span class="chord-note">3</span>──<span class="tension-note">1</span>─────────────────
+<span class="str-label">A:</span> ───────<span class="tension-note">1</span>──<span class="chord-note">2</span>──────────────────────────────<span class="chord-note">2</span>──<span class="tension-note">1</span>───────────
+<span class="str-label">E:</span> ──<span class="root-note">3</span>──<span class="tension-note">4</span>──────────────────────────────────────<span class="tension-note">4</span>──<span class="root-note">3</span>──────</pre></div>
+  <div class="tab-annotation">
+    E: <strong>3</strong>=G(R) 4=A♭(♭9) · A: 1=B♭(♯9) <strong>2</strong>=B(3) · D: 1=E♭(♯5) <strong>3</strong>=F(♭7) · G: 1=A♭(♭9) 3=B♭(♯9) <strong>4</strong>=B(3) → resolve to <strong>G:4</strong>=B(7th of CMaj7)
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> Use strict alternate picking ascending, then sweep (rake) descending. Start at ♩=100 as 16th notes.
+    The resolution note (B) is the major 7th of CMaj7 — strong voice-leading. Feraud often hangs on this note before continuing.
+  </div>
+</div>
+
+<div class="lick-card hf-lick">
+  <h4>Lick 2: Diminished Cell Transposition — G7♭9</h4>
+  <div class="lick-meta">
+    <span>G Diminished Half-Whole: G-A♭-B♭-B-D♭-D-E-F</span>
+    <span class="ctx ctx-fast" style="background:rgba(224,96,80,0.15);color:#e08070;border:1px solid rgba(224,96,80,0.25)">Fast Dom7♭9</span>
+  </div>
+  <div class="lick-desc">4-note cell (R-♭9-♯9-3) transposed up in minor 3rds across strings. The diminished scale's symmetry means this pattern repeats exactly every 3 frets. The fret shape (X, X+1, X+3, X+4) is identical on every string.</div>
+  <div class="tab-block"><pre><span class="str-label">         Cell 1          Cell 2          Cell 3          Cell 4</span>
+<span class="str-label">G:</span> ──────────────────────────────────────────────────────────────────
+<span class="str-label">D:</span> ──────────────────────────────────────────<span class="scale-note">2</span>──<span class="chord-note">3</span>──<span class="root-note">5</span>──<span class="tension-note">6</span>──
+<span class="str-label">A:</span> ───────────<span class="tension-note">1</span>──<span class="chord-note">2</span>──<span class="tension-note">4</span>──<span class="chord-note">5</span>──<span class="tension-note">4</span>──<span class="chord-note">5</span>──<span class="scale-note">7</span>──<span class="chord-note">8</span>──────────────────
+<span class="str-label">E:</span> ──<span class="root-note">3</span>──<span class="tension-note">4</span>──<span class="tension-note">6</span>──<span class="chord-note">7</span>──────────────────────────────────────────────────────</pre></div>
+  <div class="tab-annotation">
+    Cell 1 (E string): <strong>3</strong>=G(R) 4=A♭(♭9) 6=B♭(♯9) <strong>7</strong>=B(3) — fret pattern: X, X+1, X+3, X+4<br>
+    Cell 2 (A string): 1=B♭(♯9) <strong>2</strong>=B(3) 4=D♭(♭5) <strong>5</strong>=D(5) — same fret shape, shifted to A string<br>
+    Cell 3 (A string): 4=D♭(♭5) <strong>5</strong>=D(5) 7=E(6) <strong>8</strong>=F(♭7) — same shape, shifted up position on A string<br>
+    Cell 4 (D string): 2=E(6) <strong>3</strong>=F(♭7) 5=G(R octave!) 6=A♭(♭9) — lands back on root, one octave up
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> Play each cell as a group of 4 sixteenth notes. The pattern is identical on every string — just memorize one cell shape.
+    At speed, this sounds like a machine-gun run but every note is inside the harmony. Start at ♩=120, target ♩=200+.
+    <strong>Feraud signature:</strong> He often adds a hammer-on between notes 2-3 of each cell for legato fluidity.
+  </div>
+</div>
+
+<div class="lick-card hf-lick">
+  <h4>Lick 3: Whole Tone Cascade — G7♯5 (with tapping)</h4>
+  <div class="lick-meta">
+    <span>G Whole Tone: G-A-B-C♯-D♯-F</span>
+    <span class="ctx ctx-both" style="background:rgba(212,168,83,0.12);color:var(--gold);border:1px solid rgba(212,168,83,0.2)">Any tempo · Dramatic effect</span>
+  </div>
+  <div class="lick-desc">Two-octave descending cascade through the whole tone scale. Equal spacing (all whole steps = 2 frets apart on same string) makes this surprisingly easy to play fast. Use RH tap on the first note for extended range.</div>
+  <div class="tab-block"><pre><span class="str-label">G:</span> ──<span class="root-note">T12</span>──<span class="chord-note">10</span>───<span class="tension-note">8</span>───<span class="tension-note">6</span>──────────────────────────────────────────
+<span class="str-label">D:</span> ───────────────────────<span class="chord-note">9</span>───<span class="scale-note">7</span>───<span class="root-note">5</span>───<span class="chord-note">3</span>──────────────────
+<span class="str-label">A:</span> ───────────────────────────────────────────<span class="tension-note">8</span>───<span class="tension-note">6</span>───<span class="scale-note">4</span>───<span class="chord-note">2</span>
+<span class="str-label">E:</span> ──────────────────────────────────────────────────────────<span class="root-note">3</span>─</pre></div>
+  <div class="tab-annotation">
+    G: <strong>T12</strong>=G(R, tap) 10=F(♭7) 8=D♯(♯5) 6=C♯(♯4)<br>
+    D: 9=B(3) 7=A(2) <strong>5</strong>=G(R 8vb) 3=F(♭7)<br>
+    A: 8=F(♭7) 6=D♯(♯5) 4=C♯(♯4) 2=B(3)<br>
+    E: <strong>3</strong>=G(R 2 octaves down) ← lands on root for resolution
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> The "T" means right-hand tap. Pull off to the next fretted note. Every interval is a whole step (2 frets) making the pattern completely regular.
+    <strong>Key insight:</strong> Only 2 whole-tone scales exist. If this one doesn't fit, shift everything up 1 fret for the other one.
+    Start slow as pull-off exercises, build speed. At tempo this sounds like a waterfall.
+  </div>
+</div>
+
+<div class="lick-card hf-lick">
+  <h4>Lick 4: Wide-Interval Melodic Minor in 4ths — CminMaj7</h4>
+  <div class="lick-meta">
+    <span>C Melodic Minor: C-D-E♭-F-G-A-B</span>
+    <span class="ctx" style="background:rgba(155,123,212,0.12);color:#b098e0;border:1px solid rgba(155,123,212,0.2)">Slow-medium · Modal · Fusion</span>
+  </div>
+  <div class="lick-desc">Ascending in perfect 4ths through the melodic minor scale. Each pair of notes is a 4th apart, creating Feraud's signature angular, horn-like sound. Wide intervals force position shifts that cover the neck.</div>
+  <div class="tab-block"><pre><span class="str-label">G:</span> ──────────────────────────────────────<span class="chord-note">5</span>───<span class="tension-note">7</span>───<span class="chord-note">9</span>──
+<span class="str-label">D:</span> ──<span class="chord-note">3</span>────<span class="chord-note">5</span>────<span class="tension-note">7</span>────<span class="chord-note">9</span>──────────────────────────
+<span class="str-label">A:</span> ──<span class="root-note">3</span>────<span class="scale-note">5</span>────<span class="chord-note">6</span>────<span class="scale-note">8</span>──────────────────────────
+<span class="str-label">E:</span> ──────────────────────────────────────────────────────</pre></div>
+  <div class="tab-annotation">
+    Pairs (ascending 4ths): A3-D3 = <strong>C-F</strong>(R-4) · A5-D5 = <strong>D-G</strong>(2-5) · A6-D7 = <strong>E♭-A</strong>(♭3-6, tritone!) · A8-D9 = <strong>F-B</strong>(4-7, tritone!) · G5-G7-G9 = <strong>C-D-E♭</strong>(resolution octave)
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> Play as pairs — pick each pair as two quick notes, pause, next pair. The two tritone intervals (E♭-A and F-B) are what give melodic minor its tension.
+    <strong>Feraud variation:</strong> He'll often play these pairs as hammer-on pairs (lower note picked, upper note hammered), then string them together for an angular legato cascade.
+  </div>
+</div>
+
+<div class="lick-card hf-lick">
+  <h4>Lick 5: Pentatonic Superimposition — G7alt → CMaj7</h4>
+  <div class="lick-meta">
+    <span>B♭ minor pentatonic over G7alt: B♭-D♭-E♭-F-A♭</span>
+    <span class="ctx ctx-fast" style="background:rgba(224,96,80,0.15);color:#e08070;border:1px solid rgba(224,96,80,0.25)">Fast · Outside → Inside</span>
+  </div>
+  <div class="lick-desc">Play B♭ minor pentatonic over G7alt (gives ♯9-♭5-♯5-♭7-♭9 = pure altered tensions), then shift to C major pentatonic to resolve on CMaj7. "Outside" then "inside" — maximum tension → release.</div>
+  <div class="tab-block"><pre><span class="str-label">         ──── G7alt (B♭ min pent) ────────   ── CMaj7 (C maj pent) ──</span>
+<span class="str-label">G:</span> ─────────────────<span class="tension-note">3</span>───<span class="tension-note">6</span>──────────────────<span class="root-note">5</span>───<span class="scale-note">7</span>───<span class="chord-note">9</span>──
+<span class="str-label">D:</span> ────<span class="tension-note">1</span>───<span class="chord-note">3</span>───<span class="tension-note">6</span>───<span class="tension-note">8</span>──────────────<span class="chord-note">2</span>───<span class="chord-note">5</span>───<span class="scale-note">7</span>──────
+<span class="str-label">A:</span> ──<span class="tension-note">1</span>───<span class="tension-note">4</span>───────────────────────────<span class="root-note">3</span>───<span class="scale-note">5</span>──────────────
+<span class="str-label">E:</span> ──────────────────────────────────────────────────────────</pre></div>
+  <div class="tab-annotation">
+    G7alt (B♭m pent): A1=B♭(♯9) A4=D♭(♭5) D1=E♭(♯5) D3=F(♭7) D6=A♭(♭9) D8=B♭(♯9) G3=B♭(♯9) G6=D♭(♭5)<br>
+    → resolve: CMaj7 (C maj pent): A3=C(R) A5=D(9) D2=E(3) D5=G(5) D7=A(6) G5=C(R) G7=D(9) G9=E(3)
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> Practice each pentatonic separately first — they're both simple box shapes you probably already know.
+    The magic is the SHIFT: B♭ minor pent (all altered tensions) → C major pent (all consonance). Your ear hears "tension → resolution" even though your hands play two simple shapes.
+    <strong>Start at ♩=100</strong> as 8th notes, making sure the shift happens right on beat 1 of the CMaj7 bar.
+  </div>
+</div>
+
+<!-- JOHN PATITUCCI LICKS -->
+<h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--patitucci);margin:40px 0 16px;">John Patitucci — Licks</h3>
+
+<div class="lick-card jp-lick">
+  <h4>Lick 6: Bebop Dominant Descending Line — G7</h4>
+  <div class="lick-meta">
+    <span>G Bebop Dominant: G-A-B-C-D-E-F-F♯</span>
+    <span class="ctx ctx-fast" style="background:rgba(80,160,224,0.15);color:#70b8e8;border:1px solid rgba(80,160,224,0.25)">Fast swing · Straight-ahead</span>
+  </div>
+  <div class="lick-desc">Classic Patitucci: descending bebop dominant line from root. With 8 notes, chord tones (G-B-D-F) automatically fall on downbeats 1-2-3-4. The ♮7 (F♯) is a chromatic passing tone on an upbeat — never rest on it.</div>
+  <div class="tab-block"><pre><span class="str-label">         beat: 1    &    2    &    3    &    4    &    1</span>
+<span class="str-label">G:</span> ──────────────────────────────────────────────────────
+<span class="str-label">D:</span> ──<span class="root-note">5</span>───<span class="chrom-note">4</span>───<span class="chord-note">3</span>───<span class="scale-note">2</span>──────────────────────────────────
+<span class="str-label">A:</span> ──────────────────<span class="chord-note">5</span>───<span class="scale-note">3</span>───<span class="chord-note">2</span>───<span class="scale-note">0</span>──────────────
+<span class="str-label">E:</span> ──────────────────────────────────────<span class="root-note">3</span>─────────</pre></div>
+  <div class="tab-annotation">
+    D: <strong>5=G</strong>(R, beat 1) 4=F♯(♮7 pass, &) <strong>3=F</strong>(♭7, beat 2) 2=E(6, &)<br>
+    A: <strong>5=D</strong>(5, beat 3) 3=C(4, &) <strong>2=B</strong>(3, beat 4) 0=A(2, &)<br>
+    E: <strong>3=G</strong>(R, beat 1 of next bar) ← chord tones bolded on every downbeat!
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> Play with a metronome, STRAIGHT 8th notes first, then swing. Notice how G-F-D-B-G (the downbeat notes) spell out a G7 arpeggio descending.
+    This is the entire secret of bebop: the chromatic passing tone (F♯) fills in the gap so 8 notes = 4 beats.
+    <strong>Transpose:</strong> Shift all frets +2 for A7, +4 for B7, etc. The shape stays identical.
+  </div>
+</div>
+
+<div class="lick-card jp-lick">
+  <h4>Lick 7: Voice-Leading Arpeggio Chain — Dm7 → G7 → CMaj7</h4>
+  <div class="lick-meta">
+    <span>ii-V-I in C major</span>
+    <span class="ctx ctx-fast" style="background:rgba(80,160,224,0.15);color:#70b8e8;border:1px solid rgba(80,160,224,0.25)">Fast changes · Bebop</span>
+  </div>
+  <div class="lick-desc">Pure arpeggios connected by minimal voice-leading. The ♭7 of Dm7 (C) drops a half-step to become the 3rd of G7 (B). The 5th of G7 (D) drops a whole-step to the 3rd of CMaj7 (E, approached from below). Patitucci's signature: every connection is the shortest possible movement.</div>
+  <div class="tab-block"><pre><span class="str-label">         ─── Dm7 (asc) ───   ─── G7 (desc) ──────   ─── CMaj7 (asc) ───</span>
+<span class="str-label">G:</span> ──────────────<span class="chord-note">5</span>───────<span class="chord-note">4</span>──────────────────────<span class="chord-note">4</span>──────────<span class="scale-note">7</span>──
+<span class="str-label">D:</span> ──────<span class="chord-note">3</span>───<span class="chord-note">7</span>───────────────<span class="root-note">5</span>───<span class="chord-note">3</span>────<span class="chord-note">2</span>───<span class="chord-note">5</span>──────────────
+<span class="str-label">A:</span> ──<span class="root-note">5</span>──────────────────────────────────────<span class="root-note">3</span>──────────────────────
+<span class="str-label">E:</span> ──────────────────────────────────────────────────────────────────</pre></div>
+  <div class="tab-annotation">
+    <strong>Dm7</strong> ascending: A5=D(R) D3=F(♭3) D7=A(5) G5=C(♭7)<br>
+    → <strong>C drops to B</strong> (G5→G4, half-step voice-lead — strongest resolution in jazz!)<br>
+    <strong>G7</strong> descending: G4=B(3) D5=G(R) D3=F(♭7)<br>
+    → <strong>resolve down to CMaj7</strong><br>
+    <strong>CMaj7</strong> ascending: D2=E(3) A3=C(R) D5=G(5) G4=B(7) G7=D(9)
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> Focus on the CONNECTION points, not the arpeggios themselves. The half-step C→B (Dm7 to G7) and the resolution to E (CMaj7) are what make it sound like jazz, not just arpeggios.
+    <strong>Patitucci method:</strong> Practice in ALL 12 keys. The shape changes but the voice-leading principle (♭7→3, 3→R or 3) stays constant.
+  </div>
+</div>
+
+<div class="lick-card jp-lick">
+  <h4>Lick 8: Phrygian Dominant Descent — E7 → Am (V→i in A minor)</h4>
+  <div class="lick-meta">
+    <span>E Phrygian Dominant (5th mode A harm. minor): E-F-G♯-A-B-C-D</span>
+    <span class="ctx ctx-both" style="background:rgba(212,168,83,0.12);color:var(--gold);border:1px solid rgba(212,168,83,0.2)">Any tempo · Minor key resolution</span>
+  </div>
+  <div class="lick-desc">Descending through the full Phrygian Dominant scale from high E down to the root. The G♯→A creates the leading-tone resolution. The ♭2 (F) gives the scale its dark, Spanish character. Resolves to A on the final beat.</div>
+  <div class="tab-block"><pre><span class="str-label">G:</span> ──<span class="root-note">9</span>───<span class="scale-note">7</span>───<span class="chord-note">5</span>───<span class="chord-note">4</span>──────────────────────────────
+<span class="str-label">D:</span> ──────────────────────<span class="scale-note">7</span>───<span class="chord-note">6</span>───<span class="tension-note">3</span>───<span class="root-note">2</span>────────
+<span class="str-label">A:</span> ──────────────────────────────────────────<span class="root-note">7</span>──────
+<span class="str-label">E:</span> ──────────────────────────────────────────────────</pre></div>
+  <div class="tab-annotation">
+    G: <strong>9=E</strong>(R) 7=D(♭7) <strong>5=C</strong>(♭6) 4=B(5)<br>
+    D: 7=A(4) <strong>6=G♯</strong>(3, the leading tone!) 3=F(♭2, the Phrygian color) <strong>2=E</strong>(R octave below)<br>
+    A: <strong>7=E</strong> or better: resolve to <strong>A: 0=A</strong>(i chord root) for the Am resolution
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> Play over a vamp of E7→Am. The G♯ (D string fret 6) is the money note — it's the leading tone that PULLS you to A. Linger on it slightly before resolving.
+    <strong>Patitucci vs Feraud:</strong> Patitucci uses Phrygian Dom here because the ♮5 (B) keeps the resolution grounded and clear. Feraud would use Altered (♭5/♯5) for more tension and ambiguity.
+  </div>
+</div>
+
+<div class="lick-card jp-lick">
+  <h4>Lick 9: Upper-Structure Triad Run — CMaj7</h4>
+  <div class="lick-meta">
+    <span>E minor triad (E-G-B) = 3-5-7 of CMaj7</span>
+    <span class="ctx ctx-both" style="background:rgba(212,168,83,0.12);color:var(--gold);border:1px solid rgba(212,168,83,0.2)">Any tempo · Color over Maj7</span>
+  </div>
+  <div class="lick-desc">Simple E minor triad played in 3 inversions ascending over CMaj7. Every note is a chord tone (3, 5, or 7), but the triad shape sounds more melodic than a raw arpeggio. This is Patitucci's "simple shapes, rich harmony" philosophy.</div>
+  <div class="tab-block"><pre><span class="str-label">         ─ root pos ─   ─ 1st inv ──   ─ 2nd inv ─   ─ resolve ──</span>
+<span class="str-label">G:</span> ────────────────────────────────<span class="chord-note">9</span>───<span class="chord-note">9</span>───<span class="root-note">12</span>────<span class="root-note">12</span>──────
+<span class="str-label">D:</span> ────────<span class="chord-note">5</span>───<span class="chord-note">9</span>───<span class="chord-note">5</span>───<span class="chord-note">9</span>──────────────────────────────
+<span class="str-label">A:</span> ──<span class="chord-note">7</span>──────────────────────────────────────────────────────
+<span class="str-label">E:</span> ──────────────────────────────────────────────────────────</pre></div>
+  <div class="tab-annotation">
+    Root pos: A7=E(3) D5=G(5) D9=B(7)<br>
+    1st inv: D5=G(5) D9=B(7) G9=E(3, octave up)<br>
+    2nd inv: G9=E(3) G12=G(5, octave up)<br>
+    <strong>All 3 notes are chord tones of CMaj7</strong> — you literally can't play a wrong note.
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> Learn this shape for ALL chord types: Em triad over CMaj7, Dm triad over B♭Maj7, F♯m triad over DMaj7.
+    The pattern: <strong>to find the upper triad, play a minor triad from the 3rd of the Maj7 chord</strong>.
+    <strong>Patitucci trick:</strong> Once comfortable, add approach notes (chromatic below) before each inversion for a jazzier sound.
+  </div>
+</div>
+
+<div class="lick-card jp-lick">
+  <h4>Lick 10: Bebop Enclosure Chain — targeting Dm7 chord tones</h4>
+  <div class="lick-meta">
+    <span>Chromatic enclosures targeting F(♭3), A(5), C(♭7)</span>
+    <span class="ctx ctx-fast" style="background:rgba(80,160,224,0.15);color:#70b8e8;border:1px solid rgba(80,160,224,0.25)">Fast · Bebop · Any changes</span>
+  </div>
+  <div class="lick-desc">Classic bebop enclosure technique: surround each target chord tone from a half-step above AND below, then land on the target. Chain 3 enclosures together targeting the ♭3, 5, and ♭7 of Dm7. This is the bread-and-butter bebop ornament — Patitucci executes these at blinding speed.</div>
+  <div class="tab-block"><pre><span class="str-label">         ─ encl. ♭3(F) ─   ─ encl. 5(A) ──   ─ encl. ♭7(C) ─</span>
+<span class="str-label">G:</span> ───────────────────────────────────────<span class="tension-note">6</span>──<span class="chord-note">4</span>──<span class="chord-note">5</span>──────
+<span class="str-label">D:</span> ──<span class="scale-note">4</span>──<span class="scale-note">2</span>──<span class="chord-note">3</span>──────<span class="scale-note">8</span>──<span class="tension-note">6</span>──<span class="chord-note">7</span>──────────────────────────
+<span class="str-label">A:</span> ──────────────────────────────────────────────────────────
+<span class="str-label">E:</span> ──────────────────────────────────────────────────────────</pre></div>
+  <div class="tab-annotation">
+    Enclose ♭3 (F): D4=F♯(half-step above) D2=E(half-step below) → <strong>D3=F</strong>(target ♭3) ✓<br>
+    Enclose 5 (A): D8=B♭(half-step above) D6=G♯(half-step below) → <strong>D7=A</strong>(target 5) ✓<br>
+    Enclose ♭7 (C): G6=C♯(half-step above) G4=B(half-step below) → <strong>G5=C</strong>(target ♭7) ✓
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> Each enclosure is 3 notes: ABOVE → BELOW → TARGET. Always a half-step from each side.
+    Drill each enclosure slowly, then chain them. The 3-note grouping over 8th notes creates natural rhythmic displacement — this is a FEATURE, not a bug. It pushes the beat forward and creates momentum.
+    <strong>Master formula:</strong> To enclose ANY note X, play (X+1 semitone) → (X-1 semitone) → X. Apply to any chord tone on any chord.
+  </div>
+</div>
+
+<div class="lick-card jp-lick">
+  <h4>Lick 11: Bebop Scale + Enclosure Combined — Dm7 → G7 → CMaj7</h4>
+  <div class="lick-meta">
+    <span>Full ii-V-I vocabulary in one lick</span>
+    <span class="ctx ctx-fast" style="background:rgba(80,160,224,0.15);color:#70b8e8;border:1px solid rgba(80,160,224,0.25)">Fast ii-V-I · The complete Patitucci</span>
+  </div>
+  <div class="lick-desc">Combines bebop scale fragment on Dm7, enclosure into G7, and bebop dominant descent on G7 resolving to the 3rd of CMaj7. This is the kind of complete ii-V-I line Patitucci builds from simple components.</div>
+  <div class="tab-block"><pre><span class="str-label">         ── Dm7 (bebop frag.) ──  ─encl─  ── G7 (bebop desc.) ───   →CMaj7</span>
+<span class="str-label">G:</span> ──────────────────<span class="chord-note">5</span>────────<span class="tension-note">3</span>──<span class="chord-note">4</span>──────────────────────────────────
+<span class="str-label">D:</span> ──<span class="chord-note">3</span>──<span class="chord-note">5</span>──<span class="chord-note">7</span>──────────────────────<span class="root-note">5</span>──<span class="chrom-note">4</span>──<span class="chord-note">3</span>──<span class="scale-note">2</span>──────────
+<span class="str-label">A:</span> ──────────────────────────────────────────────<span class="chord-note">5</span>──<span class="scale-note">3</span>──<span class="chord-note">2</span>
+<span class="str-label">E:</span> ──────────────────────────────────────────────────────────────</pre></div>
+  <div class="tab-annotation">
+    <strong>Dm7:</strong> D3=F(♭3) D5=G(4) D7=A(5) G5=C(♭7)<br>
+    → enclosure: G5=C is already the above note! → <strong>G3=B♭</strong>(below B) → <strong>G4=B</strong>(target, 3rd of G7)<br>
+    <strong>G7 bebop desc:</strong> D5=G(R) D4=F♯(♮7 pass) D3=F(♭7) D2=E(6) A5=D(5) A3=C(4) <strong>A2=B</strong>(3)<br>
+    → <strong>resolves on B</strong> = major 7th of CMaj7 (or step down to A3=C for the root)
+  </div>
+  <div class="practice-tip">
+    <strong>Practice:</strong> This is the "graduation lick" — it uses every Patitucci technique: arpeggio, enclosure, bebop scale, and voice-leading in one phrase.
+    Break it into 3 chunks: (1) Dm7 arpeggio ascending, (2) enclosure targeting B, (3) G7 bebop descent.
+    <strong>Target tempo:</strong> ♩=160 as 8th notes, ♩=120 as 16th notes. Once this flows, you can navigate any ii-V-I.
+  </div>
+</div>
+
+<footer>
+  ♩ Bass Guitar Jazz Cheat Sheet — Hadrien Feraud & John Patitucci ♩<br>
+  <span style="opacity:0.5;margin-top:6px;display:inline-block">All fretboard patterns moveable from any root · Standard 4-string tuning E-A-D-G · Lick tabs verified against standard tuning</span>
+</footer>
+
+<!-- ═══ LICKS SECTION — injected by JS after the footer's parent ═══ -->
+<style is:global>
+/* ── LICKS ── */
+.lick-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 26px;
+  margin-bottom: 20px;
+}
+
+.lick-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.lick-card.hf-lick h4 { color: var(--hadrien); }
+.lick-card.jp-lick h4 { color: var(--patitucci); }
+
+.lick-meta {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.lick-meta .ctx {
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.lick-desc {
+  font-size: 13px;
+  color: var(--text-mid);
+  margin-bottom: 14px;
+  line-height: 1.55;
+}
+
+.tab-block {
+  background: var(--fret-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 10px;
+}
+
+.tab-block pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--text);
+  margin: 0;
+  white-space: pre;
+  min-width: max-content;
+}
+
+.tab-block .str-label { color: var(--text-dim); }
+.tab-block .root-note { color: var(--root-color); font-weight: 700; }
+.tab-block .chord-note { color: var(--chord-color); font-weight: 600; }
+.tab-block .tension-note { color: var(--tension-color); }
+.tab-block .chrom-note { color: var(--chromatic-color); }
+.tab-block .scale-note { color: var(--scale-color); }
+
+.tab-annotation {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.tab-annotation strong { color: var(--gold); }
+
+.practice-tip {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-mid);
+  line-height: 1.55;
+}
+
+.hf-lick .practice-tip {
+  background: rgba(224,96,80,0.06);
+  border-left: 3px solid var(--hadrien);
+}
+
+.jp-lick .practice-tip {
+  background: rgba(80,160,224,0.06);
+  border-left: 3px solid var(--patitucci);
+}
+
+.practice-tip strong { color: var(--text-bright); }
+</style>
+
+</div>
+
+<script is:inline>
+// ═══════════════════════════════════════════════
+// FRETBOARD RENDERER — mathematically correct
+// ═══════════════════════════════════════════════
+// Standard bass: E(0) - A(5) - D(10) - G(15)
+// String offsets in semitones from low E string
+const STRING_OFFSETS = [0, 5, 10, 15]; // E, A, D, G
+const STRING_NAMES = ['E', 'A', 'D', 'G'];
+
+// Scale definitions: array of semitone offsets from root
+// Each note: [semitones_from_root, label, type]
+// type: 'root', 'chord', 'scale', 'tension', 'chromatic'
+const SCALES = {
+  ionian: {
+    name: 'Ionian Mode',
+    altName: 'major scale',
+    formula: '1 – 2 – 3 – 4 – 5 – 6 – 7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [4, '3', 'chord'],
+      [5, '4', 'scale'], [7, '5', 'chord'], [9, '6', 'scale'],
+      [11, '7', 'chord']
+    ],
+    chords: ['Maj7', 'Maj9', '6/9'],
+    chordTypes: ['maj','maj','maj'],
+    when: `<strong>Default Maj7 scale:</strong> The foundation of tonal harmony. 4th degree is an "avoid note" — it clashes with the 3rd on Maj7 chords.<br>
+           <strong>Fast changes:</strong> Arpeggio (R-3-5-7) plus passing tones. Target 7→R or 3→♭3 for voice-leading into next chord.<br>
+           <strong>When NOT Ionian:</strong> If the chord sits for many bars, switch to Lydian — the ♯4 avoids the avoid note and sounds more modern.`
+  },
+  lydian: {
+    name: 'Lydian Mode',
+    formula: '1 – 2 – 3 – ♯4 – 5 – 6 – 7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [4, '3', 'chord'],
+      [6, '♯4', 'tension'], [7, '5', 'chord'], [9, '6', 'scale'],
+      [11, '7', 'chord']
+    ],
+    chords: ['Maj7♯11', 'Maj7', 'Maj9'],
+    chordTypes: ['maj','maj','maj'],
+    when: `<strong>Modal Maj7 vamps (slow):</strong> The ♯4 eliminates the "avoid note" problem of Ionian. Bright, open, dreamy quality. ★ Feraud's go-to for Maj7.<br>
+           <strong>Static Maj7 chords:</strong> Anytime the Maj7 chord lasts 2+ bars, Lydian sounds more sophisticated than Ionian.<br>
+           <strong>Fast changes:</strong> Less common at speed — Ionian arpeggios are simpler. Use Lydian color when you have time to linger.`
+  },
+  dorian: {
+    name: 'Dorian Mode',
+    formula: '1 – 2 – ♭3 – 4 – 5 – 6 – ♭7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [3, '♭3', 'chord'],
+      [5, '4', 'scale'], [7, '5', 'chord'], [9, '6', 'tension'],
+      [10, '♭7', 'chord']
+    ],
+    chords: ['min7', 'min9', 'min11', 'min13'],
+    chordTypes: ['min','min','min','min'],
+    when: `<strong>Modal vamp (slow):</strong> Full scale exploration — the ♮6 gives it brightness vs Aeolian.<br>
+           <strong>Fast ii-V-I:</strong> Arpeggio only (R-♭3-5-♭7). Target ♭7 which voice-leads to 3rd of V chord.<br>
+           <strong>Groove/funk:</strong> Minor pentatonic (R-♭3-4-5-♭7) subset for simplicity.`
+  },
+  phrygian: {
+    name: 'Phrygian Mode',
+    altName: '3rd mode of major scale',
+    formula: '1 – ♭2 – ♭3 – 4 – 5 – ♭6 – ♭7',
+    notes: [
+      [0, 'R', 'root'], [1, '♭2', 'tension'], [3, '♭3', 'chord'],
+      [5, '4', 'scale'], [7, '5', 'chord'], [8, '♭6', 'tension'],
+      [10, '♭7', 'chord']
+    ],
+    chords: ['min7', 'min7♭9', 'sus♭9'],
+    chordTypes: ['min','min','min'],
+    when: `<strong>Dark minor color:</strong> The ♭2 is the defining interval — gives a Spanish/Flamenco flavor. Much darker than Dorian or Aeolian.<br>
+           <strong>iii chord in major key:</strong> E Phrygian over Em7 in the key of C. The ♭2 (F) is the "avoid note" in functional harmony but a color note in modal playing.<br>
+           <strong>Modal vamps:</strong> Works beautifully over static min7 when you want an exotic, dark sound. Common in flamenco-jazz fusion.`
+  },
+  mixolydian: {
+    name: 'Mixolydian Mode',
+    formula: '1 – 2 – 3 – 4 – 5 – 6 – ♭7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [4, '3', 'chord'],
+      [5, '4', 'scale'], [7, '5', 'chord'], [9, '6', 'scale'],
+      [10, '♭7', 'chord']
+    ],
+    chords: ['7', '9', '13', '7sus4'],
+    chordTypes: ['dom','dom','dom','dom'],
+    when: `<strong>Slow/groove dom7:</strong> Full Mixolydian runs. Careful: 4th is an "avoid note" on Maj — but fine on dom7.<br>
+           <strong>Fast changes:</strong> Switch to Bebop Dominant (adds ♮7 passing tone) so chord tones land on beats.<br>
+           <strong>Blues/funk:</strong> Dom7 pentatonic subset (R-2-3-5-6) or mix major+minor pent.`
+  },
+  altered: {
+    name: 'Altered Scale',
+    altName: '7th mode of Melodic Minor',
+    formula: '1 – ♭9 – ♯9 – 3 – ♭5 – ♯5 – ♭7',
+    notes: [
+      [0, 'R', 'root'], [1, '♭9', 'tension'], [3, '♯9', 'tension'],
+      [4, '3', 'chord'], [6, '♭5', 'tension'], [8, '♯5', 'tension'],
+      [10, '♭7', 'chord']
+    ],
+    chords: ['7alt', '7♯9♭13', '7♭9♯9'],
+    chordTypes: ['alt','alt','alt'],
+    when: `<strong>Fast V→I resolution:</strong> ★ THE scale for altered dominants. Every non-chord tone is an altered tension — you can't play a wrong note.<br>
+           <strong>Medium ii-V-I:</strong> Use on the V chord for maximum pull toward I. Feraud's primary V chord scale.<br>
+           <strong>Slow/ballad:</strong> Pick individual tensions (♭9, ♯9, ♯5) and let them sing before resolving.`
+  },
+  lydianDom: {
+    name: 'Lydian Dominant',
+    altName: '4th mode of Melodic Minor',
+    formula: '1 – 2 – 3 – ♯4 – 5 – 6 – ♭7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [4, '3', 'chord'],
+      [6, '♯4', 'tension'], [7, '5', 'chord'], [9, '6', 'scale'],
+      [10, '♭7', 'chord']
+    ],
+    chords: ['7♯11', '13♯11'],
+    chordTypes: ['dom','dom'],
+    when: `<strong>Tritone substitution:</strong> ♭II7 resolving to I — this is THE scale for tritone subs. The ♯4 = natural 7 of the original V chord.<br>
+           <strong>Static dom7 (slow):</strong> Brighter than Mixolydian. The ♯4 gives it a "lifted" floating quality.<br>
+           <strong>Feraud favorite</strong> for non-resolving dominant chords and fusion vamps.`
+  },
+  melodicMinor: {
+    name: 'Melodic Minor',
+    altName: 'ascending / jazz minor',
+    formula: '1 – 2 – ♭3 – 4 – 5 – 6 – 7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [3, '♭3', 'chord'],
+      [5, '4', 'scale'], [7, '5', 'chord'], [9, '6', 'tension'],
+      [11, '7', 'chord']
+    ],
+    chords: ['minMaj7', 'minMaj9', 'min6'],
+    chordTypes: ['min','min','min'],
+    when: `<strong>minMaj7 chord (any tempo):</strong> The parent scale. Rich, ambiguous quality — minor 3rd but major 7th creates beautiful tension.<br>
+           <strong>Modal/slow:</strong> Explore the ♮6 and ♮7 against the ♭3. Wide intervals within this scale = Feraud's signature sound.<br>
+           <strong>Master this scale:</strong> Its 7 modes include Altered (mode 7), Lydian Dom (mode 4), Locrian ♮2 (mode 6) — one scale, many chords.`
+  },
+  dimHW: {
+    name: 'Diminished (Half-Whole)',
+    altName: 'dominant diminished',
+    formula: '1 – ♭9 – ♯9 – 3 – ♯11 – 5 – 6 – ♭7',
+    notes: [
+      [0, 'R', 'root'], [1, '♭9', 'tension'], [3, '♯9', 'tension'],
+      [4, '3', 'chord'], [6, '♯11', 'tension'], [7, '5', 'chord'],
+      [9, '6', 'scale'], [10, '♭7', 'chord']
+    ],
+    chords: ['7♭9', '7♯9', '13♭9'],
+    chordTypes: ['dom','dom','dom'],
+    when: `<strong>Fast dom7♭9:</strong> ★ SYMMETRIC — any 4-note cell transposes up 3 frets perfectly. Ideal for Feraud's "cell transposition" speed technique.<br>
+           <strong>Starts half step:</strong> H-W-H-W-H-W-H-W. The half-step start gives you ♭9 and ♯9 — dominant tensions. Use over dom7♭9/♯9 chords.<br>
+           <strong>Any tempo:</strong> 8 notes but only 3 unique transpositions exist. Learn one position = you know all 3 diminished scales.`
+  },
+  dimWH: {
+    name: 'Diminished (Whole-Half)',
+    altName: 'symmetric diminished',
+    formula: '1 – 2 – ♭3 – 4 – ♭5 – ♭6 – 6 – 7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [3, '♭3', 'chord'],
+      [5, '4', 'scale'], [6, '♭5', 'chord'], [8, '♭6', 'tension'],
+      [9, '6', 'scale'], [11, '7', 'chord']
+    ],
+    chords: ['°7', 'dim7'],
+    chordTypes: ['dim','dim'],
+    when: `<strong>Diminished 7th chords (°7):</strong> ★ THE scale for dim7 chords. Starts with a whole step (W-H-W-H-W-H-W-H), giving chord tones (R-♭3-♭5-♭♭7) on strong beats.<br>
+           <strong>Passing diminished chords:</strong> ♯iv°7, ♭ii°7, and other chromatic passing dim chords. The WH version fits because the chord tones align with the scale's whole-step start.<br>
+           <strong>Symmetric:</strong> Same as HW — transpose any pattern up 3 frets and it repeats. Only 3 unique dim scales exist total (HW and WH are the same pitches, different starting note).`
+  },
+  wholeTone: {
+    name: 'Whole Tone Scale',
+    formula: '1 – 2 – 3 – ♯4 – ♯5 – ♭7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [4, '3', 'chord'],
+      [6, '♯4', 'tension'], [8, '♯5', 'tension'], [10, '♭7', 'chord']
+    ],
+    chords: ['7♯5', 'aug7', '9♯5'],
+    chordTypes: ['alt','alt','alt'],
+    when: `<strong>Aug/dom♯5 chords:</strong> Dreamy, floating quality. Only 2 possible whole-tone scales exist (C and D♭).<br>
+           <strong>Slow/transitions:</strong> Beautiful for transitions between sections. No strong pull in any direction — pure suspension.<br>
+           <strong>Fast cascades:</strong> Feraud uses descending whole-tone tapping runs for dramatic effect. Equal spacing = easy to play fast.`
+  },
+  bebopDom: {
+    name: 'Bebop Dominant',
+    formula: '1 – 2 – 3 – 4 – 5 – 6 – ♭7 – ♮7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [4, '3', 'chord'],
+      [5, '4', 'scale'], [7, '5', 'chord'], [9, '6', 'scale'],
+      [10, '♭7', 'chord'], [11, '♮7', 'chromatic']
+    ],
+    chords: ['7', '9', '13'],
+    chordTypes: ['dom','dom','dom'],
+    when: `<strong>Fast swing/bebop (♩>160):</strong> ★ PATITUCCI'S BREAD AND BUTTER. 8 notes = chord tones (R,3,5,♭7) on beats 1,2,3,4 automatically.<br>
+           <strong>The ♮7 is a passing tone:</strong> It falls on upbeats, connecting ♭7→R smoothly. Don't rest on it — pass through it.<br>
+           <strong>ii-V-I at tempo:</strong> Start any run on a chord tone on a downbeat → 8th notes → everything lines up. This is WHY the scale was invented.`
+  },
+  harmonicMinor: {
+    name: 'Harmonic Minor',
+    formula: '1 – 2 – ♭3 – 4 – 5 – ♭6 – 7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [3, '♭3', 'chord'],
+      [5, '4', 'scale'], [7, '5', 'chord'], [8, '♭6', 'tension'],
+      [11, '7', 'chord']
+    ],
+    chords: ['minMaj7', 'dim7', '7♭9♭13'],
+    chordTypes: ['min','dim','dom'],
+    when: `<strong>V→i minor resolution:</strong> The 5th mode (Phrygian Dominant) is Patitucci's go-to for V7→i in minor keys.<br>
+           <strong>Ballads in minor:</strong> The ♭6→7 gap (3 semitones) creates dramatic, almost Middle Eastern/Spanish tension.<br>
+           <strong>vs Altered scale on V7:</strong> Phrygian Dom has a ♮5 (grounded, clear resolution). Altered has ♭5/♯5 (more tension, less clarity). Choose based on how much tension you want.`
+  },
+  locrianNat2: {
+    name: 'Locrian ♮2',
+    altName: '6th mode of melodic minor',
+    formula: '1 – 2 – ♭3 – 4 – ♭5 – ♭6 – ♭7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [3, '♭3', 'chord'],
+      [5, '4', 'scale'], [6, '♭5', 'chord'], [8, '♭6', 'tension'],
+      [10, '♭7', 'chord']
+    ],
+    chords: ['ø7', '-7♭5'],
+    chordTypes: ['dim','dim'],
+    when: `<strong>Half-diminished chords (any tempo):</strong> Both Feraud and Patitucci use this over plain Locrian. The ♮2 avoids the ugly ♭2→root clash of standard Locrian.<br>
+           <strong>ii chord in minor ii-V-i:</strong> e.g., Bø7 → E7alt → Am. Locrian ♮2 on the Bø7 sounds sophisticated, not dark/unstable.<br>
+           <strong>Connection to melodic minor:</strong> Bø7 Locrian ♮2 = D melodic minor starting on B. Think of the parent melodic minor for fingering.`
+  },
+  aeolian: {
+    name: 'Aeolian Mode',
+    altName: 'natural minor',
+    formula: '1 – 2 – ♭3 – 4 – 5 – ♭6 – ♭7',
+    notes: [
+      [0, 'R', 'root'], [2, '2', 'scale'], [3, '♭3', 'chord'],
+      [5, '4', 'scale'], [7, '5', 'chord'], [8, '♭6', 'tension'],
+      [10, '♭7', 'chord']
+    ],
+    chords: ['min7', 'min9', 'min11'],
+    chordTypes: ['min','min','min'],
+    when: `<strong>Dark minor sound (ballads):</strong> The ♭6 gives it a darker, sadder quality than Dorian. Use when the chord specifically calls for a ♭6 color (e.g., vi chord in a major key).<br>
+           <strong>Dorian vs Aeolian:</strong> Dorian has ♮6 (bright), Aeolian has ♭6 (dark). Listen to context — if the melody has a ♭6, use Aeolian.<br>
+           <strong>Fast changes:</strong> Rarely used at speed — Dorian is preferred because the ♮6 avoids clashing with common chord voicings.`
+  }
+};
+
+// ═══════════════════════════════════════════════
+// CHORD VOICING DATA — shell voicings verified
+// ═══════════════════════════════════════════════
+// Each voicing: [stringIdx (0=E,1=A,2=D,3=G), fretOffset from root, label, noteType]
+const CHORDS = {
+  maj7: {
+    name: 'Major 7th', symbol: 'Δ7',
+    formula: 'R – 3 – 5 – 7',
+    shell: 'Shell: R – 3 – 7',
+    sound: 'Bright, stable, sophisticated',
+    theory: `<strong>Shape key:</strong> Root to 7th and 3rd are both +1 fret on D and G strings. Elegant, compact shape.<br>
+             <strong>Usage:</strong> Tonic (I) and subdominant (IV) in major keys. Use Ionian on I, Lydian on IV.`,
+    eRoot: [[0,0,'R','root'],[2,1,'7','chord'],[3,1,'3','chord']],
+    aRoot: [[1,0,'R','root'],[2,-1,'3','chord'],[3,1,'7','chord']]
+  },
+  min7: {
+    name: 'Minor 7th', symbol: '-7',
+    formula: 'R – ♭3 – 5 – ♭7',
+    shell: 'Shell: R – ♭3 – ♭7',
+    sound: 'Warm, dark, smooth',
+    theory: `<strong>Shape key:</strong> E-root = barre! All three notes at same fret. Easiest jazz voicing to play.<br>
+             <strong>Usage:</strong> ii chord in major ii-V-I. Dorian vamps (So What). Also iii and vi chords.`,
+    eRoot: [[0,0,'R','root'],[2,0,'♭7','chord'],[3,0,'♭3','chord']],
+    aRoot: [[1,0,'R','root'],[2,-2,'♭3','chord'],[3,0,'♭7','chord']]
+  },
+  dom7: {
+    name: 'Dominant 7th', symbol: '7',
+    formula: 'R – 3 – 5 – ♭7',
+    shell: 'Shell: R – 3 – ♭7',
+    sound: 'Strong, tense, wants to resolve',
+    theory: `<strong>Shape key:</strong> Same as min7 but G string goes +1 fret for major 3rd. Compare dom7 vs min7 constantly.<br>
+             <strong>Usage:</strong> V chord in ii-V-I. Blues comping. Tritone substitution. Mixolydian or Bebop Dom scale.`,
+    eRoot: [[0,0,'R','root'],[2,0,'♭7','chord'],[3,1,'3','chord']],
+    aRoot: [[1,0,'R','root'],[2,-1,'3','chord'],[3,0,'♭7','chord']]
+  },
+  halfDim: {
+    name: 'Half-Diminished', symbol: 'ø7',
+    formula: 'R – ♭3 – ♭5 – ♭7',
+    shell: 'Shell: R – ♭5 – ♭7 – ♭3',
+    sound: 'Dark, unstable, yearning',
+    theory: `<strong>Shape key:</strong> Like min7 but A string adds ♭5 one fret above root. The ♭5 is what makes it "half-diminished."<br>
+             <strong>Usage:</strong> ii chord in minor ii-V-i. Use Locrian ♮2 scale (both Feraud and Patitucci agree).`,
+    eRoot: [[0,0,'R','root'],[1,1,'♭5','tension'],[2,0,'♭7','chord'],[3,0,'♭3','chord']],
+    aRoot: [[1,0,'R','root'],[2,1,'♭5','tension'],[3,0,'♭7','chord']]
+  },
+  dim7: {
+    name: 'Diminished 7th', symbol: '°7',
+    formula: 'R – ♭3 – ♭5 – ♭♭7',
+    shell: 'Shell: R – ♭5 – ♭♭7 – ♭3',
+    sound: 'Tense, symmetric, mysterious',
+    theory: `<strong>Shape key:</strong> Symmetric — this exact shape repeats every 3 frets (minor 3rd). Only 3 unique dim7 chords exist.<br>
+             <strong>Usage:</strong> Passing chords (♯iv°7, ♭ii°7). Diminished HW/WH scale. Feraud's symmetry cells.`,
+    eRoot: [[0,0,'R','root'],[1,1,'♭5','tension'],[2,-1,'♭♭7','chord'],[3,0,'♭3','chord']],
+    aRoot: [[1,0,'R','root'],[2,1,'♭5','tension'],[3,-1,'♭♭7','chord']]
+  },
+  minMaj7: {
+    name: 'Minor-Major 7th', symbol: '-Δ7',
+    formula: 'R – ♭3 – 5 – 7',
+    shell: 'Shell: R – ♭3 – 7',
+    sound: 'Ambiguous, dramatic, film noir',
+    theory: `<strong>Shape key:</strong> Minor 3rd + major 7th = maximum ambiguity. Compare with Maj7 (just lower G string by 1 fret).<br>
+             <strong>Usage:</strong> i chord in melodic minor. The "James Bond chord." Ascending chromatic minor bass lines.`,
+    eRoot: [[0,0,'R','root'],[2,1,'7','chord'],[3,0,'♭3','chord']],
+    aRoot: [[1,0,'R','root'],[2,-2,'♭3','chord'],[3,1,'7','chord']]
+  },
+  sus4: {
+    name: 'Dominant 7sus4', symbol: '7sus4',
+    formula: 'R – 4 – 5 – ♭7',
+    shell: 'Shell: R – 4 – ♭7',
+    sound: 'Open, floating, unresolved',
+    theory: `<strong>Shape key:</strong> A-root = barre across A-D-G! No 3rd = no major/minor quality. Pure suspension.<br>
+             <strong>Usage:</strong> Modal jazz (Maiden Voyage). Delayed resolution before dom7. Gospel/R&B. Herbie Hancock voicings.`,
+    eRoot: [[0,0,'R','root'],[2,0,'♭7','chord'],[3,2,'4','chord']],
+    aRoot: [[1,0,'R','root'],[2,0,'4','chord'],[3,0,'♭7','chord']]
+  },
+  aug7: {
+    name: 'Augmented 7th', symbol: '7♯5',
+    formula: 'R – 3 – ♯5 – ♭7',
+    shell: 'Shell: R – ♯5 – ♭7 – 3',
+    sound: 'Dreamy, unstable, floating',
+    theory: `<strong>Shape key:</strong> Dom7 with raised 5th on A string. The ♯5 creates whole-tone flavor.<br>
+             <strong>Usage:</strong> Altered dominants, whole-tone scale harmony. Transition chords. V7♯5 → I resolution.`,
+    eRoot: [[0,0,'R','root'],[1,3,'♯5','tension'],[2,0,'♭7','chord'],[3,1,'3','chord']],
+    aRoot: [[1,0,'R','root'],[2,-1,'3','chord'],[3,-2,'♯5','tension']]
+  }
+};
+
+// ── DRAW MINI CHORD VOICING ON CANVAS ──
+function drawChordVoicing(canvas, voicingNotes, rootFret) {
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = 200, H = 110;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+
+  // Compute absolute fret positions
+  const notes = voicingNotes.map(([strIdx, offset, label, type]) => ({
+    strIdx, fret: rootFret + offset, label, type, displayRow: 3 - strIdx
+  }));
+
+  // Determine fret range to display
+  const allFrets = notes.map(n => n.fret);
+  const minFret = Math.max(0, Math.min(...allFrets) - 1);
+  const maxFret = Math.max(minFret + 4, Math.max(...allFrets) + 1);
+  const showFrets = maxFret - minFret + 1;
+
+  // Layout
+  const leftPad = 22;
+  const topPad = 16;
+  const rightPad = 8;
+  const fretSpacing = (W - leftPad - rightPad) / showFrets;
+  const stringSpacing = 20;
+  const displayStrings = [3, 2, 1, 0]; // G, D, A, E top to bottom
+
+  // Background
+  ctx.fillStyle = '#0a0b12';
+  ctx.beginPath();
+  ctx.roundRect(0, 0, W, H, 5);
+  ctx.fill();
+
+  // Nut (only if fret 0/1 visible)
+  if (minFret <= 1) {
+    const nutX = leftPad + (1 - minFret) * fretSpacing;
+    ctx.fillStyle = '#555';
+    ctx.fillRect(nutX - 1.5, topPad - 3, 3, stringSpacing * 3 + 6);
+  }
+
+  // Fret wires
+  ctx.strokeStyle = '#2a2a3a';
+  ctx.lineWidth = 1;
+  for (let i = 1; i <= showFrets; i++) {
+    const f = minFret + i;
+    const x = leftPad + i * fretSpacing;
+    ctx.beginPath();
+    ctx.moveTo(x, topPad - 3);
+    ctx.lineTo(x, topPad + stringSpacing * 3 + 3);
+    ctx.stroke();
+  }
+
+  // Fret dots (3,5,7,9,12)
+  const dotFrets = [3,5,7,9,12];
+  ctx.fillStyle = '#1a1a2a';
+  dotFrets.forEach(df => {
+    if (df > minFret && df <= minFret + showFrets) {
+      const idx = df - minFret;
+      const x = leftPad + idx * fretSpacing - fretSpacing / 2;
+      ctx.beginPath();
+      ctx.arc(x, topPad + stringSpacing * 1.5, 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+
+  // Strings
+  const stringWidths = [1, 1.2, 1.6, 2.2];
+  for (let i = 0; i < 4; i++) {
+    const y = topPad + i * stringSpacing;
+    ctx.strokeStyle = '#3a3a48';
+    ctx.lineWidth = stringWidths[i];
+    const startX = leftPad + (minFret <= 1 ? (1 - minFret) * fretSpacing : 0);
+    ctx.beginPath();
+    ctx.moveTo(startX, y);
+    ctx.lineTo(W - rightPad, y);
+    ctx.stroke();
+
+    // String label
+    ctx.fillStyle = '#3a3a4a';
+    ctx.font = '9px "JetBrains Mono", monospace';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(STRING_NAMES[displayStrings[i]], leftPad - 5, y);
+  }
+
+  // Fret numbers
+  ctx.fillStyle = '#3a3a4a';
+  ctx.font = '8px "JetBrains Mono", monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  for (let i = 0; i < showFrets; i++) {
+    const f = minFret + i + 1;
+    if (f > 0) {
+      const x = leftPad + (i + 1) * fretSpacing - fretSpacing / 2;
+      ctx.fillText(f.toString(), x, topPad + stringSpacing * 3 + 8);
+    }
+  }
+
+  // Colors
+  const typeColors = {
+    root: '#d4a853',
+    chord: '#4ec9b0',
+    tension: '#9b7bd4'
+  };
+
+  // Muted strings marker (X)
+  const usedStrings = new Set(notes.map(n => n.displayRow));
+  ctx.fillStyle = '#333340';
+  ctx.font = '9px "JetBrains Mono", monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  for (let i = 0; i < 4; i++) {
+    if (!usedStrings.has(i)) {
+      const y = topPad + i * stringSpacing;
+      ctx.fillText('×', leftPad - 5, y);
+    }
+  }
+
+  // Draw notes
+  notes.forEach(note => {
+    const fretIdx = note.fret - minFret;
+    const x = leftPad + fretIdx * fretSpacing + fretSpacing / 2;
+    const y = topPad + note.displayRow * stringSpacing;
+    const r = 9;
+    const color = typeColors[note.type] || '#888';
+
+    // Outer glow for root
+    if (note.type === 'root') {
+      ctx.beginPath();
+      ctx.arc(x, y, r + 2, 0, Math.PI * 2);
+      ctx.strokeStyle = color + '44';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    // Circle
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+
+    // Label
+    ctx.fillStyle = '#0a0a0f';
+    ctx.font = 'bold 7.5px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(note.label, x, y + 0.5);
+  });
+}
+
+// ── BUILD CHORD VOICING CARDS ──
+function buildChordCards() {
+  const container = document.getElementById('chord-cards');
+  if (!container) return;
+
+  const eRootFret = 3; // Root at fret 3 on E string
+  const aRootFret = 3; // Root at fret 3 on A string
+
+  Object.entries(CHORDS).forEach(([key, chord]) => {
+    const card = document.createElement('div');
+    card.className = 'chord-card';
+
+    card.innerHTML = `
+      <h3>${chord.name}<span class="chord-sym">${chord.symbol}</span></h3>
+      <div class="chord-formula">${chord.formula}</div>
+      <div class="chord-shell">${chord.shell}</div>
+      <div class="chord-desc"><em>${chord.sound}</em></div>
+      <div class="voicing-pair">
+        <div class="voicing-box">
+          <div class="voicing-label">E-String Root</div>
+          <canvas class="e-voicing"></canvas>
+        </div>
+        <div class="voicing-box">
+          <div class="voicing-label">A-String Root</div>
+          <canvas class="a-voicing"></canvas>
+        </div>
+      </div>
+      <div class="chord-theory">${chord.theory}</div>
+    `;
+
+    container.appendChild(card);
+
+    drawChordVoicing(card.querySelector('.e-voicing'), chord.eRoot, eRootFret);
+    drawChordVoicing(card.querySelector('.a-voicing'), chord.aRoot, aRootFret);
+  });
+}
+
+// ── DRAW FRETBOARD ON CANVAS ──
+function drawFretboard(canvas, scaleData) {
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+
+  const W = 520, H = 140;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+
+  // Layout
+  const leftPad = 30;
+  const topPad = 24;
+  const fretSpacing = 44;
+  const stringSpacing = 24;
+  const numFrets = 10;
+
+  // Background
+  ctx.fillStyle = '#0a0b12';
+  ctx.beginPath();
+  ctx.roundRect(0, 0, W, H, 6);
+  ctx.fill();
+
+  // Nut
+  ctx.fillStyle = '#555';
+  ctx.fillRect(leftPad + fretSpacing - 2, topPad - 4, 4, stringSpacing * 3 + 8);
+
+  // Fret wires
+  ctx.strokeStyle = '#2a2a3a';
+  ctx.lineWidth = 1;
+  for (let f = 2; f <= numFrets; f++) {
+    const x = leftPad + f * fretSpacing;
+    ctx.beginPath();
+    ctx.moveTo(x, topPad - 4);
+    ctx.lineTo(x, topPad + stringSpacing * 3 + 4);
+    ctx.stroke();
+  }
+
+  // Fret dots (markers at frets 3, 5, 7, 9)
+  const dotFrets = [3, 5, 7, 9];
+  ctx.fillStyle = '#1a1a2a';
+  dotFrets.forEach(f => {
+    if (f <= numFrets) {
+      const x = leftPad + f * fretSpacing + fretSpacing / 2;
+      ctx.beginPath();
+      ctx.arc(x, topPad + stringSpacing * 1.5, 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+
+  // Strings (G=top, D, A, E=bottom)
+  const stringWidths = [1, 1.3, 1.8, 2.4]; // G, D, A, E
+  const displayStrings = [3, 2, 1, 0]; // top to bottom: G(15), D(10), A(5), E(0)
+
+  for (let i = 0; i < 4; i++) {
+    const y = topPad + i * stringSpacing;
+    ctx.strokeStyle = '#4a4a55';
+    ctx.lineWidth = stringWidths[i];
+    ctx.beginPath();
+    ctx.moveTo(leftPad + fretSpacing, y);
+    ctx.lineTo(leftPad + numFrets * fretSpacing, y);
+    ctx.stroke();
+
+    // String label
+    ctx.fillStyle = '#4a4a55';
+    ctx.font = '10px "JetBrains Mono", monospace';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(STRING_NAMES[displayStrings[i]], leftPad + fretSpacing - 10, y);
+  }
+
+  // Fret numbers
+  ctx.fillStyle = '#3a3a4a';
+  ctx.font = '9px "JetBrains Mono", monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  for (let f = 1; f <= numFrets; f++) {
+    const x = leftPad + f * fretSpacing + fretSpacing / 2;
+    ctx.fillText(f.toString(), x, topPad + stringSpacing * 3 + 12);
+  }
+
+  // Colors for note types
+  const typeColors = {
+    root: '#d4a853',
+    chord: '#4ec9b0',
+    scale: '#5b8fd4',
+    tension: '#9b7bd4',
+    chromatic: '#d4637a'
+  };
+
+  // Place notes on fretboard
+  // We place the root at fret 3 on the E string (bottom string, displayed at row index 3)
+  // Root fret position
+  const rootFret = 3;
+
+  // For each note in the scale, find valid fret positions across strings
+  // A note at semitone offset `s` from root can be played at:
+  //   string `str` (offset = STRING_OFFSETS[str]), fret = rootFret + s - (STRING_OFFSETS[str] - STRING_OFFSETS[0])
+  // Simplify: fret = rootFret + s - STRING_OFFSETS[str] + STRING_OFFSETS[0]
+  //         = rootFret + s - STRING_OFFSETS[str]   (since STRING_OFFSETS[0] = 0)
+
+  const placedNotes = [];
+
+  scaleData.notes.forEach(([semitones, label, type]) => {
+    // Try all octaves (0, 12) to get more coverage
+    [0, 12].forEach(octaveShift => {
+      const s = semitones + octaveShift;
+      for (let strIdx = 0; strIdx < 4; strIdx++) {
+        const fret = rootFret + s - STRING_OFFSETS[strIdx];
+        if (fret >= 1 && fret <= numFrets - 1) {
+          // Display row: G=0, D=1, A=2, E=3 → displayRow = 3 - strIdx
+          const displayRow = 3 - strIdx;
+
+          // Check for duplicate position
+          const key = `${displayRow}-${fret}`;
+          if (!placedNotes.find(n => `${n.row}-${n.fret}` === key)) {
+            placedNotes.push({
+              row: displayRow,
+              fret: fret,
+              label: label,
+              type: octaveShift > 0 && type === 'root' ? 'root' : type,
+              octave: octaveShift > 0 ? 1 : 0
+            });
+          }
+        }
+      }
+    });
+  });
+
+  // Draw notes
+  placedNotes.forEach(note => {
+    const x = leftPad + note.fret * fretSpacing + fretSpacing / 2;
+    const y = topPad + note.row * stringSpacing;
+    const r = 10;
+
+    const color = typeColors[note.type] || '#888';
+
+    // Circle
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = note.octave > 0 ? color + '88' : color;
+    ctx.fill();
+
+    // Label
+    ctx.fillStyle = '#0a0a0f';
+    ctx.font = 'bold 8px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(note.label, x, y + 0.5);
+  });
+}
+
+// ── BUILD FRETBOARD CARDS ──
+function buildFretboardCards() {
+  const container = document.getElementById('scale-cards');
+
+  Object.entries(SCALES).forEach(([key, scale]) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const altNameHTML = scale.altName ? ` <span class="alt-name">(${scale.altName})</span>` : '';
+    const tagsHTML = scale.chords.map((c, i) => {
+      const t = scale.chordTypes[i];
+      const cls = t === 'min' ? 'tag-min' : t === 'dom' ? 'tag-dom' : t === 'dim' ? 'tag-dim' : t === 'alt' ? 'tag-alt' : 'tag-maj';
+      return `<span class="tag ${cls}">${c}</span>`;
+    }).join('');
+
+    card.innerHTML = `
+      <h3>${scale.name}${altNameHTML}</h3>
+      <div class="formula">${scale.formula}</div>
+      <div class="chord-tags">${tagsHTML}</div>
+      <div class="fb-container"><canvas></canvas></div>
+      <div class="when-box">${scale.when}</div>
+    `;
+
+    container.appendChild(card);
+
+    const canvas = card.querySelector('canvas');
+    drawFretboard(canvas, scale);
+  });
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  buildFretboardCards();
+  buildChordCards();
+  initHoverTip();
+});
+
+// ═══════════════════════════════════════════════
+// MOUSE-FOLLOWING TOOLTIP PREVIEW
+// ═══════════════════════════════════════════════
+
+function initHoverTip() {
+  const tip = document.getElementById('hover-tip');
+  const htName = document.getElementById('ht-name');
+  const htFormula = document.getElementById('ht-formula');
+  const htSub = document.getElementById('ht-sub');
+  const htCanvases = document.getElementById('ht-canvases');
+
+  let activeKey = null;
+  let hideTimer = null;
+
+  // ── Lookup maps: text → data key ──
+  // Chord symbol → CHORDS key
+  const chordTextMap = {};
+  Object.entries(CHORDS).forEach(([k, c]) => {
+    chordTextMap[c.symbol] = k;
+    chordTextMap[c.name] = k;
+    chordTextMap[c.name.toLowerCase()] = k;
+    // common short names
+    c.formula.split('–').forEach(() => {});
+  });
+  // Add common text variants
+  chordTextMap['Δ7'] = 'maj7'; chordTextMap['Maj7'] = 'maj7'; chordTextMap['Major 7'] = 'maj7'; chordTextMap['Major 7th'] = 'maj7';
+  chordTextMap['-7'] = 'min7'; chordTextMap['min7'] = 'min7'; chordTextMap['Minor 7'] = 'min7'; chordTextMap['Minor 7th'] = 'min7';
+  chordTextMap['7'] = 'dom7'; chordTextMap['Dom7'] = 'dom7'; chordTextMap['Dominant 7'] = 'dom7'; chordTextMap['Dominant 7th'] = 'dom7';
+  chordTextMap['ø7'] = 'halfDim'; chordTextMap['Half-Dim'] = 'halfDim'; chordTextMap['half-diminished'] = 'halfDim';
+  chordTextMap['°7'] = 'dim7'; chordTextMap['dim7'] = 'dim7'; chordTextMap['Diminished'] = 'dim7';
+  chordTextMap['-Δ7'] = 'minMaj7'; chordTextMap['Min-Major 7'] = 'minMaj7'; chordTextMap['minMaj7'] = 'minMaj7';
+  chordTextMap['7sus4'] = 'sus4'; chordTextMap['Sus4'] = 'sus4';
+  chordTextMap['7♯5'] = 'aug7'; chordTextMap['aug7'] = 'aug7';
+  // Chord tags that appear in scale cards — map extensions to scales when they imply a specific mode
+  chordTextMap['Maj7♯11'] = null; // → will fall through to scale (Lydian)
+  chordTextMap['Maj9'] = 'maj7'; chordTextMap['6/9'] = 'maj7';
+  chordTextMap['min9'] = 'min7'; chordTextMap['min11'] = 'min7'; chordTextMap['min13'] = 'min7';
+  chordTextMap['9'] = 'dom7'; chordTextMap['13'] = 'dom7';
+  chordTextMap['7alt'] = null; // scale, not chord
+  chordTextMap['7♯9♭13'] = null; chordTextMap['7♭9♯9'] = null;
+  chordTextMap['7♯11'] = null; chordTextMap['13♯11'] = null;
+  chordTextMap['minMaj7'] = 'minMaj7'; chordTextMap['minMaj9'] = 'minMaj7'; chordTextMap['min6'] = 'minMaj7';
+  chordTextMap['7♭9'] = 'dom7'; chordTextMap['7♯9'] = 'dom7'; chordTextMap['13♭9'] = 'dom7';
+  chordTextMap['7♯5'] = 'aug7'; chordTextMap['aug7'] = 'aug7'; chordTextMap['9♯5'] = 'aug7';
+  chordTextMap['ø7'] = 'halfDim'; chordTextMap['-7♭5'] = 'halfDim';
+  chordTextMap['7♭9♭13'] = 'dom7';
+
+  // Scale name → SCALES key
+  const scaleTextMap = {};
+  Object.entries(SCALES).forEach(([k, s]) => {
+    scaleTextMap[s.name] = k;
+    scaleTextMap[s.name.toLowerCase()] = k;
+    if (s.altName) {
+      scaleTextMap[s.altName] = k;
+      scaleTextMap[s.altName.toLowerCase()] = k;
+    }
+  });
+  // Common text variants
+  scaleTextMap['Ionian'] = 'ionian'; scaleTextMap['ionian'] = 'ionian';
+  scaleTextMap['Lydian'] = 'lydian'; scaleTextMap['lydian'] = 'lydian';
+  scaleTextMap['Dorian'] = 'dorian'; scaleTextMap['dorian'] = 'dorian';
+  scaleTextMap['Mixolydian'] = 'mixolydian'; scaleTextMap['mixolydian'] = 'mixolydian';
+  scaleTextMap['Altered'] = 'altered'; scaleTextMap['altered'] = 'altered';
+  scaleTextMap['Altered scale'] = 'altered';
+  scaleTextMap['Lydian Dom'] = 'lydianDom'; scaleTextMap['Lydian Dominant'] = 'lydianDom';
+  scaleTextMap['Melodic Minor'] = 'melodicMinor'; scaleTextMap['melodic minor'] = 'melodicMinor';
+  scaleTextMap['Melodic minor'] = 'melodicMinor';
+  scaleTextMap['Dim HW'] = 'dimHW'; scaleTextMap['Diminished HW'] = 'dimHW';
+  scaleTextMap['Diminished (Half-Whole)'] = 'dimHW'; scaleTextMap['Dim WH'] = 'dimWH';
+  scaleTextMap['Diminished WH'] = 'dimWH'; scaleTextMap['Diminished (Whole-Half)'] = 'dimWH';
+  scaleTextMap['Whole Tone'] = 'wholeTone'; scaleTextMap['whole tone'] = 'wholeTone';
+  scaleTextMap['Bebop Dom'] = 'bebopDom'; scaleTextMap['Bebop Dominant'] = 'bebopDom';
+  scaleTextMap['bebop dominant'] = 'bebopDom'; scaleTextMap['Bebop dom'] = 'bebopDom';
+  scaleTextMap['Harmonic Minor'] = 'harmonicMinor'; scaleTextMap['harmonic minor'] = 'harmonicMinor';
+  scaleTextMap['Harmonic minor'] = 'harmonicMinor';
+  scaleTextMap['Locrian ♮2'] = 'locrianNat2'; scaleTextMap['Locrian'] = 'locrianNat2';
+  scaleTextMap['Aeolian'] = 'aeolian'; scaleTextMap['aeolian'] = 'aeolian';
+  scaleTextMap['Phrygian Dominant'] = 'harmonicMinor'; // 5th mode of harm minor
+  scaleTextMap['Phrygian Dom'] = 'harmonicMinor';
+  scaleTextMap['Phryg Dom'] = 'harmonicMinor';
+  scaleTextMap['Phrygian'] = 'phrygian';
+  scaleTextMap['phrygian'] = 'phrygian';
+  scaleTextMap['Phrygian Mode'] = 'phrygian';
+  // alt chord symbols that map to scales
+  scaleTextMap['7alt'] = 'altered';
+  scaleTextMap['7♯9♭13'] = 'altered';
+  scaleTextMap['7♭9♯9'] = 'altered';
+  scaleTextMap['Maj7♯11'] = 'lydian';
+  scaleTextMap['13♯11'] = 'lydianDom';
+  scaleTextMap['7♯11'] = 'lydianDom';
+  scaleTextMap['min7♭9'] = 'phrygian';
+  scaleTextMap['sus♭9'] = 'phrygian';
+  scaleTextMap['minMaj9'] = 'melodicMinor';
+  scaleTextMap['min6'] = 'melodicMinor';
+
+  // ── Position tooltip near mouse ──
+  function positionTip(e) {
+    const pad = 16;
+    const tw = tip.offsetWidth;
+    const th = tip.offsetHeight;
+    let x = e.clientX + pad;
+    let y = e.clientY + pad;
+    // Keep on screen
+    if (x + tw > window.innerWidth - 8) x = e.clientX - tw - pad;
+    if (y + th > window.innerHeight - 8) y = e.clientY - th - pad;
+    if (x < 4) x = 4;
+    if (y < 4) y = 4;
+    tip.style.left = x + 'px';
+    tip.style.top = y + 'px';
+  }
+
+  // ── Render scale into tooltip ──
+  function showScale(key, e) {
+    const s = SCALES[key];
+    if (!s) return;
+    if (activeKey === 's:' + key) { positionTip(e); return; }
+    activeKey = 's:' + key;
+    htName.textContent = s.name + (s.altName ? ' (' + s.altName + ')' : '');
+    htFormula.textContent = s.formula;
+    htSub.textContent = 'Chords: ' + s.chords.join(', ');
+    htCanvases.innerHTML = '<canvas id="ht-cv"></canvas>';
+    drawFretboard(document.getElementById('ht-cv'), s);
+    tip.classList.add('visible');
+    positionTip(e);
+  }
+
+  // ── Render chord into tooltip ──
+  function showChord(key, e) {
+    const c = CHORDS[key];
+    if (!c) return;
+    if (activeKey === 'c:' + key) { positionTip(e); return; }
+    activeKey = 'c:' + key;
+    htName.textContent = c.name + '  ' + c.symbol;
+    htFormula.textContent = c.formula;
+    htSub.textContent = c.shell;
+    htCanvases.innerHTML =
+      '<div><div class="ht-vlabel">E-root</div><canvas id="ht-ce"></canvas></div>' +
+      '<div><div class="ht-vlabel">A-root</div><canvas id="ht-ca"></canvas></div>';
+    drawChordVoicing(document.getElementById('ht-ce'), c.eRoot, 3);
+    drawChordVoicing(document.getElementById('ht-ca'), c.aRoot, 3);
+    tip.classList.add('visible');
+    positionTip(e);
+  }
+
+  function hideTip() {
+    hideTimer = setTimeout(() => {
+      tip.classList.remove('visible');
+      activeKey = null;
+    }, 120);
+  }
+
+  function cancelHide() { clearTimeout(hideTimer); }
+
+  // ── Try to resolve text to a scale or chord key ──
+  function resolve(text) {
+    const t = text.trim();
+    // Try exact
+    if (scaleTextMap[t]) return { type: 'scale', key: scaleTextMap[t] };
+    if (chordTextMap[t] && chordTextMap[t] !== null) return { type: 'chord', key: chordTextMap[t] };
+    // Try case-insensitive
+    const tl = t.toLowerCase();
+    if (scaleTextMap[tl]) return { type: 'scale', key: scaleTextMap[tl] };
+    // Null means it maps to a scale instead
+    if (chordTextMap[t] === null && scaleTextMap[t]) return { type: 'scale', key: scaleTextMap[t] };
+    return null;
+  }
+
+  // ── Attach to an element ──
+  function attach(el, type, key) {
+    el.classList.add('hz');
+    el.addEventListener('mouseenter', (e) => {
+      cancelHide();
+      if (type === 'scale') showScale(key, e);
+      else showChord(key, e);
+    });
+    el.addEventListener('mousemove', positionTip);
+    el.addEventListener('mouseleave', hideTip);
+  }
+
+  // ═══ 1. Chord tags in scale cards (Section I) ═══
+  // Show chord voicing if a match exists.
+  // If no chord match, show scale ONLY if it's a different scale than the parent card.
+  // If it would show the same scale the user is already looking at, skip it.
+  const scaleContainer = document.getElementById('scale-cards');
+  if (scaleContainer) {
+    const scaleKeys = Object.keys(SCALES);
+    const scaleCards = scaleContainer.querySelectorAll('.card');
+    scaleCards.forEach((card, i) => {
+      if (!scaleKeys[i]) return;
+      const parentScaleKey = scaleKeys[i];
+      card.querySelectorAll('.tag').forEach(tag => {
+        const text = tag.textContent.trim();
+        // Try chord voicing first
+        const chordKey = chordTextMap[text];
+        if (chordKey && chordKey !== null) {
+          attach(tag, 'chord', chordKey);
+          return;
+        }
+        // Try scale — but only if it's a DIFFERENT scale
+        const scaleKey = scaleTextMap[text];
+        if (scaleKey && scaleKey !== parentScaleKey) {
+          attach(tag, 'scale', scaleKey);
+        }
+        // Otherwise: same scale or no match — don't attach (no redundant tooltip)
+      });
+    });
+  }
+
+  // ═══ 2. Chord tags in chord cards (Section II) ═══
+  // (chord cards don't have .tag elements to hover, skip)
+
+  // ═══ 3. Reference table — Section III ═══
+  const refRows = document.querySelectorAll('.ref-table tbody tr');
+  const refRowScales = [
+    ['Ionian', 'Lydian'],
+    ['Dorian', 'Aeolian', 'Phrygian'],
+    ['Mixolydian', 'Bebop Dom', 'Lydian Dom'],
+    ['Altered', 'Dim HW', 'Whole Tone'],
+    ['Melodic Minor', 'Harmonic Minor'],
+    ['Locrian', 'Locrian ♮2'],
+    ['Diminished WH'],
+    ['Mixolydian', 'Dorian']
+  ];
+  const refRowChords = ['maj7','min7','dom7',null,'minMaj7','halfDim','dim7','sus4'];
+
+  refRows.forEach((row, i) => {
+    if (i >= refRowChords.length) return;
+    const cells = row.querySelectorAll('td');
+    // Cell 0: chord name — make hoverable
+    if (cells[0] && refRowChords[i]) {
+      attach(cells[0], 'chord', refRowChords[i]);
+    }
+    // Cell 1: symbol — make hoverable
+    if (cells[1] && refRowChords[i]) {
+      attach(cells[1], 'chord', refRowChords[i]);
+    }
+    // Cell 2: scale choices — wrap each scale name
+    if (cells[2] && refRowScales[i]) {
+      const origText = cells[2].textContent;
+      const parts = origText.split(',').map(s => s.trim());
+      const html = parts.map(name => {
+        const r = resolve(name);
+        if (r) return '<span class="hz" data-ht="' + r.type + ':' + r.key + '">' + name + '</span>';
+        return name;
+      }).join(', ');
+      cells[2].innerHTML = html;
+    }
+  });
+
+  // ═══ 4. Section IV — Practical Situations ═══
+  // Scan text nodes in .when-box and .card-desc for known terms
+  const sectIV = document.querySelectorAll('.scale-grid .card .when-box, .scale-grid .card .card-desc');
+  wrapKnownTerms(sectIV);
+
+  // ═══ 5. Section V — Artist Breakdown ═══
+  const sectV = document.querySelectorAll('.artist-section .tech-card .td, .artist-section .tech-card .detail, .artist-section .tech-card .tags-row .tag');
+  // Tags in artist section
+  document.querySelectorAll('.artist-section .tag').forEach(tag => {
+    const text = tag.textContent.trim();
+    const r = resolve(text);
+    if (r) attach(tag, r.type, r.key);
+  });
+  // Text in tech cards
+  const artistText = document.querySelectorAll('.artist-section .tech-card .td, .artist-section .tech-card .detail');
+  wrapKnownTerms(artistText);
+
+  // ═══ 6. Section VI — Comparison ═══
+  const cmpText = document.querySelectorAll('.cmp-col li, .cmp-center span');
+  wrapKnownTerms(cmpText);
+
+  // ═══ Bind dynamically created .hz[data-ht] elements ═══
+  document.querySelectorAll('.hz[data-ht]').forEach(el => {
+    const [type, key] = el.dataset.ht.split(':');
+    el.addEventListener('mouseenter', (e) => {
+      cancelHide();
+      if (type === 'scale') showScale(key, e);
+      else showChord(key, e);
+    });
+    el.addEventListener('mousemove', positionTip);
+    el.addEventListener('mouseleave', hideTip);
+  });
+
+  // ── ESC to dismiss ──
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { tip.classList.remove('visible'); activeKey = null; }
+  });
+
+  // ═══ Helper: scan elements and wrap known scale/chord terms ═══
+  function wrapKnownTerms(elements) {
+    // Build sorted term list (longest first to avoid partial matches)
+    const allTerms = [];
+    Object.keys(scaleTextMap).forEach(t => { if (t.length > 2) allTerms.push(t); });
+    Object.keys(chordTextMap).forEach(t => { if (t.length > 2 && chordTextMap[t] !== null) allTerms.push(t); });
+    // Deduplicate and sort longest first
+    const unique = [...new Set(allTerms)].sort((a, b) => b.length - a.length);
+    // Build regex
+    const escaped = unique.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    if (escaped.length === 0) return;
+    const re = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'g');
+
+    elements.forEach(el => {
+      // Don't process elements that already have .hz children or are tags
+      if (el.classList.contains('hz') || el.classList.contains('tag')) return;
+      // Walk text nodes
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+      const textNodes = [];
+      let node;
+      while (node = walker.nextNode()) {
+        if (node.parentElement.classList.contains('hz')) continue; // skip already wrapped
+        if (node.textContent.trim().length > 2) textNodes.push(node);
+      }
+      textNodes.forEach(tn => {
+        const text = tn.textContent;
+        if (!re.test(text)) return;
+        re.lastIndex = 0;
+        const frag = document.createDocumentFragment();
+        let lastIdx = 0;
+        let match;
+        re.lastIndex = 0;
+        while ((match = re.exec(text)) !== null) {
+          const r = resolve(match[1]);
+          if (!r) continue;
+          // Text before match
+          if (match.index > lastIdx) {
+            frag.appendChild(document.createTextNode(text.slice(lastIdx, match.index)));
+          }
+          const span = document.createElement('span');
+          span.className = 'hz';
+          span.dataset.ht = r.type + ':' + r.key;
+          span.textContent = match[1];
+          frag.appendChild(span);
+          lastIdx = match.index + match[1].length;
+        }
+        if (lastIdx === 0) return; // no matches replaced
+        if (lastIdx < text.length) {
+          frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+        }
+        tn.parentNode.replaceChild(frag, tn);
+      });
+    });
+
+    // Bind newly created spans
+    document.querySelectorAll('.hz[data-ht]').forEach(el => {
+      if (el._htBound) return;
+      el._htBound = true;
+      const [type, key] = el.dataset.ht.split(':');
+      el.addEventListener('mouseenter', (e) => {
+        cancelHide();
+        if (type === 'scale') showScale(key, e);
+        else showChord(key, e);
+      });
+      el.addEventListener('mousemove', positionTip);
+      el.addEventListener('mouseleave', hideTip);
+    });
+  }
+}
+</script>
+
+</body>
+</html>
+

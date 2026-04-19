@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Bass">
+  <rect width="512" height="512" rx="96" fill="#07080c"/>
+  <!-- fret inlays -->
+  <circle cx="232" cy="256" r="6" fill="#1a1a2a"/>
+  <circle cx="316" cy="256" r="6" fill="#1a1a2a"/>
+  <!-- four strings (G top, E bottom) -->
+  <rect x="96"  y="158" width="336" height="3" fill="#4a4a55"/>
+  <rect x="96"  y="224" width="336" height="3.5" fill="#4a4a55"/>
+  <rect x="96"  y="290" width="336" height="4" fill="#4a4a55"/>
+  <rect x="96"  y="356" width="336" height="5" fill="#4a4a55"/>
+  <!-- fret wires -->
+  <rect x="148" y="140" width="2" height="240" fill="#2a2a3a"/>
+  <rect x="232" y="140" width="2" height="240" fill="#2a2a3a"/>
+  <rect x="316" y="140" width="2" height="240" fill="#2a2a3a"/>
+  <rect x="400" y="140" width="2" height="240" fill="#2a2a3a"/>
+  <!-- nut -->
+  <rect x="88"  y="140" width="10" height="240" rx="2" fill="#8a8a8a"/>
+  <!-- gold harmonic node on the A string, fret 7 — a characteristic reference pitch -->
+  <circle cx="274" cy="291" r="34" fill="#d4a853"/>
+  <circle cx="274" cy="291" r="34" fill="none" stroke="#0a0a0f" stroke-width="3"/>
+</svg>

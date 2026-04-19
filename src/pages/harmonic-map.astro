@@ -1,0 +1,665 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natural Harmonics Map — 4-String Bass</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style is:global>
+:root {
+  --bg: #07080c;
+  --surface: #0f1018;
+  --surface2: #161822;
+  --surface3: #1e2030;
+  --gold: #d4a853;
+  --gold-dim: #9a7a3a;
+  --gold-bright: #f0c95a;
+  --blue: #5b8fd4;
+  --teal: #4ec9b0;
+  --rose: #d4637a;
+  --purple: #9b7bd4;
+  --orange: #e09050;
+  --green: #8fd49b;
+  --text: #d8d4cc;
+  --text-dim: #706c68;
+  --text-mid: #9a968e;
+  --text-bright: #f0ece4;
+  --border: #252838;
+  --fret-bg: #0a0b12;
+
+  --p2: var(--gold);
+  --p3: var(--teal);
+  --p4: var(--blue);
+  --p5: var(--purple);
+  --p6: var(--green);
+  --p7: var(--rose);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+}
+
+.container { max-width: 1440px; margin: 0 auto; padding: 40px 28px; }
+
+/* ── HEADER ── */
+header {
+  text-align: center;
+  padding: 50px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 1px;
+  line-height: 1.15;
+}
+h1 .sub {
+  display: block;
+  font-size: 0.35em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--text-dim);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.header-note {
+  margin-top: 16px;
+  color: var(--text-dim);
+  font-size: 13px;
+  font-style: italic;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── SECTION TITLES ── */
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 55px 0 24px;
+}
+.sec-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.sec-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dim), transparent);
+}
+
+/* ── INFO BLOCK ── */
+.info-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  color: var(--text-mid);
+  font-size: 14px;
+}
+.info-block p { margin-bottom: 10px; }
+.info-block p:last-child { margin-bottom: 0; }
+.info-block code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--gold);
+  background: rgba(212,168,83,0.08);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+.info-block i { color: var(--text-bright); font-style: italic; }
+.info-block b { color: var(--text-bright); font-weight: 600; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 14px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-mid);
+  font-family: 'JetBrains Mono', monospace;
+}
+.legend-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid #0a0a0f;
+  flex-shrink: 0;
+}
+.legend-dot.p2 { background: var(--p2); }
+.legend-dot.p3 { background: var(--p3); }
+.legend-dot.p4 { background: var(--p4); }
+.legend-dot.p5 { background: var(--p5); }
+.legend-dot.p6 { background: var(--p6); }
+.legend-dot.p7 { background: var(--p7); }
+
+/* ── FRETBOARD WRAP ── */
+.fb-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  overflow-x: auto;
+}
+.fb-wrap canvas { display: block; margin: 0 auto; }
+
+/* ── WARN BOX ── */
+.warn-box {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: rgba(212,99,122,0.06);
+  border-left: 3px solid var(--rose);
+  border-radius: 0 6px 6px 0;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.warn-box b { color: var(--rose); font-weight: 600; }
+.warn-box i { color: var(--text-bright); }
+
+/* ── PER-STRING TABLES ── */
+.string-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 18px;
+}
+.string-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.string-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--text-bright);
+  margin-bottom: 4px;
+}
+.string-card h3 .note-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  margin-left: 6px;
+}
+.string-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.string-card th {
+  text-align: left;
+  padding: 6px 6px 8px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+.string-card td {
+  padding: 6px 6px;
+  color: var(--text);
+  border-bottom: 1px solid rgba(37,40,56,0.5);
+}
+.string-card td:first-child { font-weight: 600; }
+.string-card tr:last-child td { border-bottom: none; }
+.string-card .pitch { color: var(--gold); font-weight: 600; }
+.string-card .cents-flat { color: var(--rose); }
+.string-card .cents-sharp { color: var(--teal); }
+.string-card .cents-zero { color: var(--text-dim); }
+.partial-chip {
+  display: inline-block;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #0a0a0f;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.partial-chip.k2 { background: var(--p2); }
+.partial-chip.k3 { background: var(--p3); }
+.partial-chip.k4 { background: var(--p4); }
+.partial-chip.k5 { background: var(--p5); }
+.partial-chip.k6 { background: var(--p6); }
+.partial-chip.k7 { background: var(--p7); }
+
+/* ── PRACTICE CARDS ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 18px;
+}
+.practice-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  transition: border-color 0.3s;
+}
+.practice-card:hover { border-color: var(--gold-dim); }
+.practice-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.practice-card p {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+.practice-card p + p { margin-top: 8px; }
+.practice-card b { color: var(--text-bright); font-weight: 600; }
+.practice-card i { color: var(--gold); font-style: italic; }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 70px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+.bottom-nav a {
+  color: var(--gold);
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.bottom-nav a:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+</style>
+  <link rel="manifest" href="/bass/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/bass/icon.svg">
+  <meta name="theme-color" content="#d4a853">
+  <script is:inline>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/bass/sw.js', { scope: '/bass/' }).catch(function () {});
+      });
+    }
+  </script>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Natural Harmonics Map<span class="sub">4-String Bass · E A D G · Standard Tuning</span></h1>
+  <p class="header-note">Touch the string lightly directly above the fret wire — don't press down. Pluck elsewhere. The string splits into equal parts and only the matching partial rings. These are the ones that exist on a 24-fret neck.</p>
+</header>
+
+<section>
+  <div class="sec-title"><h2>How it works</h2></div>
+  <div class="info-block">
+    <p>Every plucked string vibrates in a sum of <i>partials</i>: the fundamental (1×), the octave (2×), the octave-plus-fifth (3×), and so on. Partial <i>k</i> has <i>k−1</i> equally-spaced node points along the string where its motion is zero.</p>
+    <p>Resting your finger on any node silences every partial that doesn't <i>also</i> have a node there — only the target partial survives. Node position in frets: <code>f = 12 · log₂(k / (k−m))</code> for node <i>m</i> of partial <i>k</i>.</p>
+    <p>The sounding pitch is <code>k × f₀</code>, where <i>f₀</i> is the open string. Natural harmonics produce the <b>harmonic series in just intonation</b> — they don't match equal temperament. Partials 2, 3, 4, 6 are close (within a few cents); 5 is 14¢ flat; 7 is 31¢ flat (noticeably bluesy).</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-title"><h2>Primary harmonics · partials 2–4</h2></div>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot p2"></span>2nd partial · +12 st · perfect octave · exact</span>
+    <span class="legend-item"><span class="legend-dot p3"></span>3rd partial · +19 st · octave + P5 · +2¢ vs ET</span>
+    <span class="legend-item"><span class="legend-dot p4"></span>4th partial · +24 st · 2 octaves · exact</span>
+  </div>
+  <div class="fb-wrap"><canvas id="primary-fb"></canvas></div>
+</section>
+
+<section>
+  <div class="sec-title"><h2>Advanced harmonics · partials 5–7</h2></div>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot p5"></span>5th · 2 oct + M3 · <b>−14¢ vs ET</b></span>
+    <span class="legend-item"><span class="legend-dot p6"></span>6th · 2 oct + P5 · +2¢ vs ET</span>
+    <span class="legend-item"><span class="legend-dot p7"></span>7th · 2 oct + ♭7 · <b>−31¢ vs ET</b></span>
+  </div>
+  <div class="fb-wrap"><canvas id="advanced-fb"></canvas></div>
+  <div class="warn-box">
+    ⚠ Partial <b>7</b> sits between C♯ and D on an E string — ≈<b>31¢ flat</b> of the ET minor 7th. This is the "blue" harmonic seventh. Jaco used it deliberately; against a tempered keyboard it will sound <i>out of tune</i>. Partial <b>5</b> (major 3rd) is also noticeably flat against ET — fine in solo/harmonic contexts, odd against a piano.
+  </div>
+</section>
+
+<section>
+  <div class="sec-title"><h2>Per-string pitch reference</h2></div>
+  <div class="string-grid" id="string-grid"></div>
+</section>
+
+<section>
+  <div class="sec-title"><h2>Practical patterns</h2></div>
+  <div class="card-grid">
+    <div class="practice-card">
+      <h3>Octave pool · frets 5 · 7 · 12</h3>
+      <p>On any string, frets <b>5</b>, <b>7</b>, and <b>12</b> give you the three strongest harmonics — 2 octaves, octave+5th, and 1 octave above the open pitch. This is 95% of what you'll actually use live.</p>
+      <p>E-string pool: <i>E3 · B3 · E2</i>. A-string: <i>A3 · E4 · A2</i>. D-string: <i>D4 · A4 · D3</i>. G-string: <i>G4 · D5 · G3</i>.</p>
+    </div>
+    <div class="practice-card">
+      <h3>Hidden upper-neck nodes</h3>
+      <p>Partial 3 has a second node at <b>fret 19</b>, partial 4 at <b>fret 24</b>. These often ring louder and clearer than their open-position counterparts — the string has more length-per-cycle above the pickup, so signal is cleaner.</p>
+      <p>Fret 19 on E = B3 (same pitch as fret-7 harmonic). Fret 24 on E = E3. Useful for chord-melody where you need the note near the pickup.</p>
+    </div>
+    <div class="practice-card">
+      <h3>Jaco two-string chord</h3>
+      <p>Rest index finger across <b>fret 5 on both A and D strings</b>. Pluck both. You get <i>A3 + D4</i> — a perfect 4th, two octaves up. Same trick at fret 7 gives you <i>E4 + A4</i>, at fret 12 <i>A2 + D3</i>.</p>
+      <p>Try <b>fret 5 on D + fret 7 on G</b>: <i>D4 + D5</i> — a pure octave voicing.</p>
+    </div>
+    <div class="practice-card">
+      <h3>False harmonics · "Portrait of Tracy" trick</h3>
+      <p>Fret any note with the left hand. Touch the string lightly with the right-hand index <b>12 frets higher</b>, pluck with the thumb behind the index. Result: the fretted pitch one octave up, as a bell-like harmonic.</p>
+      <p>Works anywhere. Combine with hammer-ons/pull-offs to play melodies entirely in harmonics. Jaco and Victor Wooten both live here.</p>
+    </div>
+    <div class="practice-card">
+      <h3>Tuning with harmonics</h3>
+      <p>Ring fret-5 harmonic on <b>low E</b> (= E3, partial 4) and fret-7 harmonic on <b>A</b> (= E4, partial 3). In just intonation both are "E" but one octave apart — they beat if A is out. Adjust A until beating stops.</p>
+      <p>Repeat A-5 vs D-7, D-5 vs G-7. <i>Caveat:</i> this produces a 3:2 tempering between adjacent strings, which is slightly tight against equal temperament. Fine for solo bass; refine with a tuner for ensemble.</p>
+    </div>
+    <div class="practice-card">
+      <h3>7th partial — the blue harmonic</h3>
+      <p>Between frets <b>2–3</b> (closer to 3) on any string. Silky, flat minor 7th. Doesn't line up with ET — don't try to play it in unison with a keyboard, but <i>great</i> for solo intros, ambient pads, or over static minor-seventh chords where it colors the <b>♭7</b> with just intonation.</p>
+      <p>Easiest node: fret <b>~2.7</b> on E = ≈D4 flat. Slide your finger until it speaks cleanly.</p>
+    </div>
+  </div>
+</section>
+
+<nav class="bottom-nav">
+  <a href="../cheat-sheet/">◀ Jazz Cheat Sheet</a>
+  <a href="../setlist/">Stage Setlist ▶</a>
+</nav>
+
+</div>
+
+<script is:inline>
+// ═══════════════════════════════════════════════
+// NATURAL HARMONICS — 4-STRING BASS
+// ═══════════════════════════════════════════════
+// Standard bass tuning: E1 A1 D2 G2
+// STRING_MIDI: MIDI note numbers of the open strings
+//   (E1=28, A1=33, D2=38, G2=43)
+const STRING_NAMES = ['E', 'A', 'D', 'G'];
+const STRING_MIDI  = [28, 33, 38, 43];
+const NOTE_NAMES   = ['C', 'C♯', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B'];
+
+// Node positions in frets for partial k: f = 12 * log2(k / (k - m)) for m = 1..k-1
+function nodePositions(k) {
+  const out = [];
+  for (let m = 1; m < k; m++) {
+    out.push(12 * Math.log2(k / (k - m)));
+  }
+  return out;
+}
+
+// Pitch produced by partial k of open string (index 0..3).
+// Returns { name, octave, centsOffset } where centsOffset is vs. nearest ET pitch.
+function pitchForPartial(stringIdx, k) {
+  const openMidi = STRING_MIDI[stringIdx];
+  const semisAbove = 12 * Math.log2(k);       // exact semitones above fundamental
+  const midiFloat  = openMidi + semisAbove;
+  const midiRound  = Math.round(midiFloat);
+  const centsOffset = (midiFloat - midiRound) * 100;
+  const name   = NOTE_NAMES[((midiRound % 12) + 12) % 12];
+  const octave = Math.floor(midiRound / 12) - 1;
+  return { name, octave, centsOffset };
+}
+
+// ── FRETBOARD RENDERER ──
+function drawFretboard(canvas, partials) {
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+
+  const W = 1080, H = 210;
+  canvas.width  = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+
+  const leftPad  = 40;
+  const topPad   = 32;
+  const numFrets = 24;
+  const fbWidth  = W - leftPad - 40;
+  const fretSpacing = fbWidth / numFrets;
+  const stringSpacing = 36;
+
+  // Background
+  ctx.fillStyle = '#0a0b12';
+  ctx.beginPath();
+  ctx.roundRect(0, 0, W, H, 6);
+  ctx.fill();
+
+  // Nut (at fret 0)
+  ctx.fillStyle = '#888';
+  ctx.fillRect(leftPad - 3, topPad - 8, 4, stringSpacing * 3 + 16);
+
+  // Fret wires
+  ctx.strokeStyle = '#2a2a3a';
+  ctx.lineWidth = 1;
+  for (let f = 1; f <= numFrets; f++) {
+    const x = leftPad + f * fretSpacing;
+    ctx.beginPath();
+    ctx.moveTo(x, topPad - 6);
+    ctx.lineTo(x, topPad + stringSpacing * 3 + 6);
+    ctx.stroke();
+  }
+
+  // Inlay markers (single at 3,5,7,9,15,17,19,21; double at 12,24)
+  const singleDots = [3, 5, 7, 9, 15, 17, 19, 21];
+  const doubleDots = [12, 24];
+  ctx.fillStyle = '#1a1a2a';
+  singleDots.forEach(f => {
+    const x = leftPad + f * fretSpacing - fretSpacing / 2;
+    ctx.beginPath();
+    ctx.arc(x, topPad + stringSpacing * 1.5, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  doubleDots.forEach(f => {
+    const x = leftPad + f * fretSpacing - fretSpacing / 2;
+    ctx.beginPath();
+    ctx.arc(x, topPad + stringSpacing * 0.5, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(x, topPad + stringSpacing * 2.5, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // Strings — display order: G (row 0, top), D (1), A (2), E (3, bottom)
+  const stringWidths = [1, 1.3, 1.8, 2.5];     // G D A E
+  const displayToStringIdx = [3, 2, 1, 0];     // row 0 → string index 3 (G)
+  for (let row = 0; row < 4; row++) {
+    const y = topPad + row * stringSpacing;
+    ctx.strokeStyle = '#4a4a55';
+    ctx.lineWidth = stringWidths[row];
+    ctx.beginPath();
+    ctx.moveTo(leftPad, y);
+    ctx.lineTo(leftPad + numFrets * fretSpacing, y);
+    ctx.stroke();
+
+    ctx.fillStyle = '#9a968e';
+    ctx.font = 'bold 12px "JetBrains Mono", monospace';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(STRING_NAMES[displayToStringIdx[row]], leftPad - 10, y);
+  }
+
+  // Fret numbers under the board
+  ctx.fillStyle = '#4a4a55';
+  ctx.font = '9px "JetBrains Mono", monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  for (let f = 1; f <= numFrets; f++) {
+    const x = leftPad + f * fretSpacing - fretSpacing / 2;
+    ctx.fillText(f.toString(), x, topPad + stringSpacing * 3 + 14);
+  }
+
+  // Color map per partial
+  const partialColors = {
+    2: '#d4a853', // gold
+    3: '#4ec9b0', // teal
+    4: '#5b8fd4', // blue
+    5: '#9b7bd4', // purple
+    6: '#8fd49b', // green
+    7: '#d4637a', // rose
+  };
+
+  // Collect all nodes, then sort so lower partials render last (on top).
+  // Priority: draw higher partials first → lower partials overwrite them
+  // when they sit at the same fret (12, 7, 19 stacking).
+  const nodes = [];
+  for (let row = 0; row < 4; row++) {
+    const stringIdx = displayToStringIdx[row];
+    const y = topPad + row * stringSpacing;
+    for (const k of partials) {
+      const pitch = pitchForPartial(stringIdx, k);
+      const label = pitch.name + pitch.octave;
+      for (const fret of nodePositions(k)) {
+        if (fret < 0.35 || fret > numFrets + 0.5) continue;
+        const x = leftPad + fret * fretSpacing - fretSpacing / 2;
+        nodes.push({ x, y, k, label });
+      }
+    }
+  }
+  // Draw higher partials first so lower partials end up on top at shared nodes
+  nodes.sort((a, b) => b.k - a.k);
+
+  const r = 11;
+  for (const node of nodes) {
+    // Outer stroke / shadow
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, r + 1.2, 0, Math.PI * 2);
+    ctx.fillStyle = '#0a0a0f';
+    ctx.fill();
+
+    // Dot
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = partialColors[node.k];
+    ctx.fill();
+
+    // Pitch label
+    ctx.fillStyle = '#0a0a0f';
+    ctx.font = 'bold 9px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(node.label, node.x, node.y + 0.5);
+
+    // Partial-number chip in upper-right corner
+    ctx.beginPath();
+    ctx.arc(node.x + r - 2, node.y - r + 2, 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#0a0a0f';
+    ctx.fill();
+    ctx.fillStyle = partialColors[node.k];
+    ctx.font = 'bold 7px "JetBrains Mono", monospace';
+    ctx.fillText(node.k.toString(), node.x + r - 2, node.y - r + 2.5);
+  }
+}
+
+// ── BUILD PER-STRING PITCH TABLES ──
+function buildStringTables() {
+  const container = document.getElementById('string-grid');
+  const strings = [
+    { idx: 0, name: 'E string', openNote: 'E1 · 41.2 Hz' },
+    { idx: 1, name: 'A string', openNote: 'A1 · 55.0 Hz' },
+    { idx: 2, name: 'D string', openNote: 'D2 · 73.4 Hz' },
+    { idx: 3, name: 'G string', openNote: 'G2 · 98.0 Hz' },
+  ];
+
+  strings.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'string-card';
+
+    const rows = [];
+    for (let k = 2; k <= 7; k++) {
+      const pitch = pitchForPartial(s.idx, k);
+      const nodes = nodePositions(k)
+        .filter(f => f >= 0.35 && f <= 24.5)
+        .map(f => f.toFixed(2).replace(/\.00$/, ''))
+        .join(' · ');
+      const cents = pitch.centsOffset;
+      let centsClass = 'cents-zero';
+      let centsStr = cents.toFixed(1) + '¢';
+      if (Math.abs(cents) < 0.5) {
+        centsClass = 'cents-zero';
+        centsStr = 'exact';
+      } else if (cents < 0) {
+        centsClass = 'cents-flat';
+        centsStr = cents.toFixed(1) + '¢';
+      } else {
+        centsClass = 'cents-sharp';
+        centsStr = '+' + cents.toFixed(1) + '¢';
+      }
+      rows.push(`
+        <tr>
+          <td><span class="partial-chip k${k}">${k}</span></td>
+          <td class="pitch">${pitch.name}${pitch.octave}</td>
+          <td>${nodes}</td>
+          <td class="${centsClass}">${centsStr}</td>
+        </tr>
+      `);
+    }
+
+    card.innerHTML = `
+      <h3>${s.name}<span class="note-sub">open · ${s.openNote}</span></h3>
+      <table>
+        <thead>
+          <tr>
+            <th>k</th>
+            <th>Pitch</th>
+            <th>Fret nodes (≤24)</th>
+            <th>vs. ET</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.join('')}
+        </tbody>
+      </table>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  drawFretboard(document.getElementById('primary-fb'),  [2, 3, 4]);
+  drawFretboard(document.getElementById('advanced-fb'), [5, 6, 7]);
+  buildStringTables();
+});
+</script>
+</body>
+</html>

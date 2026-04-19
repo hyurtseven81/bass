@@ -1,0 +1,19 @@
+{
+  "name": "Bass — Cheat Sheets & Setlist",
+  "short_name": "Bass",
+  "description": "Bass guitar references — jazz theory, stage setlist, natural harmonics",
+  "lang": "en",
+  "theme_color": "#d4a853",
+  "background_color": "#07080c",
+  "display": "standalone",
+  "start_url": "/bass/",
+  "scope": "/bass/",
+  "icons": [
+    {
+      "src": "/bass/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

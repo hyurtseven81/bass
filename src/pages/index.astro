@@ -1,0 +1,122 @@
+---
+const base = import.meta.env.BASE_URL;
+const links = [
+  { href: 'cheat-sheet/',   label: 'Jazz Cheat Sheet',    sub: 'Modes, chord voicings, fretboard maps' },
+  { href: 'setlist/',       label: 'Stage Setlist',       sub: 'Live performance reference, collapsible' },
+  { href: 'harmonic-map/',  label: 'Natural Harmonics Map', sub: '24-fret nodes · partials 2–7' },
+];
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bass — Cheat Sheets & Setlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style is:global>
+    :root {
+      --bg: #07080c;
+      --surface: #0f1018;
+      --surface2: #161822;
+      --gold: #d4a853;
+      --gold-dim: #9a7a3a;
+      --text: #d8d4cc;
+      --text-dim: #706c68;
+      --text-bright: #f0ece4;
+      --border: #252838;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      line-height: 1.5;
+    }
+    .container { max-width: 680px; width: 100%; }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 7vw, 64px);
+      font-weight: 900;
+      color: var(--gold);
+      text-align: center;
+      letter-spacing: 1px;
+      line-height: 1.1;
+    }
+    .sub {
+      text-align: center;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-size: 11px;
+      margin: 10px 0 48px;
+    }
+    .grid { display: grid; gap: 14px; }
+    a.card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold-dim);
+      border-radius: 8px;
+      padding: 22px 26px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    a.card:hover {
+      border-color: var(--gold);
+      background: var(--surface2);
+      transform: translateX(2px);
+    }
+    .label {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .sub-text {
+      color: var(--text-dim);
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      color: var(--text-dim);
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 1px;
+    }
+  </style>
+  <link rel="manifest" href="/bass/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/bass/icon.svg">
+  <meta name="theme-color" content="#d4a853">
+  <script is:inline>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/bass/sw.js', { scope: '/bass/' }).catch(function () {});
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Bass</h1>
+    <div class="sub">cheat sheets · setlist · harmonics</div>
+    <div class="grid">
+      {links.map(l => (
+        <a class="card" href={`${base}${l.href}`}>
+          <div class="label">{l.label}</div>
+          <div class="sub-text">{l.sub}</div>
+        </a>
+      ))}
+    </div>
+    <footer>Hüseyin · works offline once cached</footer>
+  </div>
+</body>
+</html>

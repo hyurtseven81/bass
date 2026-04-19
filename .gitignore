@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Astro
+dist/
+.astro/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# macOS
+.DS_Store
+
+# Local-only pre-Astro snapshots, not intended for the repo
+backup/
+
+# Editors
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# OS noise
+Thumbs.db
