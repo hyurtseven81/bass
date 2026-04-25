@@ -1,0 +1,491 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setlist → Spotify Playlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style is:global>
+:root {
+  --bg: #07080c;
+  --surface: #0f1018;
+  --surface2: #161822;
+  --gold: #d4a853;
+  --gold-dim: #9a7a3a;
+  --gold-bright: #f0c76a;
+  --text: #d8d4cc;
+  --text-dim: #706c68;
+  --text-bright: #f0ece4;
+  --border: #252838;
+  --green: #4ade80;
+  --red: #f87171;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  padding: 32px 20px 64px;
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+}
+.container { max-width: 720px; margin: 0 auto; }
+header { margin-bottom: 32px; }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+.back {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.back:hover { color: var(--gold); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold-dim);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+.card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.card ol, .card ul { padding-left: 22px; }
+.card li { margin: 6px 0; }
+.card p { margin: 8px 0; color: var(--text-dim); font-size: 14px; }
+.card code {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--gold-bright);
+  font-size: 12px;
+  word-break: break-all;
+  user-select: all;
+}
+.card a { color: var(--gold); }
+
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
+input[type="text"] {
+  flex: 1;
+  min-width: 220px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--text-bright);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+input[type="text"]:focus { border-color: var(--gold); outline: none; }
+input[type="text"].playlist-name { font-family: 'DM Sans', sans-serif; font-size: 14px; }
+
+button {
+  background: var(--gold);
+  color: #1a1206;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover:not(:disabled) { background: var(--gold-bright); }
+button:disabled { background: var(--gold-dim); cursor: not-allowed; opacity: 0.6; }
+button.secondary {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+button.secondary:hover:not(:disabled) { color: var(--gold); border-color: var(--gold); background: transparent; }
+
+#log {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-top: 14px;
+  max-height: 320px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  color: var(--text-dim);
+}
+#log .ok { color: var(--green); }
+#log .miss { color: var(--red); }
+#log .info { color: var(--gold-bright); }
+
+.songlist { list-style: none; padding: 0; margin-top: 12px; }
+.songlist li {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.songlist li:last-child { border-bottom: none; }
+.songlist .t { color: var(--text); }
+.songlist .s { color: var(--text-dim); }
+.songlist .s.ok { color: var(--green); }
+.songlist .s.miss { color: var(--red); }
+
+.result-link {
+  display: inline-block;
+  margin-top: 12px;
+  background: #1db954;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.result-link:hover { background: #1ed760; }
+</style>
+<link rel="manifest" href="/bass/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/bass/icon.svg">
+<meta name="theme-color" content="#d4a853">
+<script is:inline>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/bass/sw.js', { scope: '/bass/' }).catch(function () {});
+    });
+  }
+</script>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Setlist → Spotify Playlist</h1>
+    <a class="back" href="../setlist/">← back to setlist</a>
+  </header>
+
+  <div class="card" id="setupCard">
+    <h2>One-time Spotify app setup</h2>
+    <ol>
+      <li>Open <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">developer.spotify.com/dashboard</a> and click <b>Create app</b>.</li>
+      <li>Name: anything (e.g. <i>bass-setlist</i>). Description: anything.</li>
+      <li>Add this exact <b>Redirect URI</b>: <code id="redirectUri">…</code></li>
+      <li>API/SDK: tick <b>Web API</b>. Save.</li>
+      <li>Open the app's settings, copy the <b>Client ID</b>, paste below.</li>
+    </ol>
+    <p>The Client ID is public — safe to keep in localStorage. Spotify's PKCE flow needs no secret.</p>
+    <div class="row">
+      <input type="text" id="cid" placeholder="Spotify Client ID" autocomplete="off" spellcheck="false">
+      <button id="saveCid" class="secondary">Save</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Build the playlist</h2>
+    <p id="songCount">…</p>
+    <div class="row">
+      <input type="text" id="playlistName" class="playlist-name" placeholder="Playlist name">
+    </div>
+    <div class="row">
+      <button id="goBtn" disabled>Authorize &amp; build</button>
+      <button id="resetBtn" class="secondary">Reset auth</button>
+    </div>
+    <div id="log" hidden></div>
+    <ul class="songlist" id="songResults" hidden></ul>
+    <div id="resultBox"></div>
+  </div>
+</div>
+
+<script is:inline>
+/* Songs lifted from setlist.astro SONG_MEDIA. Title for display, q for the
+   Spotify search query (artist hint included to disambiguate covers). */
+const SONGS = [
+  { title: "Yeniden",             q: "Yeniden Gözde Berberoğlu Özen" },
+  { title: "Çünkü Bu Rüya",       q: "Çünkü Bu Rüya Das Gift" },
+  { title: "En Çok Neyi Özlerim", q: "En Çok Neyi Özlerim Gözde Hüseyin" },
+  { title: "Words Rearranged",    q: "Words Rearranged Hüseyin" },
+  { title: "Mesai",               q: "Mesai Das Gift" },
+  { title: "Kalp Kırıkları",      q: "Kalp Kırıkları Sweety" },
+  { title: "Ne Güzel",            q: "Ne Güzel Hüseyin" },
+  { title: "Sıradan Bir Gün",     q: "Sıradan Bir Gün Jülide Özçelik" },
+  { title: "Zaman",               q: "Zaman Jülide Özçelik" },
+  { title: "Yalnızlık Senfonisi", q: "Yalnızlık Senfonisi Sertab Erener" },
+  { title: "Dön Bak Dünyaya",     q: "Dön Bak Dünyaya Pinhani" },
+  { title: "Aldatıldık",          q: "Aldatıldık Rengin" },
+  { title: "Düşünme Hiç",         q: "Düşünme Hiç Ajda Pekkan" },
+  { title: "Sabır",               q: "Sabır Göksel" },
+  { title: "Dert Değil",          q: "Dert Değil Metin Arolat" },
+  { title: "Bazen",               q: "Bazen MFÖ" },
+  { title: "Olanla Olunmaz",      q: "Olanla Olunmaz BEA" },
+  { title: "Ben Böyleyim",        q: "Ben Böyleyim Ayten Alpman" },
+  { title: "Seninle Bir Dakika",  q: "Seninle Bir Dakika Semiha Yankı" },
+  { title: "Bu Gece",             q: "Bu Gece Sezen Aksu" },
+  { title: "Aşk Oyunu",           q: "Aşk Oyunu Kenan Doğulu" },
+  { title: "Çalkala",             q: "Çalkala Seden Gürel" },
+  { title: "Her Gece",            q: "Her Gece Mirkelam" },
+  { title: "Hatıralar",           q: "Hatıralar Mirkelam" },
+  { title: "Sakın Gelme",         q: "Sakın Gelme MFÖ" },
+  { title: "Bile Bile",           q: "Bile Bile Aşkın Nur Yengi" },
+  { title: "Rüya",                q: "Rüya Gürhan Yolsal" }
+];
+
+const SCOPES = "playlist-modify-private playlist-modify-public";
+const AUTH_URL = "https://accounts.spotify.com/authorize";
+const TOKEN_URL = "https://accounts.spotify.com/api/token";
+const API = "https://api.spotify.com/v1";
+const LS = {
+  cid: "bass.spotify.cid",
+  verifier: "bass.spotify.pkce_verifier",
+  state: "bass.spotify.state",
+  pending: "bass.spotify.pending_run"
+};
+
+const redirectUri = window.location.origin + window.location.pathname.replace(/\/?$/, "/");
+
+const $ = id => document.getElementById(id);
+$("redirectUri").textContent = redirectUri;
+$("songCount").textContent = `${SONGS.length} songs ready to add.`;
+$("playlistName").value = "Stage Setlist";
+
+function logMsg(msg, cls = "") {
+  const log = $("log");
+  log.hidden = false;
+  const span = document.createElement("span");
+  if (cls) span.className = cls;
+  span.textContent = msg + "\n";
+  log.appendChild(span);
+  log.scrollTop = log.scrollHeight;
+}
+
+function setSongStatus(idx, text, cls) {
+  const list = $("songResults");
+  list.hidden = false;
+  let li = list.children[idx];
+  if (!li) {
+    li = document.createElement("li");
+    li.innerHTML = `<span class="t"></span><span class="s"></span>`;
+    list.appendChild(li);
+    li.querySelector(".t").textContent = SONGS[idx].title;
+  }
+  const s = li.querySelector(".s");
+  s.textContent = text;
+  s.className = "s " + (cls || "");
+}
+
+/* PKCE helpers */
+function randStr(n) {
+  const a = new Uint8Array(n);
+  crypto.getRandomValues(a);
+  return Array.from(a, b => "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"[b % 62]).join("");
+}
+function b64url(buf) {
+  return btoa(String.fromCharCode(...new Uint8Array(buf)))
+    .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+async function sha256(text) {
+  return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+}
+
+/* Setup card */
+const savedCid = localStorage.getItem(LS.cid) || "";
+$("cid").value = savedCid;
+$("goBtn").disabled = !savedCid;
+$("saveCid").addEventListener("click", () => {
+  const v = $("cid").value.trim();
+  if (!v) { localStorage.removeItem(LS.cid); $("goBtn").disabled = true; return; }
+  localStorage.setItem(LS.cid, v);
+  $("goBtn").disabled = false;
+  logMsg("Client ID saved.", "ok");
+});
+$("resetBtn").addEventListener("click", () => {
+  Object.values(LS).forEach(k => localStorage.removeItem(k));
+  $("cid").value = "";
+  $("goBtn").disabled = true;
+  logMsg("Cleared saved Client ID and pending auth.", "info");
+});
+
+/* Authorize -> Spotify redirects back here with ?code=... */
+async function startAuth() {
+  const cid = localStorage.getItem(LS.cid);
+  if (!cid) { logMsg("Save a Client ID first.", "miss"); return; }
+  const verifier = randStr(64);
+  const challenge = b64url(await sha256(verifier));
+  const state = randStr(16);
+  localStorage.setItem(LS.verifier, verifier);
+  localStorage.setItem(LS.state, state);
+  localStorage.setItem(LS.pending, JSON.stringify({
+    name: $("playlistName").value.trim() || "Stage Setlist"
+  }));
+  const params = new URLSearchParams({
+    client_id: cid,
+    response_type: "code",
+    redirect_uri: redirectUri,
+    code_challenge_method: "S256",
+    code_challenge: challenge,
+    state,
+    scope: SCOPES
+  });
+  window.location.href = `${AUTH_URL}?${params}`;
+}
+$("goBtn").addEventListener("click", startAuth);
+
+/* Token exchange + build flow */
+async function exchangeCode(code) {
+  const cid = localStorage.getItem(LS.cid);
+  const verifier = localStorage.getItem(LS.verifier);
+  const body = new URLSearchParams({
+    client_id: cid,
+    grant_type: "authorization_code",
+    code,
+    redirect_uri: redirectUri,
+    code_verifier: verifier
+  });
+  const r = await fetch(TOKEN_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body
+  });
+  if (!r.ok) throw new Error("Token exchange failed: " + (await r.text()));
+  return (await r.json()).access_token;
+}
+
+async function api(token, path, init) {
+  const r = await fetch(API + path, {
+    ...init,
+    headers: {
+      "Authorization": "Bearer " + token,
+      "Content-Type": "application/json",
+      ...(init && init.headers ? init.headers : {})
+    }
+  });
+  if (!r.ok) throw new Error(`${path} → ${r.status}: ${await r.text()}`);
+  return r.json();
+}
+
+async function searchTrack(token, q) {
+  const r = await api(token, `/search?q=${encodeURIComponent(q)}&type=track&limit=1`);
+  return r.tracks && r.tracks.items[0] || null;
+}
+
+async function buildPlaylist(token, name) {
+  logMsg("Resolving user…", "info");
+  const me = await api(token, "/me");
+
+  logMsg("Searching tracks…", "info");
+  const uris = [];
+  const missing = [];
+  for (let i = 0; i < SONGS.length; i++) {
+    setSongStatus(i, "searching…", "");
+    try {
+      const t = await searchTrack(token, SONGS[i].q);
+      if (t) {
+        uris.push(t.uri);
+        setSongStatus(i, `${t.artists.map(a => a.name).join(", ")} — ${t.name}`, "ok");
+      } else {
+        missing.push(SONGS[i].title);
+        setSongStatus(i, "no match", "miss");
+      }
+    } catch (e) {
+      missing.push(SONGS[i].title);
+      setSongStatus(i, "error", "miss");
+    }
+  }
+  logMsg(`Found ${uris.length}/${SONGS.length} tracks.`, uris.length === SONGS.length ? "ok" : "info");
+
+  logMsg("Creating playlist…", "info");
+  const playlist = await api(token, `/users/${encodeURIComponent(me.id)}/playlists`, {
+    method: "POST",
+    body: JSON.stringify({
+      name,
+      description: "Built from bass setlist · " + new Date().toISOString().slice(0, 10),
+      public: false
+    })
+  });
+
+  logMsg("Adding tracks…", "info");
+  for (let i = 0; i < uris.length; i += 100) {
+    await api(token, `/playlists/${playlist.id}/tracks`, {
+      method: "POST",
+      body: JSON.stringify({ uris: uris.slice(i, i + 100) })
+    });
+  }
+
+  logMsg("Done.", "ok");
+  if (missing.length) logMsg("Missing: " + missing.join(", "), "miss");
+
+  const url = playlist.external_urls && playlist.external_urls.spotify;
+  if (url) {
+    const a = document.createElement("a");
+    a.className = "result-link";
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "♫ Open new playlist in Spotify ↗";
+    $("resultBox").innerHTML = "";
+    $("resultBox").appendChild(a);
+  }
+}
+
+/* Handle the OAuth callback if we landed here with ?code=... */
+async function handleCallback() {
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
+  const state = params.get("state");
+  const err = params.get("error");
+  if (err) {
+    logMsg("Auth error: " + err, "miss");
+    history.replaceState({}, "", redirectUri);
+    return;
+  }
+  if (!code) return;
+
+  const expectedState = localStorage.getItem(LS.state);
+  if (!expectedState || state !== expectedState) {
+    logMsg("State mismatch — refusing token exchange.", "miss");
+    history.replaceState({}, "", redirectUri);
+    return;
+  }
+  const pending = JSON.parse(localStorage.getItem(LS.pending) || "{}");
+  history.replaceState({}, "", redirectUri);
+
+  $("goBtn").disabled = true;
+  $("goBtn").textContent = "Building…";
+  try {
+    const token = await exchangeCode(code);
+    localStorage.removeItem(LS.verifier);
+    localStorage.removeItem(LS.state);
+    localStorage.removeItem(LS.pending);
+    await buildPlaylist(token, pending.name || "Stage Setlist");
+  } catch (e) {
+    logMsg(String(e), "miss");
+  } finally {
+    $("goBtn").disabled = false;
+    $("goBtn").textContent = "Authorize & build";
+  }
+}
+
+handleCallback();
+</script>
+</body>
+</html>
