@@ -585,6 +585,84 @@
     margin-top: 12px;
   }
 
+  /* ===== DIAGRAMS ===== */
+  .diagram {
+    margin-top: 22px;
+    padding: 22px 18px 16px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .diagram-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .diagram svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .diagram-caption {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-faint);
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .motion-diagram { margin-top: 26px; }
+
+  .sequence {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .sequence-panel {
+    text-align: center;
+    padding: 14px 8px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+
+  .sequence-panel svg {
+    display: block;
+    width: 100%;
+    max-width: 130px;
+    height: auto;
+    margin: 0 auto 8px;
+  }
+
+  .sequence-step {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 4px;
+  }
+
+  .sequence-label {
+    font-family: 'Newsreader', serif;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+
   /* ===== MOBILE ===== */
   @media (max-width: 720px) {
     .container { padding: 22px 16px 60px; }
@@ -653,6 +731,9 @@
 
     .bottom-nav { font-size: 10px; gap: 8px; }
     .bottom-nav a { padding: 6px 10px; }
+
+    .sequence { grid-template-columns: 1fr; gap: 12px; }
+    .sequence-panel svg { max-width: 110px; }
   }
 
   /* ===== PRINT ===== */
@@ -789,6 +870,50 @@
       Detailing cloth gets <em>wet</em>. Suede cloth stays <em>dry</em>.<br>
       One applies, the other buffs.
     </div>
+
+    <div class="diagram motion-diagram">
+      <div class="diagram-title">Motion · the two strokes</div>
+      <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- LEFT panel: applies (wet, circular) -->
+        <rect x="40" y="30" width="240" height="130" rx="3" fill="#e7dcc4" stroke="#1c1410" stroke-width="1"/>
+        <!-- droplet falling onto cloth -->
+        <path d="M 105 38 Q 102 46 105 52 Q 108 46 105 38 Z" fill="#7a2e1f"/>
+        <!-- cloth on surface -->
+        <g transform="rotate(-10 160 95)">
+          <rect x="115" y="65" width="90" height="60" rx="2" fill="#4f5a32" fill-opacity="0.18" stroke="#1c1410" stroke-width="1"/>
+          <g stroke="#4f5a32" stroke-width="0.5" opacity="0.55">
+            <line x1="125" y1="75" x2="131" y2="75"/><line x1="143" y1="75" x2="149" y2="75"/><line x1="161" y1="75" x2="167" y2="75"/><line x1="179" y1="75" x2="185" y2="75"/>
+            <line x1="125" y1="95" x2="131" y2="95"/><line x1="143" y1="95" x2="149" y2="95"/><line x1="161" y1="95" x2="167" y2="95"/><line x1="179" y1="95" x2="185" y2="95"/>
+            <line x1="125" y1="115" x2="131" y2="115"/><line x1="143" y1="115" x2="149" y2="115"/><line x1="161" y1="115" x2="167" y2="115"/><line x1="179" y1="115" x2="185" y2="115"/>
+          </g>
+        </g>
+        <!-- circular motion arrow -->
+        <path d="M 160 70 A 28 28 0 1 1 159 70" stroke="#9c6b35" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+        <polygon points="155,68 167,66 162,76" fill="#9c6b35"/>
+        <text x="160" y="180" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#4f5a32">DETAILING · APPLIES</text>
+
+        <!-- divider -->
+        <line x1="300" y1="40" x2="300" y2="170" stroke="#c4b497" stroke-width="1" stroke-dasharray="2,3"/>
+
+        <!-- RIGHT panel: buffs (dry, linear) -->
+        <rect x="320" y="30" width="240" height="130" rx="3" fill="#e7dcc4" stroke="#1c1410" stroke-width="1"/>
+        <!-- cloth on surface -->
+        <g transform="rotate(6 440 95)">
+          <rect x="395" y="65" width="90" height="60" rx="2" fill="#9c6b35" fill-opacity="0.16" stroke="#1c1410" stroke-width="1"/>
+        </g>
+        <!-- linear motion arrows -->
+        <g stroke="#9c6b35" stroke-width="1.5" fill="none" stroke-dasharray="4,3">
+          <line x1="345" y1="70" x2="525" y2="70"/>
+          <line x1="525" y1="95" x2="345" y2="95"/>
+          <line x1="345" y1="120" x2="525" y2="120"/>
+        </g>
+        <polygon points="525,67 535,70 525,73" fill="#9c6b35"/>
+        <polygon points="345,92 335,95 345,98" fill="#9c6b35"/>
+        <polygon points="525,117 535,120 525,123" fill="#9c6b35"/>
+        <text x="440" y="180" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#9c6b35">SUEDE · BUFFS</text>
+      </svg>
+      <div class="diagram-caption">Wet cloth, gentle circular passes. Dry cloth, straight back-and-forth strokes.</div>
+    </div>
   </section>
 
   <!-- ============ SECTION III — BASS I ============ -->
@@ -840,6 +965,50 @@
 
         <div class="warning-box">
           <strong>Critical:</strong> When using Fast Fret, slide a piece of paper between strings and fretboard. Mineral oil must not contact the finished maple board.
+        </div>
+
+        <div class="diagram">
+          <div class="diagram-title">Paper barrier · side view</div>
+          <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+            <!-- Fast Fret applicator (tilted, top center) -->
+            <g transform="translate(245 18) rotate(-12)">
+              <rect x="0" y="0" width="110" height="34" rx="4" fill="#9c6b35" fill-opacity="0.18" stroke="#1c1410" stroke-width="1"/>
+              <rect x="14" y="-10" width="14" height="10" fill="#1c1410"/>
+              <text x="55" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#1c1410">FAST FRET</text>
+            </g>
+            <!-- Application sweep arrow (above strings) -->
+            <path d="M 90 95 Q 300 78 510 95" stroke="#9c6b35" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+            <polygon points="505,91 517,95 505,99" fill="#9c6b35"/>
+
+            <!-- Strings (4 horizontal lines) -->
+            <g stroke="#1c1410" stroke-width="1.6" stroke-linecap="round">
+              <line x1="50" y1="108" x2="555" y2="108"/>
+              <line x1="50" y1="118" x2="555" y2="118"/>
+              <line x1="50" y1="128" x2="555" y2="128"/>
+              <line x1="50" y1="138" x2="555" y2="138"/>
+            </g>
+
+            <!-- Paper barrier (parallelogram, slipped between strings and fretboard, corner extends beyond) -->
+            <path d="M 70 148 L 540 148 L 580 142 L 580 162 L 540 168 L 70 168 Z"
+                  fill="#f7f1e0" stroke="#1c1410" stroke-width="0.8"/>
+
+            <!-- Fretboard -->
+            <rect x="50" y="172" width="505" height="32" fill="#6b5847" fill-opacity="0.32" stroke="#1c1410" stroke-width="1"/>
+            <!-- Fret wires -->
+            <g stroke="#9c6b35" stroke-width="2.5" stroke-linecap="round">
+              <line x1="135" y1="172" x2="135" y2="204"/>
+              <line x1="235" y1="172" x2="235" y2="204"/>
+              <line x1="335" y1="172" x2="335" y2="204"/>
+              <line x1="435" y1="172" x2="435" y2="204"/>
+              <line x1="525" y1="172" x2="525" y2="204"/>
+            </g>
+
+            <!-- Labels -->
+            <text x="50" y="100" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.5" fill="#6b5847">STRINGS</text>
+            <text x="592" y="155" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.5" fill="#7a2e1f">PAPER →</text>
+            <text x="50" y="195" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.5" fill="#4f5a32">FRETBOARD ✓ protected</text>
+          </svg>
+          <div class="diagram-caption">Slip paper under the strings before applying. The applicator only ever touches strings; nothing reaches the maple.</div>
         </div>
 
         <div class="never-block">
@@ -899,6 +1068,82 @@
             </div>
           </li>
         </ul>
+
+        <div class="diagram">
+          <div class="diagram-title">F-One Oil · quarterly sequence</div>
+          <div class="sequence">
+            <!-- Panel 1: Drop -->
+            <div class="sequence-panel">
+              <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+                <!-- Bottle, tipped -->
+                <g transform="translate(38 12) rotate(-22)">
+                  <rect x="0" y="0" width="22" height="52" rx="3" fill="#9c6b35" fill-opacity="0.22" stroke="#1c1410" stroke-width="1"/>
+                  <rect x="6" y="-9" width="10" height="9" fill="#1c1410"/>
+                  <rect x="3" y="14" width="16" height="14" fill="#f1e9d8" stroke="#1c1410" stroke-width="0.6"/>
+                  <text x="11" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="0.8" fill="#1c1410">F-ONE</text>
+                </g>
+                <!-- Drops -->
+                <g fill="#9c6b35">
+                  <path d="M 66 64 Q 63 70 66 75 Q 69 70 66 64 Z"/>
+                  <path d="M 64 78 Q 61 83 64 87 Q 67 83 64 78 Z"/>
+                  <path d="M 68 90 Q 65 95 68 99 Q 71 95 68 90 Z"/>
+                </g>
+                <!-- Fretboard segment -->
+                <rect x="18" y="102" width="94" height="20" fill="#6b5847" fill-opacity="0.4" stroke="#1c1410" stroke-width="0.8"/>
+                <line x1="50" y1="102" x2="50" y2="122" stroke="#9c6b35" stroke-width="2"/>
+                <line x1="84" y1="102" x2="84" y2="122" stroke="#9c6b35" stroke-width="2"/>
+              </svg>
+              <div class="sequence-step">i. drop</div>
+              <div class="sequence-label">A few drops per fret section. Less is more.</div>
+            </div>
+
+            <!-- Panel 2: Wait -->
+            <div class="sequence-panel">
+              <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+                <!-- Hourglass frame -->
+                <g stroke="#1c1410" stroke-width="1.2" fill="none" stroke-linejoin="round">
+                  <path d="M 45 30 L 85 30 L 65 65 L 85 100 L 45 100 L 65 65 Z"/>
+                  <line x1="42" y1="30" x2="88" y2="30" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="42" y1="100" x2="88" y2="100" stroke-width="2.5" stroke-linecap="round"/>
+                </g>
+                <!-- Sand top -->
+                <path d="M 50 33 L 80 33 L 65 60 Z" fill="#9c6b35" fill-opacity="0.7"/>
+                <!-- Sand bottom -->
+                <path d="M 55 97 L 75 97 L 65 80 Z" fill="#9c6b35" fill-opacity="0.45"/>
+                <!-- Falling grain -->
+                <line x1="65" y1="65" x2="65" y2="78" stroke="#9c6b35" stroke-width="1"/>
+                <text x="65" y="120" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="13" fill="#9c6b35">1–2 min</text>
+              </svg>
+              <div class="sequence-step">ii. wait</div>
+              <div class="sequence-label">Let the oil soak in. Do not rush.</div>
+            </div>
+
+            <!-- Panel 3: Wipe -->
+            <div class="sequence-panel">
+              <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+                <!-- Cloth (Detailing, plush) -->
+                <g transform="translate(28 22) rotate(-8)">
+                  <rect width="70" height="48" rx="2" fill="#4f5a32" fill-opacity="0.18" stroke="#1c1410" stroke-width="1"/>
+                  <g stroke="#4f5a32" stroke-width="0.4" opacity="0.55">
+                    <line x1="8" y1="10" x2="14" y2="10"/><line x1="22" y1="10" x2="28" y2="10"/><line x1="36" y1="10" x2="42" y2="10"/><line x1="50" y1="10" x2="56" y2="10"/>
+                    <line x1="14" y1="22" x2="20" y2="22"/><line x1="28" y1="22" x2="34" y2="22"/><line x1="42" y1="22" x2="48" y2="22"/>
+                    <line x1="8" y1="34" x2="14" y2="34"/><line x1="22" y1="34" x2="28" y2="34"/><line x1="36" y1="34" x2="42" y2="34"/><line x1="50" y1="34" x2="56" y2="34"/>
+                  </g>
+                </g>
+                <!-- Wipe arrow -->
+                <path d="M 25 88 Q 65 80 105 88" stroke="#9c6b35" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+                <polygon points="100,84 112,88 100,92" fill="#9c6b35"/>
+                <!-- Fretboard segment -->
+                <rect x="18" y="102" width="94" height="20" fill="#6b5847" fill-opacity="0.4" stroke="#1c1410" stroke-width="0.8"/>
+                <line x1="50" y1="102" x2="50" y2="122" stroke="#9c6b35" stroke-width="2"/>
+                <line x1="84" y1="102" x2="84" y2="122" stroke="#9c6b35" stroke-width="2"/>
+              </svg>
+              <div class="sequence-step">iii. wipe</div>
+              <div class="sequence-label">Wipe excess firmly with Detailing cloth.</div>
+            </div>
+          </div>
+          <div class="diagram-caption">Strings off first. Same sequence on the SLB ebony — but use even less.</div>
+        </div>
       </div>
     </div>
 
@@ -950,6 +1195,51 @@
 
         <div class="warning-box">
           <strong>Critical:</strong> Never apply Fast Fret to the bowing area — it kills rosin grip. Avoid liquid contact with piezo bridge, jack, and preamp.
+        </div>
+
+        <div class="diagram">
+          <div class="diagram-title">SLB100 · zones to protect</div>
+          <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+            <!-- Schematic body outline -->
+            <rect x="40" y="55" width="520" height="110" rx="10" fill="#e7dcc4" fill-opacity="0.6" stroke="#1c1410" stroke-width="1.2"/>
+
+            <!-- Strings (4) running across -->
+            <g stroke="#1c1410" stroke-width="0.9" opacity="0.7">
+              <line x1="60" y1="92" x2="540" y2="92"/>
+              <line x1="60" y1="103" x2="540" y2="103"/>
+              <line x1="60" y1="114" x2="540" y2="114"/>
+              <line x1="60" y1="125" x2="540" y2="125"/>
+            </g>
+
+            <!-- BOW AREA (left, neutral/safe-with-care) -->
+            <g>
+              <rect x="115" y="78" width="100" height="62" fill="#4f5a32" fill-opacity="0.10" stroke="#4f5a32" stroke-width="1" stroke-dasharray="3,3"/>
+              <text x="165" y="48" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#4f5a32">BOW AREA</text>
+              <text x="165" y="178" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-size="11" fill="#4f5a32">no Fast Fret here</text>
+            </g>
+
+            <!-- PIEZO BRIDGE -->
+            <g>
+              <ellipse cx="345" cy="108" rx="38" ry="28" fill="#7a2e1f" fill-opacity="0.16" stroke="#7a2e1f" stroke-width="1.2" stroke-dasharray="3,3"/>
+              <line x1="332" y1="93" x2="358" y2="123" stroke="#7a2e1f" stroke-width="0.8" opacity="0.6"/>
+              <line x1="358" y1="93" x2="332" y2="123" stroke="#7a2e1f" stroke-width="0.8" opacity="0.6"/>
+              <text x="345" y="48" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#7a2e1f">PIEZO BRIDGE</text>
+            </g>
+
+            <!-- JACK + PREAMP -->
+            <g>
+              <rect x="455" y="78" width="80" height="62" fill="#7a2e1f" fill-opacity="0.16" stroke="#7a2e1f" stroke-width="1.2" stroke-dasharray="3,3"/>
+              <line x1="465" y1="88" x2="525" y2="130" stroke="#7a2e1f" stroke-width="0.8" opacity="0.6"/>
+              <line x1="525" y1="88" x2="465" y2="130" stroke="#7a2e1f" stroke-width="0.8" opacity="0.6"/>
+              <text x="495" y="48" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#7a2e1f">JACK · PREAMP</text>
+            </g>
+
+            <!-- Header warning -->
+            <text x="300" y="25" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="14" fill="#7a2e1f">no liquid contact</text>
+
+            <!-- Caption strip at bottom -->
+            <text x="300" y="200" text-anchor="middle" font-family="Newsreader, serif" font-style="italic" font-size="12" fill="#6b5847">Spray Guitar ONE onto the cloth in another location, then carry the cloth to the body.</text>
+          </svg>
         </div>
       </div>
     </div>
