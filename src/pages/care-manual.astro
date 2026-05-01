@@ -1,0 +1,992 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bass Care Manual — Hüseyin's Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style is:global>
+  :root {
+    --paper: #f1e9d8;
+    --paper-deep: #e7dcc4;
+    --ink: #1c1410;
+    --ink-soft: #3a2c22;
+    --ink-faint: #6b5847;
+    --rule: #c4b497;
+    --brass: #9c6b35;
+    --oxblood: #7a2e1f;
+    --moss: #4f5a32;
+    --highlight: #f7d680;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 16px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 20% 10%, rgba(156, 107, 53, 0.06), transparent),
+      radial-gradient(ellipse 600px 800px at 90% 70%, rgba(122, 46, 31, 0.04), transparent);
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* paper grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 22px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    text-align: center;
+    padding: 28px 0 36px;
+    position: relative;
+  }
+
+  .preamble {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .preamble::before, .preamble::after {
+    content: '';
+    height: 1px;
+    flex: 0 1 80px;
+    background: var(--rule);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(44px, 10vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+
+  h1 .amp {
+    font-style: italic;
+    color: var(--brass);
+    font-weight: 400;
+  }
+
+  .subtitle {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(15px, 3.4vw, 18px);
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    flex-wrap: wrap;
+  }
+
+  .meta-row span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .meta-row .dot {
+    width: 4px;
+    height: 4px;
+    background: var(--brass);
+    border-radius: 50%;
+  }
+
+  /* ===== ORNAMENT ===== */
+  .ornament {
+    text-align: center;
+    margin: 40px 0;
+    color: var(--brass);
+    font-size: 22px;
+    letter-spacing: 0.4em;
+  }
+
+  /* ===== SECTION ===== */
+  section {
+    margin-bottom: 52px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 12px;
+  }
+
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--brass);
+    letter-spacing: 0.15em;
+    flex-shrink: 0;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 5vw, 34px);
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    flex-shrink: 0;
+  }
+
+  /* ===== SCHEDULE TABLE ===== */
+  .schedule {
+    background: var(--paper-deep);
+    border: 1px solid var(--ink);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    font-size: 14px;
+  }
+
+  .schedule-grid > div {
+    padding: 14px 12px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .schedule-grid > div:nth-child(4n) {
+    border-right: none;
+  }
+
+  .schedule-grid .header-cell {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    border-color: var(--ink);
+    font-weight: 500;
+  }
+
+  .schedule-grid .freq-cell {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--brass);
+    font-size: 15px;
+  }
+
+  .schedule-grid .action-cell {
+    font-family: 'Newsreader', serif;
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    line-height: 1.4;
+  }
+
+  .schedule-grid .action-cell.empty {
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  /* ===== CLOTH GUIDE ===== */
+  .cloth-guide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .cloth-card {
+    background: var(--paper-deep);
+    border: 1px solid var(--ink);
+    padding: 24px 20px;
+    position: relative;
+  }
+
+  .cloth-card::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 1px solid var(--rule);
+    pointer-events: none;
+  }
+
+  .cloth-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    display: block;
+  }
+
+  .cloth-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 19px;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  .cloth-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-align: center;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+  }
+
+  .cloth-rule {
+    height: 1px;
+    background: var(--rule);
+    margin: 14px 0;
+  }
+
+  .cloth-purpose {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .cloth-purpose strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .cloth-rule-of-thumb {
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-soft);
+    padding: 16px 24px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: rgba(156, 107, 53, 0.06);
+  }
+
+  .cloth-rule-of-thumb em {
+    color: var(--brass);
+    font-weight: 500;
+  }
+
+  /* ===== BASS CARDS ===== */
+  .bass-card {
+    background: var(--paper-deep);
+    border: 1px solid var(--ink);
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bass-card-inner {
+    padding: 26px 24px;
+  }
+
+  .bass-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .bass-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(22px, 4.5vw, 28px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .bass-spec {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  .bass-roman {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(38px, 8vw, 56px);
+    color: var(--brass);
+    line-height: 0.9;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .care-list {
+    list-style: none;
+    margin-top: 6px;
+  }
+
+  .care-item {
+    padding: 16px 0;
+    border-bottom: 1px dotted var(--rule);
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .care-item:last-child {
+    border-bottom: none;
+    padding-bottom: 4px;
+  }
+
+  .care-when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 500;
+    padding-top: 3px;
+  }
+
+  .care-what {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .care-what strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .care-what .product {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .care-what .cloth-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 2px 6px;
+    margin: 0 2px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  .care-what .cloth-tag.suede { background: rgba(156, 107, 53, 0.15); border-color: var(--brass); color: var(--brass); }
+  .care-what .cloth-tag.detail { background: rgba(79, 90, 50, 0.12); border-color: var(--moss); color: var(--moss); }
+
+  .never-block {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border: 1px dashed var(--oxblood);
+    background: rgba(122, 46, 31, 0.05);
+  }
+
+  .never-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--oxblood);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .never-list {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .never-list .never-item {
+    display: inline;
+  }
+
+  .never-list .never-item::after {
+    content: ' · ';
+    color: var(--oxblood);
+    margin: 0 4px;
+  }
+
+  .never-list .never-item:last-child::after {
+    content: '';
+  }
+
+  .warning-box {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: rgba(247, 214, 128, 0.25);
+    border-left: 3px solid var(--brass);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .warning-box strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ===== RULES ===== */
+  .rules-list {
+    counter-reset: rule-counter;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 32px;
+  }
+
+  .rules-list li {
+    counter-increment: rule-counter;
+    position: relative;
+    padding-left: 44px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .rules-list li::before {
+    content: counter(rule-counter, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--brass);
+    line-height: 1;
+  }
+
+  .rules-list li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ===== BOTTOM NAV ===== */
+  .bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .bottom-nav a {
+    color: var(--brass);
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .bottom-nav a:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .footer-mark {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--brass);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 12px;
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 720px) {
+    .container { padding: 22px 16px 60px; }
+
+    .schedule-grid {
+      grid-template-columns: 1fr;
+      font-size: 13.5px;
+    }
+
+    .schedule-grid > div {
+      border-right: none !important;
+    }
+
+    .schedule-grid .header-cell { display: none; }
+
+    .schedule-grid .header-cell.show-mobile { display: block; }
+
+    /* mobile schedule: stacked groups */
+    .schedule-grid .freq-cell {
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 12px;
+      font-style: italic;
+      letter-spacing: 0.05em;
+      padding: 10px 14px;
+    }
+
+    .schedule-grid .action-cell {
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .schedule-grid .action-cell::before {
+      content: attr(data-bass);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brass);
+      padding-top: 2px;
+    }
+
+    .cloth-guide {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .care-item {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .care-when {
+      font-size: 9.5px;
+    }
+
+    .rules-list {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .bass-roman { font-size: 42px; }
+
+    .bottom-nav { font-size: 10px; gap: 8px; }
+    .bottom-nav a { padding: 6px 10px; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: white; }
+    body::before { display: none; }
+    .container { max-width: 100%; padding: 0; }
+    section { page-break-inside: avoid; }
+    .bottom-nav { display: none; }
+  }
+</style>
+  <link rel="manifest" href="/bass/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/bass/icon.svg">
+  <meta name="theme-color" content="#f1e9d8">
+  <script is:inline>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/bass/sw.js', { scope: '/bass/' }).catch(function () {});
+      });
+    }
+  </script>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="preamble">Workshop Reference No. 01</div>
+    <h1>Bass Care<br>&amp; Cleaning <span class="amp">Manual</span></h1>
+    <div class="subtitle">A practical maintenance protocol for three instruments</div>
+    <div class="meta-row">
+      <span><span class="dot"></span>Mayones Jabba 5</span>
+      <span><span class="dot"></span>Yamaha TRB1004J</span>
+      <span><span class="dot"></span>Yamaha SLB100</span>
+    </div>
+  </header>
+
+  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- ============ SECTION I — SCHEDULE ============ -->
+  <section>
+    <div class="section-head">
+      <div class="section-num">§ I.</div>
+      <h2>Master Schedule</h2>
+      <div class="section-tag">at a glance</div>
+    </div>
+
+    <div class="schedule">
+      <div class="schedule-grid">
+        <div class="header-cell">Frequency</div>
+        <div class="header-cell">Mayones</div>
+        <div class="header-cell">TRB1004J</div>
+        <div class="header-cell">SLB100</div>
+
+        <div class="freq-cell">Every Session</div>
+        <div class="action-cell" data-bass="Mayones">Dry wipe (Detailing)</div>
+        <div class="action-cell" data-bass="TRB1004J">Dry wipe (Detailing)</div>
+        <div class="action-cell" data-bass="SLB100">Dry wipe (Detailing)</div>
+
+        <div class="freq-cell">Weekly</div>
+        <div class="action-cell" data-bass="Mayones">Fast Fret</div>
+        <div class="action-cell" data-bass="TRB1004J">Fast Fret</div>
+        <div class="action-cell" data-bass="SLB100">Fast Fret · pizz only</div>
+
+        <div class="freq-cell">Monthly</div>
+        <div class="action-cell" data-bass="Mayones">MN100 — Detailing only</div>
+        <div class="action-cell" data-bass="TRB1004J">Guitar ONE → Suede buff</div>
+        <div class="action-cell" data-bass="SLB100">Guitar ONE → Suede buff</div>
+
+        <div class="freq-cell">Quarterly</div>
+        <div class="action-cell empty" data-bass="Mayones">— not required —</div>
+        <div class="action-cell" data-bass="TRB1004J">F-One Oil (Detailing)</div>
+        <div class="action-cell" data-bass="SLB100">F-One Oil (Detailing)</div>
+
+        <div class="freq-cell">Twice Yearly</div>
+        <div class="action-cell" data-bass="Mayones">Naphtha — hardware only</div>
+        <div class="action-cell" data-bass="TRB1004J">Guitar Polish → Suede buff</div>
+        <div class="action-cell" data-bass="SLB100">Guitar Polish → Suede buff</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION II — CLOTHS ============ -->
+  <section>
+    <div class="section-head">
+      <div class="section-num">§ II.</div>
+      <h2>The Two Cloths</h2>
+      <div class="section-tag">essential</div>
+    </div>
+
+    <div class="cloth-guide">
+      <div class="cloth-card">
+        <svg class="cloth-icon" viewBox="0 0 64 64" fill="none">
+          <rect x="6" y="12" width="52" height="44" rx="2" fill="#4f5a32" opacity="0.15" stroke="#1c1410" stroke-width="1.2"/>
+          <g stroke="#4f5a32" stroke-width="0.5" opacity="0.6">
+            <line x1="10" y1="18" x2="14" y2="18"/><line x1="20" y1="18" x2="24" y2="18"/><line x1="30" y1="18" x2="34" y2="18"/><line x1="40" y1="18" x2="44" y2="18"/><line x1="50" y1="18" x2="54" y2="18"/>
+            <line x1="14" y1="24" x2="18" y2="24"/><line x1="24" y1="24" x2="28" y2="24"/><line x1="34" y1="24" x2="38" y2="24"/><line x1="44" y1="24" x2="48" y2="24"/>
+            <line x1="10" y1="30" x2="14" y2="30"/><line x1="20" y1="30" x2="24" y2="30"/><line x1="30" y1="30" x2="34" y2="30"/><line x1="40" y1="30" x2="44" y2="30"/><line x1="50" y1="30" x2="54" y2="30"/>
+            <line x1="14" y1="36" x2="18" y2="36"/><line x1="24" y1="36" x2="28" y2="36"/><line x1="34" y1="36" x2="38" y2="36"/><line x1="44" y1="36" x2="48" y2="36"/>
+            <line x1="10" y1="42" x2="14" y2="42"/><line x1="20" y1="42" x2="24" y2="42"/><line x1="30" y1="42" x2="34" y2="42"/><line x1="40" y1="42" x2="44" y2="42"/><line x1="50" y1="42" x2="54" y2="42"/>
+            <line x1="14" y1="48" x2="18" y2="48"/><line x1="24" y1="48" x2="28" y2="48"/><line x1="34" y1="48" x2="38" y2="48"/><line x1="44" y1="48" x2="48" y2="48"/>
+          </g>
+        </svg>
+        <div class="cloth-name">Detailing Cloth</div>
+        <div class="cloth-code">MN202 · plush</div>
+        <div class="cloth-rule"></div>
+        <div class="cloth-purpose">
+          <strong>Applies liquids.</strong> The plush, fluffy texture absorbs and carries product. Use for after-session dry wipes, applying MN100, Guitar ONE, F-One oil, and the first pass of Guitar Polish.
+        </div>
+      </div>
+
+      <div class="cloth-card">
+        <svg class="cloth-icon" viewBox="0 0 64 64" fill="none">
+          <rect x="6" y="12" width="52" height="44" rx="2" fill="#9c6b35" opacity="0.18" stroke="#1c1410" stroke-width="1.2"/>
+          <rect x="6" y="12" width="52" height="44" rx="2" fill="url(#suedeGrad)" opacity="0.4"/>
+          <defs>
+            <linearGradient id="suedeGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#9c6b35" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#9c6b35" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="cloth-name">Suede Polishing Cloth</div>
+        <div class="cloth-code">MN201 · smooth</div>
+        <div class="cloth-rule"></div>
+        <div class="cloth-purpose">
+          <strong>Buffs &amp; finishes.</strong> The smooth suede surface is for buffing only. Use after Guitar ONE for streak-free shine and after Guitar Polish to remove residue. Never use on the Mayones.
+        </div>
+      </div>
+    </div>
+
+    <div class="cloth-rule-of-thumb">
+      Detailing cloth gets <em>wet</em>. Suede cloth stays <em>dry</em>.<br>
+      One applies, the other buffs.
+    </div>
+  </section>
+
+  <!-- ============ SECTION III — BASS I ============ -->
+  <section>
+    <div class="section-head">
+      <div class="section-num">§ III.</div>
+      <h2>Per Instrument</h2>
+      <div class="section-tag">protocols</div>
+    </div>
+
+    <!-- BASS I — MAYONES -->
+    <div class="bass-card">
+      <div class="bass-card-inner">
+        <div class="bass-header">
+          <div>
+            <div class="bass-name">Mayones Jabba Custom 5</div>
+            <div class="bass-spec">satin body · matt neck · finished maple board</div>
+          </div>
+          <div class="bass-roman">I</div>
+        </div>
+
+        <ul class="care-list">
+          <li class="care-item">
+            <div class="care-when">After Session</div>
+            <div class="care-what">
+              <strong>Strings:</strong> dedicated string cloth, dry, run under and over each string.<br>
+              <strong>Body + neck:</strong> <span class="cloth-tag detail">Detailing</span> dry wipe.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Weekly</div>
+            <div class="care-what">
+              <strong>Strings:</strong> <span class="product">GHS Fast Fret</span>, 4–5 passes per string, then wipe dry.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Monthly</div>
+            <div class="care-what">
+              <strong>Body + neck + hardware:</strong> 2–3 sprays of <span class="product">MN100 Detailer</span> onto the <span class="cloth-tag detail">Detailing</span> cloth (never spray bass directly), wipe in straight lines. No buffing required.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Twice Yearly</div>
+            <div class="care-what">
+              <strong>Stubborn hardware grime:</strong> dab of <span class="product">naphtha (Feuerzeugbenzin)</span> on Detailing cloth — evaporates clean.
+            </div>
+          </li>
+        </ul>
+
+        <div class="warning-box">
+          <strong>Critical:</strong> When using Fast Fret, slide a piece of paper between strings and fretboard. Mineral oil must not contact the finished maple board.
+        </div>
+
+        <div class="never-block">
+          <div class="never-label">Never on this bass</div>
+          <div class="never-list">
+            <span class="never-item">F-One Oil</span>
+            <span class="never-item">Guitar ONE</span>
+            <span class="never-item">Guitar Polish</span>
+            <span class="never-item">Lemon oil</span>
+            <span class="never-item">Suede cloth (unused)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BASS II — TRB -->
+    <div class="bass-card">
+      <div class="bass-card-inner">
+        <div class="bass-header">
+          <div>
+            <div class="bass-name">Yamaha TRB1004J</div>
+            <div class="bass-spec">gloss polyurethane body · rosewood fretboard</div>
+          </div>
+          <div class="bass-roman">II</div>
+        </div>
+
+        <ul class="care-list">
+          <li class="care-item">
+            <div class="care-when">After Session</div>
+            <div class="care-what">
+              <strong>Strings:</strong> string cloth, dry.<br>
+              <strong>Body + neck:</strong> <span class="cloth-tag detail">Detailing</span> dry wipe.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Weekly</div>
+            <div class="care-what">
+              <strong>Strings:</strong> <span class="product">GHS Fast Fret</span>, then wipe dry. No paper barrier needed — rosewood tolerates it.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Monthly</div>
+            <div class="care-what">
+              <strong>Body, neck, hardware:</strong> <span class="product">Guitar ONE</span> sprayed onto <span class="cloth-tag detail">Detailing</span>, wipe any direction, then <strong>buff with</strong> <span class="cloth-tag suede">Suede</span> for streak-free finish.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Quarterly</div>
+            <div class="care-what">
+              <strong>Rosewood fretboard:</strong> <span class="product">F-One Oil</span> — strings off. Few drops per fret section, rub in, wait 1–2 minutes, wipe excess firmly with <span class="cloth-tag detail">Detailing</span>. Less is more.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Twice Yearly</div>
+            <div class="care-what">
+              <strong>Deep clean + hardware oxidation:</strong> <span class="product">Guitar Polish</span>, pea-sized amount on <span class="cloth-tag detail">Detailing</span>, work in small sections, then buff thoroughly with <span class="cloth-tag suede">Suede</span> until haze disappears.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BASS III — SLB -->
+    <div class="bass-card">
+      <div class="bass-card-inner">
+        <div class="bass-header">
+          <div>
+            <div class="bass-name">Yamaha SLB100 Silent Upright</div>
+            <div class="bass-spec">gloss polyurethane body · ebony fretboard · piezo bridge</div>
+          </div>
+          <div class="bass-roman">III</div>
+        </div>
+
+        <ul class="care-list">
+          <li class="care-item">
+            <div class="care-when">After Session</div>
+            <div class="care-what">
+              <strong>Strings:</strong> string cloth, full length including bow contact area.<br>
+              <strong>Body:</strong> <span class="cloth-tag detail">Detailing</span> dry wipe.<br>
+              <strong>If bowed:</strong> separate cloth for rosin dust.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Weekly</div>
+            <div class="care-what">
+              <strong>Strings — pizz portion only:</strong> <span class="product">GHS Fast Fret</span>. Skip entirely if you primarily bow.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Monthly</div>
+            <div class="care-what">
+              <strong>Body + neck:</strong> <span class="product">Guitar ONE</span> on <span class="cloth-tag detail">Detailing</span>, buff with <span class="cloth-tag suede">Suede</span>. Apply product to cloth in a separate location — never spray near electronics.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Quarterly</div>
+            <div class="care-what">
+              <strong>Ebony fretboard:</strong> <span class="product">F-One Oil</span> — strings off. Sparingly, less than rosewood needs. Wipe excess firmly with <span class="cloth-tag detail">Detailing</span>.
+            </div>
+          </li>
+          <li class="care-item">
+            <div class="care-when">Twice Yearly</div>
+            <div class="care-what">
+              <strong>Body + hardware:</strong> <span class="product">Guitar Polish</span> on <span class="cloth-tag detail">Detailing</span>, buff with <span class="cloth-tag suede">Suede</span>.
+            </div>
+          </li>
+        </ul>
+
+        <div class="warning-box">
+          <strong>Critical:</strong> Never apply Fast Fret to the bowing area — it kills rosin grip. Avoid liquid contact with piezo bridge, jack, and preamp.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION IV — RULES ============ -->
+  <section>
+    <div class="section-head">
+      <div class="section-num">§ IV.</div>
+      <h2>Universal Rules</h2>
+      <div class="section-tag">always</div>
+    </div>
+
+    <ol class="rules-list">
+      <li>Always spray product onto the cloth — <strong>never directly onto the instrument</strong>.</li>
+      <li><strong>Detailing applies, Suede buffs.</strong> Keep them separate at all times.</li>
+      <li>Use separate cloths by purpose: strings, body, polish. <strong>Never cross-contaminate.</strong></li>
+      <li>Paper barrier between strings and fretboard when using Fast Fret on the <strong>Mayones</strong>.</li>
+      <li>Stop Fast Fret entirely if you switch to <strong>coated strings</strong> (Elixir, D'Addario XT).</li>
+      <li>The after-session dry wipe handles <strong>80% of instrument care</strong>. Less is more.</li>
+      <li>No liquids near the SLB100 electronics — <strong>piezo, jack, preamp area</strong>.</li>
+      <li>Strings off before applying F-One Oil. Wash cloths separately, no fabric softener.</li>
+    </ol>
+  </section>
+
+  <nav class="bottom-nav">
+    <a href="../">◀ Back to Hub</a>
+    <a href="../setlist/">Stage Setlist ▶</a>
+  </nav>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-mark">— H.Y. Workshop —</div>
+    <div class="footer-meta">Berlin · Charlottenburg · Edition I</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
