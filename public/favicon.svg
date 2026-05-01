@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Bass">
+  <rect width="32" height="32" rx="6" fill="#07080c"/>
+  <!-- four strings: G (thinnest, top) → E (thickest, bottom) -->
+  <rect x="4" y="9"  width="24" height="1.2" fill="#9a968e"/>
+  <rect x="4" y="14" width="24" height="1.6" fill="#9a968e"/>
+  <rect x="4" y="19" width="24" height="2.0" fill="#9a968e"/>
+  <rect x="4" y="24" width="24" height="2.4" fill="#9a968e"/>
+  <!-- gold harmonic node — the brand mark -->
+  <circle cx="19" cy="20" r="3.6" fill="#d4a853" stroke="#07080c" stroke-width="0.7"/>
+</svg>
