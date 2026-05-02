@@ -7,6 +7,9 @@ export default defineConfig({
   site: 'https://hyurtseven81.github.io',
   base: '/bass',
   trailingSlash: 'always',
+  // Disable HTML compression — strips leading whitespace inside .chord-line divs
+  // which destroys chord-over-syllable positioning in the setlist.
+  compressHTML: false,
   build: {
     assets: 'assets',
   },
