@@ -41,6 +41,12 @@ export default defineConfig({
         // Pre-cache everything needed for full offline use on stage.
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff,woff2}'],
         navigateFallback: '/bass/',
+        // Take over open tabs immediately when a new SW activates so users
+        // see updates on next reload without having to close all tabs.
+        skipWaiting: true,
+        clientsClaim: true,
+        // Cleanup old caches from previous SW versions.
+        cleanupOutdatedCaches: true,
         // Cache Google Fonts at runtime — first load online, cached thereafter.
         runtimeCaching: [
           {
