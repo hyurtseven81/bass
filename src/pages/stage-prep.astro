@@ -17,6 +17,8 @@
   --gold-dim: #9a7a3a;
   --gold-bright: #f0c95a;
   --green: #8fd49b;
+  --teal: #4ec9b0;
+  --purple: #9b7bd4;
   --text: #d8d4cc;
   --text-dim: #706c68;
   --text-mid: #9a968e;
@@ -61,6 +63,83 @@ h1 .sub {
   text-transform: uppercase;
   margin-top: 12px;
 }
+
+/* ── STAGE VISUALIZATION ── */
+.stage-vis {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 18px 18px 14px;
+  margin-bottom: 28px;
+}
+.stage-vis-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.stage-vis-svg-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.stage-vis svg {
+  display: block;
+  width: 100%;
+  min-width: 560px;
+  height: auto;
+}
+.stage-vis-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin-top: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-mid);
+}
+.stage-vis-legend .swatch {
+  display: inline-block;
+  width: 18px;
+  height: 2.5px;
+  border-radius: 1px;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+.stage-vis-legend .swatch.jack   { background: var(--gold); }
+.stage-vis-legend .swatch.xlr    { background: var(--teal); }
+.stage-vis-legend .swatch.trs    { background: var(--purple); }
+.stage-vis-legend .swatch.iem    { background: var(--text-dim); }
+.stage-vis-note {
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.3px;
+}
+.stage-vis-note b { color: var(--gold); font-weight: 600; }
+
+/* SVG-internal styles */
+.sv-stage-floor { fill: var(--surface2); opacity: 0.5; }
+.sv-stage-edge  { stroke: var(--border); stroke-width: 1; stroke-dasharray: 3 4; fill: none; }
+.sv-gear-stroke { stroke: var(--gold); stroke-width: 1.5; fill: var(--surface); stroke-linejoin: round; stroke-linecap: round; }
+.sv-gear-detail { stroke: var(--gold-dim); stroke-width: 1; fill: none; stroke-linecap: round; }
+.sv-gear-fill   { fill: var(--gold-dim); stroke: none; }
+.sv-stand       { stroke: var(--text-dim); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+.sv-cable       { fill: none; stroke-width: 2.6; stroke-linecap: round; }
+.sv-cable.jack  { stroke: var(--gold); }
+.sv-cable.xlr   { stroke: var(--teal); }
+.sv-cable.trs   { stroke: var(--purple); }
+.sv-cable.iem   { stroke: var(--text-dim); stroke-width: 1.6; }
+.sv-label       { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: var(--gold); }
+.sv-label-dim   { font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: var(--text-dim); letter-spacing: 2px; }
+.sv-cable-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; }
+.sv-cable-label.jack { fill: var(--gold); }
+.sv-cable-label.xlr  { fill: var(--teal); }
+.sv-cable-label.trs  { fill: var(--purple); }
 
 .toolbar {
   display: flex;
@@ -275,6 +354,116 @@ h1 .sub {
   <h1>Stage Prep<span class="sub">pre-gig checklist · don't leave home without</span></h1>
 </header>
 
+<section class="stage-vis">
+  <div class="stage-vis-label">stage signal chain</div>
+  <div class="stage-vis-svg-wrap">
+    <svg viewBox="0 0 920 280" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Stage signal chain: bass to DI to mixer to in-ear monitor amp">
+      <rect class="sv-stage-floor" x="20" y="206" width="880" height="58" rx="2" />
+      <line class="sv-stage-edge" x1="20" y1="206" x2="900" y2="206" />
+      <text class="sv-label-dim" x="32" y="34">STAGE</text>
+
+      <!-- ── Cables (drawn behind gear) ── -->
+      <path class="sv-cable jack" d="M138 168 Q190 110 254 162" />
+      <text class="sv-cable-label jack" x="196" y="100" text-anchor="middle">1/4" JACK</text>
+
+      <path class="sv-cable xlr"  d="M334 162 Q400 100 460 158" />
+      <text class="sv-cable-label xlr"  x="397" y="92"  text-anchor="middle">XLR</text>
+
+      <path class="sv-cable trs"  d="M656 158 Q708 100 760 154" />
+      <text class="sv-cable-label trs"  x="708" y="92"  text-anchor="middle">1/4" TRS</text>
+
+      <!-- ── Bass on stand ── -->
+      <g transform="translate(80,68)">
+        <line class="sv-stand" x1="0"  y1="138" x2="36" y2="100" />
+        <line class="sv-stand" x1="76" y1="138" x2="40" y2="100" />
+        <line class="sv-stand" x1="0"  y1="138" x2="76" y2="138" />
+        <line class="sv-stand" x1="38" y1="100" x2="38" y2="138" />
+        <path class="sv-stand" d="M28 100 Q38 95 48 100" />
+        <ellipse cx="38" cy="80" rx="14" ry="10" fill="#07080c" stroke="#d4a853" stroke-width="1.5" />
+        <rect x="34" y="76" width="8" height="6" class="sv-gear-fill" />
+        <line x1="38" y1="70" x2="38" y2="20" stroke="#d4a853" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M34 20 L30 10 L46 10 L42 20 Z" stroke="#d4a853" stroke-width="1.4" fill="#0f1018" stroke-linejoin="round" />
+        <circle cx="34" cy="14" r="1.2" class="sv-gear-fill" />
+        <circle cx="42" cy="14" r="1.2" class="sv-gear-fill" />
+      </g>
+      <text class="sv-label" x="118" y="240" text-anchor="middle">BASS</text>
+
+      <!-- ── DI Box ── -->
+      <g transform="translate(254,140)">
+        <rect class="sv-gear-stroke" x="0" y="0" width="80" height="44" rx="3" />
+        <circle class="sv-gear-detail" cx="20" cy="14" r="4" />
+        <line   class="sv-gear-detail" x1="20" y1="11" x2="20" y2="13" />
+        <circle class="sv-gear-detail" cx="40" cy="14" r="4" />
+        <line   class="sv-gear-detail" x1="40" y1="11" x2="40" y2="13" />
+        <rect   class="sv-gear-detail" x="55" y="10" width="14" height="8" rx="1" />
+        <text class="sv-label-dim" x="40" y="34" text-anchor="middle" style="letter-spacing:1px">DI</text>
+      </g>
+      <text class="sv-label" x="294" y="240" text-anchor="middle">DI BOX</text>
+
+      <!-- ── Mixer ── -->
+      <g transform="translate(460,128)">
+        <rect class="sv-gear-stroke" x="0" y="0" width="196" height="62" rx="3" />
+        <g class="sv-gear-detail">
+          <circle cx="18"  cy="14" r="3.5" />
+          <line   x1="18"  y1="22" x2="18"  y2="50" stroke-dasharray="1 2" />
+          <circle cx="44"  cy="14" r="3.5" />
+          <line   x1="44"  y1="22" x2="44"  y2="50" stroke-dasharray="1 2" />
+          <circle cx="70"  cy="14" r="3.5" />
+          <line   x1="70"  y1="22" x2="70"  y2="50" stroke-dasharray="1 2" />
+          <circle cx="96"  cy="14" r="3.5" />
+          <line   x1="96"  y1="22" x2="96"  y2="50" stroke-dasharray="1 2" />
+          <circle cx="122" cy="14" r="3.5" />
+          <line   x1="122" y1="22" x2="122" y2="50" stroke-dasharray="1 2" />
+          <circle cx="148" cy="14" r="3.5" />
+          <line   x1="148" y1="22" x2="148" y2="50" stroke-dasharray="1 2" />
+        </g>
+        <g class="sv-gear-fill">
+          <rect x="15"  y="38" width="6" height="4" />
+          <rect x="41"  y="34" width="6" height="4" />
+          <rect x="67"  y="40" width="6" height="4" />
+          <rect x="93"  y="36" width="6" height="4" />
+          <rect x="119" y="42" width="6" height="4" />
+          <rect x="145" y="38" width="6" height="4" />
+        </g>
+        <rect class="sv-gear-detail" x="170" y="14" width="20" height="36" rx="1.5" />
+        <rect class="sv-gear-fill"   x="173" y="34" width="6"  height="13" />
+        <rect class="sv-gear-fill"   x="183" y="28" width="6"  height="19" />
+      </g>
+      <text class="sv-label" x="558" y="240" text-anchor="middle">MIXER</text>
+
+      <!-- ── IEM Amp / body pack ── -->
+      <g transform="translate(740,108)">
+        <line class="sv-gear-detail" x1="35" y1="6" x2="35" y2="14" />
+        <circle class="sv-gear-fill" cx="35" cy="4" r="1.6" />
+        <rect class="sv-gear-stroke" x="10" y="14" width="50" height="78" rx="4" />
+        <rect class="sv-gear-detail" x="16" y="20" width="38" height="14" rx="1.5" fill="#161822" />
+        <text x="35" y="30" text-anchor="middle" style="font-family:monospace;font-size:6.5px;fill:#d4a853;">CH 04</text>
+        <circle class="sv-gear-detail" cx="22" cy="46" r="4" />
+        <line   class="sv-gear-detail" x1="22" y1="42.5" x2="22" y2="44.5" />
+        <circle class="sv-gear-detail" cx="48" cy="46" r="4" />
+        <line   class="sv-gear-detail" x1="48" y1="42.5" x2="48" y2="44.5" />
+        <rect   class="sv-gear-detail" x="20" y="60" width="30" height="6" rx="1" />
+        <circle class="sv-gear-detail" cx="35" cy="80" r="2.6" />
+        <line   class="sv-gear-detail" x1="35" y1="78" x2="35" y2="82" />
+      </g>
+      <text class="sv-label" x="775" y="240" text-anchor="middle">IEM AMP</text>
+
+      <!-- ── IEM cable to earbud ── -->
+      <path class="sv-cable iem" d="M775 200 Q812 220 838 198 Q860 180 880 188" />
+      <circle cx="880" cy="188" r="4" stroke="#d4a853" stroke-width="1.4" fill="#07080c" />
+      <circle cx="880" cy="188" r="1.6" class="sv-gear-fill" />
+      <text class="sv-label" x="880" y="240" text-anchor="middle">EAR</text>
+    </svg>
+  </div>
+  <div class="stage-vis-legend">
+    <span><span class="swatch jack"></span>1/4" Jack · Bass → DI</span>
+    <span><span class="swatch xlr"></span>XLR · DI → Mixer</span>
+    <span><span class="swatch trs"></span>1/4" TRS · Mixer → IEM Amp</span>
+    <span><span class="swatch iem"></span>IEM cable · Amp → Ears</span>
+  </div>
+  <div class="stage-vis-note"><b>No pedal.</b> DI is the first link after the bass. Mixer is FOH — you don't bring it.</div>
+</section>
+
 <div class="toolbar">
   <div class="progress"><b id="pct">0</b> / <span id="total">0</span> packed</div>
   <button class="btn" onclick="resetAll()">↺ Reset</button>
@@ -322,25 +511,19 @@ h1 .sub {
     <div class="check"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></div>
   </div>
 
-  <div class="item" data-id="cables">
+  <div class="item" data-id="cable-bass-di">
     <div class="icon">
       <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="16" y="14" width="22" height="30" rx="3" />
-        <circle cx="22" cy="26" r="2" fill="currentColor" />
-        <circle cx="32" cy="26" r="2" fill="currentColor" />
-        <circle cx="27" cy="36" r="2" fill="currentColor" />
-        <line x1="27" y1="44" x2="27" y2="54" />
-        <path d="M27 54 Q20 64 30 72 Q42 80 52 72" />
-        <line x1="62" y1="56" x2="78" y2="56" />
-        <line x1="62" y1="62" x2="78" y2="62" />
-        <rect x="78" y="50" width="8" height="18" rx="1.5" />
-        <line x1="86" y1="54" x2="92" y2="54" />
-        <line x1="86" y1="64" x2="92" y2="64" />
-        <path d="M52 72 Q58 64 62 60" />
+        <path d="M16 38 Q6 44 6 60 Q6 84 32 86 Q62 88 80 76" />
+        <rect x="14" y="34" width="22" height="14" rx="3" />
+        <rect x="36" y="36" width="36" height="10" />
+        <path d="M72 36 L86 36 L92 41 L86 46 L72 46 Z" fill="currentColor" />
+        <text x="50" y="68" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="currentColor" stroke="none">1/4" TS</text>
+        <text x="50" y="82" text-anchor="middle" font-family="monospace" font-size="7" fill="currentColor" stroke="none" opacity="0.7">instrument</text>
       </svg>
     </div>
-    <div class="label">Cables</div>
-    <div class="sub-text">XLR · 1/4" Jack</div>
+    <div class="label">Cable: Bass → DI</div>
+    <div class="sub-text">1/4" jack · unbalanced</div>
     <div class="check"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></div>
   </div>
 
@@ -365,20 +548,38 @@ h1 .sub {
     <div class="check"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></div>
   </div>
 
-  <div class="item" data-id="iem">
+  <div class="item" data-id="cable-di-mixer">
     <div class="icon">
       <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M30 28 Q22 30 22 42 Q22 56 32 56 Q40 56 38 48 Q36 38 32 36" />
-        <circle cx="30" cy="42" r="4" fill="currentColor" stroke="none" />
-        <path d="M38 48 Q44 56 50 60" />
-        <path d="M50 60 Q58 64 60 72 Q62 80 70 82" />
-        <path d="M70 28 Q78 30 78 42 Q78 56 68 56 Q60 56 62 48 Q64 38 68 36" />
-        <circle cx="70" cy="42" r="4" fill="currentColor" stroke="none" />
-        <path d="M62 48 Q56 56 50 60" />
+        <path d="M76 56 Q88 58 88 72 Q88 84 70 82" />
+        <rect x="20" y="26" width="60" height="32" rx="6" />
+        <rect x="60" y="18" width="10" height="10" rx="1.5" />
+        <circle cx="36" cy="36" r="3" fill="currentColor" stroke="none" />
+        <circle cx="48" cy="36" r="3" fill="currentColor" stroke="none" />
+        <circle cx="42" cy="48" r="3" fill="currentColor" stroke="none" />
+        <text x="50" y="76" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="currentColor" stroke="none">XLR</text>
+        <text x="50" y="88" text-anchor="middle" font-family="monospace" font-size="7" fill="currentColor" stroke="none" opacity="0.7">balanced · 3-pin</text>
       </svg>
     </div>
-    <div class="label">In-Ear Monitor</div>
-    <div class="sub-text">earbuds + cable</div>
+    <div class="label">Cable: DI → Mixer</div>
+    <div class="sub-text">XLR · balanced</div>
+    <div class="check"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></div>
+  </div>
+
+  <div class="item" data-id="cable-mixer-iem">
+    <div class="icon">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 38 Q6 44 6 60 Q6 84 32 86 Q62 88 80 76" />
+        <rect x="14" y="34" width="22" height="14" rx="3" />
+        <rect x="36" y="36" width="20" height="10" />
+        <rect x="58" y="36" width="14" height="10" />
+        <path d="M72 36 L86 36 L92 41 L86 46 L72 46 Z" fill="currentColor" />
+        <text x="50" y="68" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="currentColor" stroke="none">1/4" TRS</text>
+        <text x="50" y="82" text-anchor="middle" font-family="monospace" font-size="7" fill="currentColor" stroke="none" opacity="0.7">balanced / stereo</text>
+      </svg>
+    </div>
+    <div class="label">Cable: Mixer → IEM</div>
+    <div class="sub-text">1/4" TRS · aux send</div>
     <div class="check"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></div>
   </div>
 
@@ -402,6 +603,23 @@ h1 .sub {
     </div>
     <div class="label">IEM Amp</div>
     <div class="sub-text">body pack · belt clip</div>
+    <div class="check"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></div>
+  </div>
+
+  <div class="item" data-id="iem">
+    <div class="icon">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 28 Q22 30 22 42 Q22 56 32 56 Q40 56 38 48 Q36 38 32 36" />
+        <circle cx="30" cy="42" r="4" fill="currentColor" stroke="none" />
+        <path d="M38 48 Q44 56 50 60" />
+        <path d="M50 60 Q58 64 60 72 Q62 80 70 82" />
+        <path d="M70 28 Q78 30 78 42 Q78 56 68 56 Q60 56 62 48 Q64 38 68 36" />
+        <circle cx="70" cy="42" r="4" fill="currentColor" stroke="none" />
+        <path d="M62 48 Q56 56 50 60" />
+      </svg>
+    </div>
+    <div class="label">In-Ear Monitor</div>
+    <div class="sub-text">earbuds · into IEM amp</div>
     <div class="check"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></div>
   </div>
 
